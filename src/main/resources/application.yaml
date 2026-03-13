@@ -1,0 +1,28 @@
+spring:
+  application:
+    name: soapadapter
+
+sippulse:
+  auth:
+    login: ${USER_ADMIN}
+    password: ${PASSWORD_ADMIN}
+
+soap:
+  endpoints:
+    domain: ${URL}/SipPulse/DomainWS
+    profile: ${URL}/SipPulse/ProfileWS
+    subscriber: ${URL}/SipPulse/SubscriberWS
+    did: ${URL}/SipPulse/DidWS
+    whitelist: ${URL}/SipPulse/WhitelistWS
+    ratePlan: ${URL}/SipPulse/RatePlanWS
+    rate: ${URL}/SipPulse/RateWS
+    account_group: ${URL}/SipPulse/AccountGroupWS
+    customer: ${URL}/SipPulse/CustomerWS
+    user_location: ${URL}/SipPulse/UserLocationWS
+    address: ${URL}/SipPulse/AddressWS
+    hunt_group: ${URL}/SipPulse/HuntGroupWS
+    reload: ${URL}/SipPulse/ReloadWS
+
+logging:
+  level:
+    com.sun.xml.ws: ERROR

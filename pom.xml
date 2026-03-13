@@ -1,0 +1,160 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project xmlns="http://maven.apache.org/POM/4.0.0"
+		 xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+		 xsi:schemaLocation="http://maven.apache.org/POM/4.0.0
+         https://maven.apache.org/xsd/maven-4.0.0.xsd">
+
+	<modelVersion>4.0.0</modelVersion>
+
+	<parent>
+		<groupId>org.springframework.boot</groupId>
+		<artifactId>spring-boot-starter-parent</artifactId>
+		<version>3.3.5</version>
+		<relativePath/>
+	</parent>
+
+	<groupId>com.sippulse</groupId>
+	<artifactId>soapadapter</artifactId>
+	<version>0.0.1-SNAPSHOT</version>
+	<name>soapadapter</name>
+	<description>RESTful API that integrates with external SOAP services to SipPulse.</description>
+
+	<properties>
+		<java.version>21</java.version>
+	</properties>
+
+	<dependencies>
+
+		<!-- REST API -->
+		<dependency>
+			<groupId>org.springframework.boot</groupId>
+			<artifactId>spring-boot-starter-web</artifactId>
+		</dependency>
+
+		<!-- Testes -->
+		<dependency>
+			<groupId>org.springframework.boot</groupId>
+			<artifactId>spring-boot-starter-test</artifactId>
+			<scope>test</scope>
+		</dependency>
+
+		<!-- ===== SOAP (JAX-WS) ===== -->
+
+		<!-- Jakarta JWS -->
+		<dependency>
+			<groupId>jakarta.jws</groupId>
+			<artifactId>jakarta.jws-api</artifactId>
+			<version>3.0.0</version>
+		</dependency>
+
+		<!-- Jakarta XML Web Services API -->
+		<dependency>
+			<groupId>jakarta.xml.ws</groupId>
+			<artifactId>jakarta.xml.ws-api</artifactId>
+			<version>3.0.0</version>
+		</dependency>
+
+		<!-- JAX-WS Runtime -->
+		<dependency>
+			<groupId>com.sun.xml.ws</groupId>
+			<artifactId>jaxws-rt</artifactId>
+			<version>4.0.3</version>
+		</dependency>
+
+		<!-- JAXB API -->
+		<dependency>
+			<groupId>jakarta.xml.bind</groupId>
+			<artifactId>jakarta.xml.bind-api</artifactId>
+			<version>4.0.0</version>
+		</dependency>
+
+		<!-- JAXB Runtime -->
+		<dependency>
+			<groupId>org.glassfish.jaxb</groupId>
+			<artifactId>jaxb-runtime</artifactId>
+			<version>4.0.2</version>
+		</dependency>
+
+	</dependencies>
+
+	<build>
+		<plugins>
+
+			<!-- Spring Boot -->
+			<plugin>
+				<groupId>org.springframework.boot</groupId>
+				<artifactId>spring-boot-maven-plugin</artifactId>
+			</plugin>
+
+			<!-- Geração automática do cliente SOAP -->
+			<plugin>
+				<groupId>com.sun.xml.ws</groupId>
+				<artifactId>jaxws-maven-plugin</artifactId>
+				<version>4.0.3</version>
+				<executions>
+
+					<!-- SubscriberWS -->
+					<execution>
+						<id>subscriber-ws</id>
+						<goals>
+							<goal>wsimport</goal>
+						</goals>
+						<configuration>
+							<wsdlUrls>
+								<wsdlUrl>
+									http://181.191.206.162:8080/SipPulse/SubscriberWS?wsdl
+								</wsdlUrl>
+							</wsdlUrls>
+							<packageName>
+                                com.sippulse.soapadapter.sippulse.client.subscriberWS
+                            </packageName>
+							<sourceDestDir>src/main/java</sourceDestDir>
+							<keep>true</keep>
+						</configuration>
+					</execution>
+
+					<!-- DidsWS -->
+					<execution>
+						<id>dids-ws</id>
+						<goals>
+							<goal>wsimport</goal>
+						</goals>
+						<configuration>
+							<wsdlUrls>
+								<wsdlUrl>
+									http://181.191.206.162:8080/SipPulse/DidWS?wsdl
+								</wsdlUrl>
+							</wsdlUrls>
+							<packageName>
+                                com.sippulse.soapadapter.sippulse.client.didWS
+                            </packageName>
+							<sourceDestDir>src/main/java</sourceDestDir>
+							<keep>true</keep>
+						</configuration>
+					</execution>
+
+					<execution>
+						<id>reload-ws</id>
+						<goals>
+							<goal>wsimport</goal>
+						</goals>
+						<configuration>
+							<wsdlUrls>
+								<wsdlUrl>
+									http://181.191.206.162:8080/SipPulse/ReloadModulesWS?wsdl
+								</wsdlUrl>
+							</wsdlUrls>
+							<packageName>
+                                com.sippulse.soapadapter.sippulse.client.reloadWS
+                            </packageName>
+							<sourceDestDir>src/main/java</sourceDestDir>
+							<keep>true</keep>
+						</configuration>
+					</execution>
+
+				</executions>
+			</plugin>
+		</plugins>
+	</build>
+
+</project>
