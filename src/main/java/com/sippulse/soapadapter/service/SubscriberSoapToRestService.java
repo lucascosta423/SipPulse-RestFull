@@ -1,5 +1,6 @@
 package com.sippulse.soapadapter.service;
 
+
 import com.sippulse.soapadapter.sippulse.client.subscriberWS.*;
 import com.sippulse.soapadapter.sippulse.mapper.SipPulseAuthMapper;
 import org.springframework.stereotype.Service;
@@ -15,228 +16,592 @@ public class SubscriberSoapToRestService{
         this.authMapper = authMapper;
     }
 
-    public Integer insertSubscriber(SubscriberDTO subscriber, UserPrincipalDTO principal) throws WSException {
-        return 0;
+    public Integer insertSubscriber(SubscriberDTO subscriber) {
+        try{
+
+            return subscriberWS.insertSubscriber(subscriber,authMapper.toSoapUser(UserPrincipalDTO::new));
+
+        }catch (WSException e){
+            throw new RuntimeException("Erro ao inserir Assinante", e);
+        }
     }
 
-    public void blockEntry0303(String username, String domain, UserPrincipalDTO principal) throws WSException {
-
-    }
-
-
-    public String retrievePassword(String username, String domain, UserPrincipalDTO principal) throws WSException {
-        return "";
-    }
-
-
-    public String retrievePasswordWEB(String username, String domain, UserPrincipalDTO principal) throws WSException {
-        return "";
-    }
-
-
-    public void updateSubscriberClassV(SubscriberClassVDTO subscriber, UserPrincipalDTO principal) throws WSException {
-
-    }
-
-
-    public void updateSubscriberBillingInfo(SubscriberBillingInfoDTO subscriber, UserPrincipalDTO principal) throws WSException {
+    public void blockEntry0303(String username, String domain){
+        try {
+            subscriberWS.blockEntry0303(
+                    username,
+                    domain,
+                    authMapper.toSoapUser(UserPrincipalDTO::new)
+            );
+        }catch (WSException e){
+            throw new RuntimeException("Erro ao bloquear entrada 0303", e);
+        }
 
     }
 
 
-    public void updateSubscriberServices(SubscriberServicesDTO subscriber, UserPrincipalDTO principal) throws WSException {
-
+    public String retrievePassword(String username, String domain){
+        try{
+            return subscriberWS.retrievePassword(
+                    username,
+                    domain,
+                    authMapper.toSoapUser(UserPrincipalDTO::new)
+            );
+        }catch (WSException e){
+            throw new RuntimeException("Erro ao buscar senha", e);
+        }
     }
 
 
-    public SubscriberDTO retrieveSubscriber(String username, String domain, UserPrincipalDTO principal) throws WSException {
-        return null;
+    public String retrievePasswordWEB(String username, String domain, UserPrincipalDTO principal) {
+        try {
+            return subscriberWS.retrievePasswordWEB(
+                    username,
+                    domain,
+                    authMapper.toSoapUser(() -> principal)
+            );
+        } catch (WSException e) {
+            throw new RuntimeException("Erro ao buscar senha WEB", e);
+        }
     }
 
 
-    public SubscriberClassVDTO retrieveSubscriberClassV(String username, String domain, UserPrincipalDTO principal) throws WSException {
-        return null;
+    public void updateSubscriberClassV(SubscriberClassVDTO subscriber, UserPrincipalDTO principal) {
+        try {
+            subscriberWS.updateSubscriberClassV(
+                    subscriber,
+                    authMapper.toSoapUser(() -> principal)
+            );
+        } catch (WSException e) {
+            throw new RuntimeException("Erro ao atualizar classe do assinante", e);
+        }
     }
 
 
-    public void activateIncommingCalls(String username, String domain, UserPrincipalDTO principal) throws WSException {
-
+    public void updateSubscriberBillingInfo(SubscriberBillingInfoDTO subscriber, UserPrincipalDTO principal) {
+        try {
+            subscriberWS.updateSubscriberBillingInfo(
+                    subscriber,
+                    authMapper.toSoapUser(() -> principal)
+            );
+        } catch (WSException e) {
+            throw new RuntimeException("Erro ao atualizar informações de cobrança do assinante", e);
+        }
     }
 
 
-    public void blockIncommingCalls(String username, String domain, UserPrincipalDTO principal) throws WSException {
-
+    public void updateSubscriberServices(SubscriberServicesDTO subscriber, UserPrincipalDTO principal) {
+        try {
+            subscriberWS.updateSubscriberServices(
+                    subscriber,
+                    authMapper.toSoapUser(() -> principal)
+            );
+        } catch (WSException e) {
+            throw new RuntimeException("Erro ao atualizar serviços do assinante", e);
+        }
     }
 
 
-    public void activateOutgoingCalls(String username, String domain, UserPrincipalDTO principal) throws WSException {
-
+    public SubscriberDTO retrieveSubscriber(String username, String domain, UserPrincipalDTO principal) {
+        try {
+            return subscriberWS.retrieveSubscriber(
+                    username,
+                    domain,
+                    authMapper.toSoapUser(() -> principal)
+            );
+        } catch (WSException e) {
+            throw new RuntimeException("Erro ao buscar assinante", e);
+        }
     }
 
 
-    public void blockOutgoingCalls(String username, String domain, UserPrincipalDTO principal) throws WSException {
-
+    public SubscriberClassVDTO retrieveSubscriberClassV(String username, String domain, UserPrincipalDTO principal) {
+        try {
+            return subscriberWS.retrieveSubscriberClassV(
+                    username,
+                    domain,
+                    authMapper.toSoapUser(() -> principal)
+            );
+        } catch (WSException e) {
+            throw new RuntimeException("Erro ao buscar classe do assinante", e);
+        }
     }
 
 
-    public void activateCallsOnlyByIp(String username, String domain, UserPrincipalDTO principal) throws WSException {
-
+    public void activateIncommingCalls(String username, String domain, UserPrincipalDTO principal) {
+        try {
+            subscriberWS.activateIncommingCalls(
+                    username,
+                    domain,
+                    authMapper.toSoapUser(() -> principal)
+            );
+        } catch (WSException e) {
+            throw new RuntimeException("Erro ao ativar chamadas recebidas", e);
+        }
     }
 
 
-    public void blockCallsOnlyByIp(String username, String domain, UserPrincipalDTO principal) throws WSException {
-
+    public void blockIncommingCalls(String username, String domain, UserPrincipalDTO principal) {
+        try {
+            subscriberWS.blockIncommingCalls(
+                    username,
+                    domain,
+                    authMapper.toSoapUser(() -> principal)
+            );
+        } catch (WSException e) {
+            throw new RuntimeException("Erro ao bloquear chamadas recebidas", e);
+        }
     }
 
 
-    public void activateCollectCalls(String username, String domain, UserPrincipalDTO principal) throws WSException {
-
+    public void activateOutgoingCalls(String username, String domain, UserPrincipalDTO principal) {
+        try {
+            subscriberWS.activateOutgoingCalls(
+                    username,
+                    domain,
+                    authMapper.toSoapUser(() -> principal)
+            );
+        } catch (WSException e) {
+            throw new RuntimeException("Erro ao ativar chamadas efetuadas", e);
+        }
     }
 
 
-    public void activateAnonymousCalls(String username, String domain, UserPrincipalDTO principal) throws WSException {
-
+    public void blockOutgoingCalls(String username, String domain, UserPrincipalDTO principal) {
+        try {
+            subscriberWS.blockOutgoingCalls(
+                    username,
+                    domain,
+                    authMapper.toSoapUser(() -> principal)
+            );
+        } catch (WSException e) {
+            throw new RuntimeException("Erro ao bloquear chamadas efetuadas", e);
+        }
     }
 
 
-    public void activatePrivacyCalls(String username, String domain, UserPrincipalDTO principal) throws WSException {
-
+    public void activateCallsOnlyByIp(String username, String domain, UserPrincipalDTO principal) {
+        try {
+            subscriberWS.activateCallsOnlyByIp(
+                    username,
+                    domain,
+                    authMapper.toSoapUser(() -> principal)
+            );
+        } catch (WSException e) {
+            throw new RuntimeException("Erro ao ativar chamadas apenas por IP", e);
+        }
     }
 
 
-    public void blockPrivacyCalls(String username, String domain, UserPrincipalDTO principal) throws WSException {
-
+    public void blockCallsOnlyByIp(String username, String domain, UserPrincipalDTO principal) {
+        try {
+            subscriberWS.blockCallsOnlyByIp(
+                    username,
+                    domain,
+                    authMapper.toSoapUser(() -> principal)
+            );
+        } catch (WSException e) {
+            throw new RuntimeException("Erro ao bloquear chamadas apenas por IP", e);
+        }
     }
 
 
-    public void activateLowCreditNotification(String username, String domain, Double lowCreditLimit, UserPrincipalDTO principal) throws WSException {
-
+    public void activateCollectCalls(String username, String domain, UserPrincipalDTO principal) {
+        try {
+            subscriberWS.activateCollectCalls(
+                    username,
+                    domain,
+                    authMapper.toSoapUser(() -> principal)
+            );
+        } catch (WSException e) {
+            throw new RuntimeException("Erro ao ativar chamadas a cobrar", e);
+        }
     }
 
 
-    public void blockLowCreditNotification(String username, String domain, UserPrincipalDTO principal) throws WSException {
-
+    public void activateAnonymousCalls(String username, String domain, UserPrincipalDTO principal) {
+        try {
+            subscriberWS.activateAnonymousCalls(
+                    username,
+                    domain,
+                    authMapper.toSoapUser(() -> principal)
+            );
+        } catch (WSException e) {
+            throw new RuntimeException("Erro ao ativar chamadas anônimas", e);
+        }
     }
 
 
-    public void activateDailyStatistics(String username, String domain, UserPrincipalDTO principal) throws WSException {
-
+    public void activatePrivacyCalls(String username, String domain, UserPrincipalDTO principal) {
+        try {
+            subscriberWS.activatePrivacyCalls(
+                    username,
+                    domain,
+                    authMapper.toSoapUser(() -> principal)
+            );
+        } catch (WSException e) {
+            throw new RuntimeException("Erro ao ativar privacidade de chamadas", e);
+        }
     }
 
 
-    public void blockDailyStatistics(String username, String domain, UserPrincipalDTO principal) throws WSException {
-
+    public void blockPrivacyCalls(String username, String domain, UserPrincipalDTO principal) {
+        try {
+            subscriberWS.blockPrivacyCalls(
+                    username,
+                    domain,
+                    authMapper.toSoapUser(() -> principal)
+            );
+        } catch (WSException e) {
+            throw new RuntimeException("Erro ao bloquear privacidade de chamadas", e);
+        }
     }
 
 
-    public void updateDailyQuota(SubscriberDailyQuotaDTO dailyQuotaDTO, UserPrincipalDTO principal) throws WSException {
-
+    public void activateLowCreditNotification(String username, String domain, Double lowCreditLimit, UserPrincipalDTO principal) {
+        try {
+            subscriberWS.activateLowCreditNotification(
+                    username,
+                    domain,
+                    lowCreditLimit,
+                    authMapper.toSoapUser(() -> principal)
+            );
+        } catch (WSException e) {
+            throw new RuntimeException("Erro ao ativar notificação de crédito baixo", e);
+        }
     }
 
 
-    public void blockCollectCalls(String username, String domain, UserPrincipalDTO principal) throws WSException {
-
+    public void blockLowCreditNotification(String username, String domain, UserPrincipalDTO principal) {
+        try {
+            subscriberWS.blockLowCreditNotification(
+                    username,
+                    domain,
+                    authMapper.toSoapUser(() -> principal)
+            );
+        } catch (WSException e) {
+            throw new RuntimeException("Erro ao bloquear notificação de crédito baixo", e);
+        }
     }
 
 
-    public void blockAnonymousCalls(String username, String domain, UserPrincipalDTO principal) throws WSException {
-
+    public void activateDailyStatistics(String username, String domain, UserPrincipalDTO principal) {
+        try {
+            subscriberWS.activateDailyStatistics(
+                    username,
+                    domain,
+                    authMapper.toSoapUser(() -> principal)
+            );
+        } catch (WSException e) {
+            throw new RuntimeException("Erro ao ativar estatísticas diárias", e);
+        }
     }
 
 
-    public void updateMonthlyQuota(SubscriberMonthlyQuotaDTO monthlyQuotaDTO, UserPrincipalDTO principal) throws WSException {
-
+    public void blockDailyStatistics(String username, String domain, UserPrincipalDTO principal) {
+        try {
+            subscriberWS.blockDailyStatistics(
+                    username,
+                    domain,
+                    authMapper.toSoapUser(() -> principal)
+            );
+        } catch (WSException e) {
+            throw new RuntimeException("Erro ao bloquear estatísticas diárias", e);
+        }
     }
 
 
-    public void blockSubscriber(String username, String domain, UserPrincipalDTO principal) throws WSException {
-
+    public void updateDailyQuota(SubscriberDailyQuotaDTO dailyQuotaDTO, UserPrincipalDTO principal) {
+        try {
+            subscriberWS.updateDailyQuota(
+                    dailyQuotaDTO,
+                    authMapper.toSoapUser(() -> principal)
+            );
+        } catch (WSException e) {
+            throw new RuntimeException("Erro ao atualizar cota diária", e);
+        }
     }
 
 
-    public void activateSubscriber(String username, String domain, UserPrincipalDTO principal) throws WSException {
-
+    public void blockCollectCalls(String username, String domain, UserPrincipalDTO principal) {
+        try {
+            subscriberWS.blockCollectCalls(
+                    username,
+                    domain,
+                    authMapper.toSoapUser(() -> principal)
+            );
+        } catch (WSException e) {
+            throw new RuntimeException("Erro ao bloquear chamadas a cobrar", e);
+        }
     }
 
 
-    public void activateVoicemail(String username, String domain, Long voicemailPassword, UserPrincipalDTO principal) throws WSException {
-
+    public void blockAnonymousCalls(String username, String domain, UserPrincipalDTO principal) {
+        try {
+            subscriberWS.blockAnonymousCalls(
+                    username,
+                    domain,
+                    authMapper.toSoapUser(() -> principal)
+            );
+        } catch (WSException e) {
+            throw new RuntimeException("Erro ao bloquear chamadas anônimas", e);
+        }
     }
 
 
-    public void blockVoicemail(String username, String domain, UserPrincipalDTO principal) throws WSException {
-
+    public void updateMonthlyQuota(SubscriberMonthlyQuotaDTO monthlyQuotaDTO, UserPrincipalDTO principal) {
+        try {
+            subscriberWS.updateMonthlyQuota(
+                    monthlyQuotaDTO,
+                    authMapper.toSoapUser(() -> principal)
+            );
+        } catch (WSException e) {
+            throw new RuntimeException("Erro ao atualizar cota mensal", e);
+        }
     }
 
 
-    public void removeSubscriber(String username, String domain, UserPrincipalDTO principal) throws WSException {
-
+    public void blockSubscriber(String username, String domain, UserPrincipalDTO principal) {
+        try {
+            subscriberWS.blockSubscriber(
+                    username,
+                    domain,
+                    authMapper.toSoapUser(() -> principal)
+            );
+        } catch (WSException e) {
+            throw new RuntimeException("Erro ao bloquear assinante", e);
+        }
     }
 
 
-    public Double retrieveCredit(String username, String domain, UserPrincipalDTO principal) throws WSException {
-        return 0.0;
+    public void activateSubscriber(String username, String domain, UserPrincipalDTO principal) {
+        try {
+            subscriberWS.activateSubscriber(
+                    username,
+                    domain,
+                    authMapper.toSoapUser(() -> principal)
+            );
+        } catch (WSException e) {
+            throw new RuntimeException("Erro ao ativar assinante", e);
+        }
     }
 
 
-    public void addCredit(String username, String domain, Double value, String obs, UserPrincipalDTO principal) throws WSException {
+    public void activateVoicemail(String username, String domain, Long voicemailPassword, UserPrincipalDTO principal) {
+        try {
+            subscriberWS.activateVoicemail(
+                    username,
+                    domain,
+                    voicemailPassword,
+                    authMapper.toSoapUser(() -> principal)
+            );
+        } catch (WSException e) {
+            throw new RuntimeException("Erro ao ativar correio de voz", e);
+        }
+    }
 
+
+    public void blockVoicemail(String username, String domain, UserPrincipalDTO principal) {
+        try {
+            subscriberWS.blockVoicemail(
+                    username,
+                    domain,
+                    authMapper.toSoapUser(() -> principal)
+            );
+        } catch (WSException e) {
+            throw new RuntimeException("Erro ao bloquear correio de voz", e);
+        }
+    }
+
+
+    public void removeSubscriber(String username, String domain, UserPrincipalDTO principal) {
+        try {
+            subscriberWS.removeSubscriber(
+                    username,
+                    domain,
+                    authMapper.toSoapUser(() -> principal)
+            );
+        } catch (WSException e) {
+            throw new RuntimeException("Erro ao remover assinante", e);
+        }
+    }
+
+
+    public Double retrieveCredit(String username, String domain, UserPrincipalDTO principal) {
+        try {
+            return subscriberWS.retrieveCredit(
+                    username,
+                    domain,
+                    authMapper.toSoapUser(() -> principal)
+            );
+        } catch (WSException e) {
+            throw new RuntimeException("Erro ao buscar crédito", e);
+        }
+    }
+
+
+    public void addCredit(String username, String domain, Double value, String obs, UserPrincipalDTO principal) {
+        try {
+            subscriberWS.addCredit(
+                    username,
+                    domain,
+                    value,
+                    obs,
+                    authMapper.toSoapUser(() -> principal)
+            );
+        } catch (WSException e) {
+            throw new RuntimeException("Erro ao adicionar crédito", e);
+        }
     }
 
 
     
-    public void updateSubscriber(SubscriberDTO subscriber, UserPrincipalDTO principal) throws WSException {
-
+    public void updateSubscriber(SubscriberDTO subscriber, UserPrincipalDTO principal) {
+        try {
+            subscriberWS.updateSubscriber(
+                    subscriber,
+                    authMapper.toSoapUser(() -> principal)
+            );
+        } catch (WSException e) {
+            throw new RuntimeException("Erro ao atualizar assinante", e);
+        }
     }
 
     
-    public void changePasswordWEB(String username, String domain, String actualPassword, String newPassword, String confirmNewPassword, UserPrincipalDTO principal) throws WSException {
-
+    public void changePasswordWEB(String username, String domain, String actualPassword, String newPassword, String confirmNewPassword, UserPrincipalDTO principal) {
+        try {
+            subscriberWS.changePasswordWEB(
+                    username,
+                    domain,
+                    actualPassword,
+                    newPassword,
+                    confirmNewPassword,
+                    authMapper.toSoapUser(() -> principal)
+            );
+        } catch (WSException e) {
+            throw new RuntimeException("Erro ao alterar senha WEB", e);
+        }
     }
 
     
-    public void changeProfile(String username, String domain, Integer newProfileId, UserPrincipalDTO principal) throws WSException {
-
+    public void changeProfile(String username, String domain, Integer newProfileId, UserPrincipalDTO principal) {
+        try {
+            subscriberWS.changeProfile(
+                    username,
+                    domain,
+                    newProfileId,
+                    authMapper.toSoapUser(() -> principal)
+            );
+        } catch (WSException e) {
+            throw new RuntimeException("Erro ao alterar perfil", e);
+        }
     }
 
     
-    public SubscriberDailyQuotaDTO retrieveDailyQuota(String username, String domain, UserPrincipalDTO principal) throws WSException {
-        return null;
+    public SubscriberDailyQuotaDTO retrieveDailyQuota(String username, String domain, UserPrincipalDTO principal) {
+        try {
+            return subscriberWS.retrieveDailyQuota(
+                    username,
+                    domain,
+                    authMapper.toSoapUser(() -> principal)
+            );
+        } catch (WSException e) {
+            throw new RuntimeException("Erro ao buscar cota diária", e);
+        }
     }
 
     
-    public SubscriberMonthlyQuotaDTO retrieveMonthlyQuotaDTO(String username, String domain, UserPrincipalDTO principal) throws WSException {
-        return null;
+    public SubscriberMonthlyQuotaDTO retrieveMonthlyQuotaDTO(String username, String domain, UserPrincipalDTO principal) {
+        try {
+            return subscriberWS.retrieveMonthlyQuotaDTO(
+                    username,
+                    domain,
+                    authMapper.toSoapUser(() -> principal)
+            );
+        } catch (WSException e) {
+            throw new RuntimeException("Erro ao buscar cota mensal", e);
+        }
     }
 
     
-    public void activateSoftphone(String username, String domain, UserPrincipalDTO principal) throws WSException {
-
+    public void activateSoftphone(String username, String domain, UserPrincipalDTO principal) {
+        try {
+            subscriberWS.activateSoftphone(
+                    username,
+                    domain,
+                    authMapper.toSoapUser(() -> principal)
+            );
+        } catch (WSException e) {
+            throw new RuntimeException("Erro ao ativar softphone", e);
+        }
     }
 
     
-    public void blockSoftphone(String username, String domain, UserPrincipalDTO principal) throws WSException {
-
+    public void blockSoftphone(String username, String domain, UserPrincipalDTO principal) {
+        try {
+            subscriberWS.blockSoftphone(
+                    username,
+                    domain,
+                    authMapper.toSoapUser(() -> principal)
+            );
+        } catch (WSException e) {
+            throw new RuntimeException("Erro ao bloquear softphone", e);
+        }
     }
 
     
-    public void activateEntry0303(String username, String domain, UserPrincipalDTO principal) throws WSException {
-
+    public void activateEntry0303(String username, String domain, UserPrincipalDTO principal) {
+        try {
+            subscriberWS.activateEntry0303(
+                    username,
+                    domain,
+                    authMapper.toSoapUser(() -> principal)
+            );
+        } catch (WSException e) {
+            throw new RuntimeException("Erro ao ativar entrada 0303", e);
+        }
     }
 
     
-    public void disableValidateSource0303(String username, String domain, UserPrincipalDTO principal) throws WSException {
-
+    public void disableValidateSource0303(String username, String domain, UserPrincipalDTO principal) {
+        try {
+            subscriberWS.disableValidateSource0303(
+                    username,
+                    domain,
+                    authMapper.toSoapUser(() -> principal)
+            );
+        } catch (WSException e) {
+            throw new RuntimeException("Erro ao desabilitar validação de origem 0303", e);
+        }
     }
 
     
-    public void activateValidateSource0303(String username, String domain, UserPrincipalDTO principal) throws WSException {
-
+    public void activateValidateSource0303(String username, String domain, UserPrincipalDTO principal) {
+        try {
+            subscriberWS.activateValidateSource0303(
+                    username,
+                    domain,
+                    authMapper.toSoapUser(() -> principal)
+            );
+        } catch (WSException e) {
+            throw new RuntimeException("Erro ao ativar validação de origem 0303", e);
+        }
     }
 
     
-    public void changePassword(String username, String domain, String actualPassword, String newPassword, String confirmNewPassword, UserPrincipalDTO principal) throws WSException {
-
+    public void changePassword(String username, String domain, String actualPassword, String newPassword, String confirmNewPassword, UserPrincipalDTO principal) {
+        try {
+            subscriberWS.changePassword(
+                    username,
+                    domain,
+                    actualPassword,
+                    newPassword,
+                    confirmNewPassword,
+                    authMapper.toSoapUser(() -> principal)
+            );
+        } catch (WSException e) {
+            throw new RuntimeException("Erro ao alterar senha", e);
+        }
     }
 
 }
