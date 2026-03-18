@@ -86,11 +86,12 @@
 				<artifactId>spring-boot-maven-plugin</artifactId>
 			</plugin>
 
-			<!-- Geração automática do cliente SOAP -->
+			<!-- SOAP Client Generator -->
 			<plugin>
 				<groupId>com.sun.xml.ws</groupId>
 				<artifactId>jaxws-maven-plugin</artifactId>
 				<version>4.0.3</version>
+
 				<executions>
 
 					<!-- SubscriberWS -->
@@ -105,15 +106,22 @@
 									http://181.191.206.162:8080/SipPulse/SubscriberWS?wsdl
 								</wsdlUrl>
 							</wsdlUrls>
+
 							<packageName>
-                                com.sippulse.soapadapter.sippulse.client.subscriberWS
-                            </packageName>
-							<sourceDestDir>src/main/java</sourceDestDir>
+								com.sippulse.soapadapter.sippulse.client.subscriberWS
+							</packageName>
+
+							<sourceDestDir>
+								${project.build.directory}/generated-sources/wsimport
+							</sourceDestDir>
+
+							<xnocompile>true</xnocompile>
 							<keep>true</keep>
+							<verbose>true</verbose>
 						</configuration>
 					</execution>
 
-					<!-- DidsWS -->
+					<!-- DidWS -->
 					<execution>
 						<id>dids-ws</id>
 						<goals>
@@ -125,14 +133,22 @@
 									http://181.191.206.162:8080/SipPulse/DidWS?wsdl
 								</wsdlUrl>
 							</wsdlUrls>
+
 							<packageName>
-                                com.sippulse.soapadapter.sippulse.client.didWS
-                            </packageName>
-							<sourceDestDir>src/main/java</sourceDestDir>
+								com.sippulse.soapadapter.sippulse.client.didWS
+							</packageName>
+
+							<sourceDestDir>
+								${project.build.directory}/generated-sources/wsimport
+							</sourceDestDir>
+
+							<xnocompile>true</xnocompile>
 							<keep>true</keep>
+							<verbose>true</verbose>
 						</configuration>
 					</execution>
 
+					<!-- ReloadModulesWS -->
 					<execution>
 						<id>reload-ws</id>
 						<goals>
@@ -144,16 +160,24 @@
 									http://181.191.206.162:8080/SipPulse/ReloadModulesWS?wsdl
 								</wsdlUrl>
 							</wsdlUrls>
+
 							<packageName>
-                                com.sippulse.soapadapter.sippulse.client.reloadWS
-                            </packageName>
-							<sourceDestDir>src/main/java</sourceDestDir>
+								com.sippulse.soapadapter.sippulse.client.reloadWS
+							</packageName>
+
+							<sourceDestDir>
+								${project.build.directory}/generated-sources/wsimport
+							</sourceDestDir>
+
+							<xnocompile>true</xnocompile>
 							<keep>true</keep>
+							<verbose>true</verbose>
 						</configuration>
 					</execution>
 
 				</executions>
 			</plugin>
+
 		</plugins>
 	</build>
 
