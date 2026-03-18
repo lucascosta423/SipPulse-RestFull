@@ -93,62 +93,189 @@
 				<version>4.0.3</version>
 
 				<executions>
+					<!-- ReloadModulesWS -->
+					<execution>
+						<id>domain-ws</id>
+						<goals>
+							<goal>wsimport</goal>
+						</goals>
+						<configuration>
+							<wsdlUrls>
+								<wsdlUrl>http://181.191.206.162:8080/SipPulse/DomainWS?wsdl</wsdlUrl>
+							</wsdlUrls>
+							<packageName>com.sippulse.soapadapter.sippulse.client.domainWS</packageName>
+							<sourceDestDir>${project.build.directory}/generated-sources/wsimport</sourceDestDir>
+							<xnocompile>true</xnocompile>
+							<keep>true</keep>
+							<verbose>true</verbose>
+						</configuration>
+					</execution>
 
-					<!-- SubscriberWS -->
+					<execution>
+						<id>profile-ws</id>
+						<goals><goal>wsimport</goal></goals>
+						<configuration>
+							<wsdlUrls>
+								<wsdlUrl>http://181.191.206.162:8080/SipPulse/ProfileWS?wsdl</wsdlUrl>
+							</wsdlUrls>
+							<packageName>com.sippulse.soapadapter.sippulse.client.profileWS</packageName>
+							<sourceDestDir>${project.build.directory}/generated-sources/wsimport</sourceDestDir>
+							<xnocompile>true</xnocompile>
+							<keep>true</keep>
+							<verbose>true</verbose>
+						</configuration>
+					</execution>
+
 					<execution>
 						<id>subscriber-ws</id>
-						<goals>
-							<goal>wsimport</goal>
-						</goals>
+						<goals><goal>wsimport</goal></goals>
 						<configuration>
 							<wsdlUrls>
-								<wsdlUrl>
-									http://181.191.206.162:8080/SipPulse/SubscriberWS?wsdl
-								</wsdlUrl>
+								<wsdlUrl>http://181.191.206.162:8080/SipPulse/SubscriberWS?wsdl</wsdlUrl>
 							</wsdlUrls>
-
-							<packageName>
-								com.sippulse.soapadapter.sippulse.client.subscriberWS
-							</packageName>
-
-							<sourceDestDir>
-								${project.build.directory}/generated-sources/wsimport
-							</sourceDestDir>
-
+							<packageName>com.sippulse.soapadapter.sippulse.client.subscriberWS</packageName>
+							<sourceDestDir>${project.build.directory}/generated-sources/wsimport</sourceDestDir>
 							<xnocompile>true</xnocompile>
 							<keep>true</keep>
 							<verbose>true</verbose>
 						</configuration>
 					</execution>
 
-					<!-- DidWS -->
 					<execution>
-						<id>dids-ws</id>
-						<goals>
-							<goal>wsimport</goal>
-						</goals>
+						<id>did-ws</id>
+						<goals><goal>wsimport</goal></goals>
 						<configuration>
 							<wsdlUrls>
-								<wsdlUrl>
-									http://181.191.206.162:8080/SipPulse/DidWS?wsdl
-								</wsdlUrl>
+								<wsdlUrl>http://181.191.206.162:8080/SipPulse/DidWS?wsdl</wsdlUrl>
 							</wsdlUrls>
-
-							<packageName>
-								com.sippulse.soapadapter.sippulse.client.didWS
-							</packageName>
-
-							<sourceDestDir>
-								${project.build.directory}/generated-sources/wsimport
-							</sourceDestDir>
-
+							<packageName>com.sippulse.soapadapter.sippulse.client.didWS</packageName>
+							<sourceDestDir>${project.build.directory}/generated-sources/wsimport</sourceDestDir>
 							<xnocompile>true</xnocompile>
 							<keep>true</keep>
 							<verbose>true</verbose>
 						</configuration>
 					</execution>
 
-					<!-- ReloadModulesWS -->
+					<execution>
+						<id>whitelist-ws</id>
+						<goals><goal>wsimport</goal></goals>
+						<configuration>
+							<wsdlUrls>
+								<wsdlUrl>http://181.191.206.162:8080/SipPulse/WhiteListWS?wsdl</wsdlUrl>
+							</wsdlUrls>
+							<packageName>com.sippulse.soapadapter.sippulse.client.whitelistWS</packageName>
+							<sourceDestDir>${project.build.directory}/generated-sources/wsimport</sourceDestDir>
+							<xnocompile>true</xnocompile>
+							<keep>true</keep>
+							<verbose>true</verbose>
+						</configuration>
+					</execution>
+
+					<execution>
+						<id>rateplan-ws</id>
+						<goals><goal>wsimport</goal></goals>
+						<configuration>
+							<wsdlUrls>
+								<wsdlUrl>http://181.191.206.162:8080/SipPulse/RatePlanWS?wsdl</wsdlUrl>
+							</wsdlUrls>
+							<packageName>com.sippulse.soapadapter.sippulse.client.ratePlanWS</packageName>
+							<sourceDestDir>${project.build.directory}/generated-sources/wsimport</sourceDestDir>
+							<xnocompile>true</xnocompile>
+							<keep>true</keep>
+							<verbose>true</verbose>
+						</configuration>
+					</execution>
+
+					<execution>
+						<id>rate-ws</id>
+						<goals><goal>wsimport</goal></goals>
+						<configuration>
+							<wsdlUrls>
+								<wsdlUrl>http://181.191.206.162:8080/SipPulse/RateWS?wsdl</wsdlUrl>
+							</wsdlUrls>
+							<packageName>com.sippulse.soapadapter.sippulse.client.rateWS</packageName>
+							<sourceDestDir>${project.build.directory}/generated-sources/wsimport</sourceDestDir>
+							<xnocompile>true</xnocompile>
+							<keep>true</keep>
+							<verbose>true</verbose>
+						</configuration>
+					</execution>
+
+					<execution>
+						<id>account-group-ws</id>
+						<goals><goal>wsimport</goal></goals>
+						<configuration>
+							<wsdlUrls>
+								<wsdlUrl>http://181.191.206.162:8080/SipPulse/AccountGroupWS?wsdl</wsdlUrl>
+							</wsdlUrls>
+							<packageName>com.sippulse.soapadapter.sippulse.client.accountGroupWS</packageName>
+							<sourceDestDir>${project.build.directory}/generated-sources/wsimport</sourceDestDir>
+							<xnocompile>true</xnocompile>
+							<keep>true</keep>
+							<verbose>true</verbose>
+						</configuration>
+					</execution>
+
+					<execution>
+						<id>customer-ws</id>
+						<goals><goal>wsimport</goal></goals>
+						<configuration>
+							<wsdlUrls>
+								<wsdlUrl>http://181.191.206.162:8080/SipPulse/CustomerWS?wsdl</wsdlUrl>
+							</wsdlUrls>
+							<packageName>com.sippulse.soapadapter.sippulse.client.customerWS</packageName>
+							<sourceDestDir>${project.build.directory}/generated-sources/wsimport</sourceDestDir>
+							<xnocompile>true</xnocompile>
+							<keep>true</keep>
+							<verbose>true</verbose>
+						</configuration>
+					</execution>
+
+					<execution>
+						<id>user-location-ws</id>
+						<goals><goal>wsimport</goal></goals>
+						<configuration>
+							<wsdlUrls>
+								<wsdlUrl>http://181.191.206.162:8080/SipPulse/UserLocationWS?wsdl</wsdlUrl>
+							</wsdlUrls>
+							<packageName>com.sippulse.soapadapter.sippulse.client.userLocationWS</packageName>
+							<sourceDestDir>${project.build.directory}/generated-sources/wsimport</sourceDestDir>
+							<xnocompile>true</xnocompile>
+							<keep>true</keep>
+							<verbose>true</verbose>
+						</configuration>
+					</execution>
+
+					<execution>
+						<id>address-ws</id>
+						<goals><goal>wsimport</goal></goals>
+						<configuration>
+							<wsdlUrls>
+								<wsdlUrl>http://181.191.206.162:8080/SipPulse/AddressWS?wsdl</wsdlUrl>
+							</wsdlUrls>
+							<packageName>com.sippulse.soapadapter.sippulse.client.addressWS</packageName>
+							<sourceDestDir>${project.build.directory}/generated-sources/wsimport</sourceDestDir>
+							<xnocompile>true</xnocompile>
+							<keep>true</keep>
+							<verbose>true</verbose>
+						</configuration>
+					</execution>
+
+					<execution>
+						<id>hunt-group-ws</id>
+						<goals><goal>wsimport</goal></goals>
+						<configuration>
+							<wsdlUrls>
+								<wsdlUrl>http://181.191.206.162:8080/SipPulse/HuntGroupWS?wsdl</wsdlUrl>
+							</wsdlUrls>
+							<packageName>com.sippulse.soapadapter.sippulse.client.huntGroupWS</packageName>
+							<sourceDestDir>${project.build.directory}/generated-sources/wsimport</sourceDestDir>
+							<xnocompile>true</xnocompile>
+							<keep>true</keep>
+							<verbose>true</verbose>
+						</configuration>
+					</execution>
+
 					<execution>
 						<id>reload-ws</id>
 						<goals>
