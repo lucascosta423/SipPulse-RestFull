@@ -3,7 +3,6 @@ package com.sippulse.soapadapter.config;
 
 import com.sippulse.soapadapter.client.customerWS.CustomerWS;
 import com.sippulse.soapadapter.client.customerWS.SipPulse;
-import com.sippulse.soapadapter.sippulse.config.SoapProperties;
 import jakarta.xml.ws.BindingProvider;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
