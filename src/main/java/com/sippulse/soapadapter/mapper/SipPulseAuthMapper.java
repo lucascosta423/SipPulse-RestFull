@@ -1,7 +1,7 @@
-package com.sippulse.soapadapter.sippulse.mapper;
+package com.sippulse.soapadapter.mapper;
 
 
-import com.sippulse.soapadapter.sippulse.config.SipPulseCredentials;
+import com.sippulse.soapadapter.config.SipPulseCredentials;
 import org.springframework.stereotype.Component;
 
 import java.util.function.Supplier;

@@ -1,4 +1,4 @@
-package com.sippulse.soapadapter.sippulse.config;
+package com.sippulse.soapadapter.config;
 
 public record SipPulseCredentials(
         String login,

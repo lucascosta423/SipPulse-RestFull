@@ -103,7 +103,7 @@
 							<wsdlUrls>
 								<wsdlUrl>http://181.191.206.162:8080/SipPulse/DomainWS?wsdl</wsdlUrl>
 							</wsdlUrls>
-							<packageName>com.sippulse.soapadapter.sippulse.client.domainWS</packageName>
+							<packageName>com.sippulse.soapadapter.client.domainWS</packageName>
 							<sourceDestDir>${project.build.directory}/generated-sources/wsimport</sourceDestDir>
 							<xnocompile>true</xnocompile>
 							<keep>true</keep>
@@ -118,7 +118,7 @@
 							<wsdlUrls>
 								<wsdlUrl>http://181.191.206.162:8080/SipPulse/ProfileWS?wsdl</wsdlUrl>
 							</wsdlUrls>
-							<packageName>com.sippulse.soapadapter.sippulse.client.profileWS</packageName>
+							<packageName>com.sippulse.soapadapter.client.profileWS</packageName>
 							<sourceDestDir>${project.build.directory}/generated-sources/wsimport</sourceDestDir>
 							<xnocompile>true</xnocompile>
 							<keep>true</keep>
@@ -133,7 +133,7 @@
 							<wsdlUrls>
 								<wsdlUrl>http://181.191.206.162:8080/SipPulse/SubscriberWS?wsdl</wsdlUrl>
 							</wsdlUrls>
-							<packageName>com.sippulse.soapadapter.sippulse.client.subscriberWS</packageName>
+							<packageName>com.sippulse.soapadapter.client.subscriberWS</packageName>
 							<sourceDestDir>${project.build.directory}/generated-sources/wsimport</sourceDestDir>
 							<xnocompile>true</xnocompile>
 							<keep>true</keep>
@@ -148,7 +148,7 @@
 							<wsdlUrls>
 								<wsdlUrl>http://181.191.206.162:8080/SipPulse/DidWS?wsdl</wsdlUrl>
 							</wsdlUrls>
-							<packageName>com.sippulse.soapadapter.sippulse.client.didWS</packageName>
+							<packageName>com.sippulse.soapadapter.client.didWS</packageName>
 							<sourceDestDir>${project.build.directory}/generated-sources/wsimport</sourceDestDir>
 							<xnocompile>true</xnocompile>
 							<keep>true</keep>
@@ -163,7 +163,7 @@
 							<wsdlUrls>
 								<wsdlUrl>http://181.191.206.162:8080/SipPulse/WhiteListWS?wsdl</wsdlUrl>
 							</wsdlUrls>
-							<packageName>com.sippulse.soapadapter.sippulse.client.whitelistWS</packageName>
+							<packageName>com.sippulse.soapadapter.client.whitelistWS</packageName>
 							<sourceDestDir>${project.build.directory}/generated-sources/wsimport</sourceDestDir>
 							<xnocompile>true</xnocompile>
 							<keep>true</keep>
@@ -178,7 +178,7 @@
 							<wsdlUrls>
 								<wsdlUrl>http://181.191.206.162:8080/SipPulse/RatePlanWS?wsdl</wsdlUrl>
 							</wsdlUrls>
-							<packageName>com.sippulse.soapadapter.sippulse.client.ratePlanWS</packageName>
+							<packageName>com.sippulse.soapadapter.client.ratePlanWS</packageName>
 							<sourceDestDir>${project.build.directory}/generated-sources/wsimport</sourceDestDir>
 							<xnocompile>true</xnocompile>
 							<keep>true</keep>
@@ -193,7 +193,7 @@
 							<wsdlUrls>
 								<wsdlUrl>http://181.191.206.162:8080/SipPulse/RateWS?wsdl</wsdlUrl>
 							</wsdlUrls>
-							<packageName>com.sippulse.soapadapter.sippulse.client.rateWS</packageName>
+							<packageName>com.sippulse.soapadapter.client.rateWS</packageName>
 							<sourceDestDir>${project.build.directory}/generated-sources/wsimport</sourceDestDir>
 							<xnocompile>true</xnocompile>
 							<keep>true</keep>
@@ -208,7 +208,7 @@
 							<wsdlUrls>
 								<wsdlUrl>http://181.191.206.162:8080/SipPulse/AccountGroupWS?wsdl</wsdlUrl>
 							</wsdlUrls>
-							<packageName>com.sippulse.soapadapter.sippulse.client.accountGroupWS</packageName>
+							<packageName>com.sippulse.soapadapter.client.accountGroupWS</packageName>
 							<sourceDestDir>${project.build.directory}/generated-sources/wsimport</sourceDestDir>
 							<xnocompile>true</xnocompile>
 							<keep>true</keep>
@@ -223,7 +223,7 @@
 							<wsdlUrls>
 								<wsdlUrl>http://181.191.206.162:8080/SipPulse/CustomerWS?wsdl</wsdlUrl>
 							</wsdlUrls>
-							<packageName>com.sippulse.soapadapter.sippulse.client.customerWS</packageName>
+							<packageName>com.sippulse.soapadapter.client.customerWS</packageName>
 							<sourceDestDir>${project.build.directory}/generated-sources/wsimport</sourceDestDir>
 							<xnocompile>true</xnocompile>
 							<keep>true</keep>
@@ -238,7 +238,7 @@
 							<wsdlUrls>
 								<wsdlUrl>http://181.191.206.162:8080/SipPulse/UserLocationWS?wsdl</wsdlUrl>
 							</wsdlUrls>
-							<packageName>com.sippulse.soapadapter.sippulse.client.userLocationWS</packageName>
+							<packageName>com.sippulse.soapadapter.client.userLocationWS</packageName>
 							<sourceDestDir>${project.build.directory}/generated-sources/wsimport</sourceDestDir>
 							<xnocompile>true</xnocompile>
 							<keep>true</keep>
@@ -253,7 +253,7 @@
 							<wsdlUrls>
 								<wsdlUrl>http://181.191.206.162:8080/SipPulse/AddressWS?wsdl</wsdlUrl>
 							</wsdlUrls>
-							<packageName>com.sippulse.soapadapter.sippulse.client.addressWS</packageName>
+							<packageName>com.sippulse.soapadapter.client.addressWS</packageName>
 							<sourceDestDir>${project.build.directory}/generated-sources/wsimport</sourceDestDir>
 							<xnocompile>true</xnocompile>
 							<keep>true</keep>
@@ -268,7 +268,7 @@
 							<wsdlUrls>
 								<wsdlUrl>http://181.191.206.162:8080/SipPulse/HuntGroupWS?wsdl</wsdlUrl>
 							</wsdlUrls>
-							<packageName>com.sippulse.soapadapter.sippulse.client.huntGroupWS</packageName>
+							<packageName>com.sippulse.soapadapter.client.huntGroupWS</packageName>
 							<sourceDestDir>${project.build.directory}/generated-sources/wsimport</sourceDestDir>
 							<xnocompile>true</xnocompile>
 							<keep>true</keep>
@@ -289,7 +289,7 @@
 							</wsdlUrls>
 
 							<packageName>
-								com.sippulse.soapadapter.sippulse.client.reloadWS
+								com.sippulse.soapadapter.client.reloadWS
 							</packageName>
 
 							<sourceDestDir>
