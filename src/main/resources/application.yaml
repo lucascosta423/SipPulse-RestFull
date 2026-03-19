@@ -13,7 +13,7 @@ soap:
     profile: ${URL}/SipPulse/ProfileWS
     subscriber: ${URL}/SipPulse/SubscriberWS
     did: ${URL}/SipPulse/DidWS
-    whitelist: ${URL}/SipPulse/WhitelistWS
+    whitelist: ${URL}/SipPulse/WhiteListWS
     ratePlan: ${URL}/SipPulse/RatePlanWS
     rate: ${URL}/SipPulse/RateWS
     account_group: ${URL}/SipPulse/AccountGroupWS
