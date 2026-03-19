@@ -1,6 +1,6 @@
 package com.sippulse.soapadapter.dto;
 
-import com.sippulse.soapadapter.sippulse.client.didWS.Did;
+import com.sippulse.soapadapter.client.didWS.Did;
 
 import java.util.List;
 
