@@ -21,7 +21,7 @@ soap:
     user_location: ${URL}/SipPulse/UserLocationWS
     address: ${URL}/SipPulse/AddressWS
     hunt_group: ${URL}/SipPulse/HuntGroupWS
-    reload: ${URL}/SipPulse/ReloadWS
+    reload: ${URL}/SipPulse/ReloadModulesWS
 
 logging:
   level:
