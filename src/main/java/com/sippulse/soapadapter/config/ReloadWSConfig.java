@@ -15,7 +15,7 @@ public class ReloadWSConfig {
         @Bean
         public ReloadModulesWS reloadModulesWS(SoapProperties properties) {
             try {
-                String baseUrl = properties.getEndpoints().get("did");
+                String baseUrl = properties.getEndpoints().get("reload");
 
                 URL wsdlUrl = new URL(baseUrl + "?wsdl");
 
