@@ -63,7 +63,7 @@ public class SubscriberClientAdapter{
     }
 
     
-    public void updateSubscriberBillingInfo(SubscriberBillingInfoDTO subscriber, UserPrincipalDTO principal)  {
+    public void updateSubscriberBillingInfo(SubscriberBillingInfoDTO subscriber)  {
         try {
             subscriberWS.updateSubscriberBillingInfo(
                     subscriber,
@@ -75,7 +75,7 @@ public class SubscriberClientAdapter{
     }
 
     
-    public void updateSubscriberServices(SubscriberServicesDTO subscriber, UserPrincipalDTO principal)  {
+    public void updateSubscriberServices(SubscriberServicesDTO subscriber)  {
         try {
             subscriberWS.updateSubscriberServices(
                     subscriber,
@@ -87,7 +87,7 @@ public class SubscriberClientAdapter{
     }
 
     
-    public SubscriberDTO retrieveSubscriber(String username, String domain, UserPrincipalDTO principal)  {
+    public SubscriberDTO retrieveSubscriber(String username, String domain)  {
         try {
             return subscriberWS.retrieveSubscriber(
                     username,
@@ -100,7 +100,7 @@ public class SubscriberClientAdapter{
     }
 
     
-    public SubscriberClassVDTO retrieveSubscriberClassV(String username, String domain, UserPrincipalDTO principal)  {
+    public SubscriberClassVDTO retrieveSubscriberClassV(String username, String domain)  {
         try {
             return subscriberWS.retrieveSubscriberClassV(
                     username,
@@ -113,7 +113,7 @@ public class SubscriberClientAdapter{
     }
 
     
-    public void activateIncommingCalls(String username, String domain, UserPrincipalDTO principal)  {
+    public void activateIncommingCalls(String username, String domain)  {
         try {
             subscriberWS.activateIncommingCalls(
                     username,
@@ -126,7 +126,7 @@ public class SubscriberClientAdapter{
     }
 
     
-    public void blockIncommingCalls(String username, String domain, UserPrincipalDTO principal)  {
+    public void blockIncommingCalls(String username, String domain)  {
         try {
             subscriberWS.blockIncommingCalls(
                     username,
@@ -139,7 +139,7 @@ public class SubscriberClientAdapter{
     }
 
     
-    public void activateOutgoingCalls(String username, String domain, UserPrincipalDTO principal)  {
+    public void activateOutgoingCalls(String username, String domain)  {
         try {
             subscriberWS.activateOutgoingCalls(
                     username,
@@ -152,7 +152,7 @@ public class SubscriberClientAdapter{
     }
 
     
-    public void blockOutgoingCalls(String username, String domain, UserPrincipalDTO principal)  {
+    public void blockOutgoingCalls(String username, String domain)  {
         try {
             subscriberWS.blockOutgoingCalls(
                     username,
@@ -165,7 +165,7 @@ public class SubscriberClientAdapter{
     }
 
     
-    public void activateCallsOnlyByIp(String username, String domain, UserPrincipalDTO principal)  {
+    public void activateCallsOnlyByIp(String username, String domain)  {
         try {
             subscriberWS.activateCallsOnlyByIp(
                     username,
@@ -178,7 +178,7 @@ public class SubscriberClientAdapter{
     }
 
     
-    public void blockCallsOnlyByIp(String username, String domain, UserPrincipalDTO principal)  {
+    public void blockCallsOnlyByIp(String username, String domain)  {
         try {
             subscriberWS.blockCallsOnlyByIp(
                     username,
@@ -191,7 +191,7 @@ public class SubscriberClientAdapter{
     }
 
     
-    public void activateCollectCalls(String username, String domain, UserPrincipalDTO principal)  {
+    public void activateCollectCalls(String username, String domain)  {
         try {
             subscriberWS.activateCollectCalls(
                     username,
@@ -204,7 +204,7 @@ public class SubscriberClientAdapter{
     }
 
     
-    public void activateAnonymousCalls(String username, String domain, UserPrincipalDTO principal)  {
+    public void activateAnonymousCalls(String username, String domain)  {
         try {
             subscriberWS.activateAnonymousCalls(
                     username,
@@ -217,7 +217,7 @@ public class SubscriberClientAdapter{
     }
 
     
-    public void activatePrivacyCalls(String username, String domain, UserPrincipalDTO principal)  {
+    public void activatePrivacyCalls(String username, String domain)  {
         try {
             subscriberWS.activatePrivacyCalls(
                     username,
@@ -230,7 +230,7 @@ public class SubscriberClientAdapter{
     }
 
     
-    public void blockPrivacyCalls(String username, String domain, UserPrincipalDTO principal)  {
+    public void blockPrivacyCalls(String username, String domain)  {
         try {
             subscriberWS.blockPrivacyCalls(
                     username,
@@ -243,7 +243,7 @@ public class SubscriberClientAdapter{
     }
 
     
-    public void activateLowCreditNotification(String username, String domain, Double lowCreditLimit, UserPrincipalDTO principal)  {
+    public void activateLowCreditNotification(String username, String domain, Double lowCreditLimit)  {
         try {
             subscriberWS.activateLowCreditNotification(
                     username,
@@ -257,7 +257,7 @@ public class SubscriberClientAdapter{
     }
 
     
-    public void blockLowCreditNotification(String username, String domain, UserPrincipalDTO principal)  {
+    public void blockLowCreditNotification(String username, String domain)  {
         try {
             subscriberWS.blockLowCreditNotification(
                     username,
@@ -270,7 +270,7 @@ public class SubscriberClientAdapter{
     }
 
     
-    public void activateDailyStatistics(String username, String domain, UserPrincipalDTO principal)  {
+    public void activateDailyStatistics(String username, String domain)  {
         try {
             subscriberWS.activateDailyStatistics(
                     username,
@@ -283,7 +283,7 @@ public class SubscriberClientAdapter{
     }
 
     
-    public void blockDailyStatistics(String username, String domain, UserPrincipalDTO principal)  {
+    public void blockDailyStatistics(String username, String domain)  {
         try {
             subscriberWS.blockDailyStatistics(
                     username,
@@ -296,7 +296,7 @@ public class SubscriberClientAdapter{
     }
 
     
-    public void updateDailyQuota(SubscriberDailyQuotaDTO dailyQuotaDTO, UserPrincipalDTO principal)  {
+    public void updateDailyQuota(SubscriberDailyQuotaDTO dailyQuotaDTO)  {
         try {
             subscriberWS.updateDailyQuota(
                     dailyQuotaDTO,
@@ -308,7 +308,7 @@ public class SubscriberClientAdapter{
     }
 
     
-    public void blockCollectCalls(String username, String domain, UserPrincipalDTO principal)  {
+    public void blockCollectCalls(String username, String domain)  {
         try {
             subscriberWS.blockCollectCalls(
                     username,
@@ -321,7 +321,7 @@ public class SubscriberClientAdapter{
     }
 
     
-    public void blockAnonymousCalls(String username, String domain, UserPrincipalDTO principal)  {
+    public void blockAnonymousCalls(String username, String domain)  {
         try {
             subscriberWS.blockAnonymousCalls(
                     username,
@@ -334,7 +334,7 @@ public class SubscriberClientAdapter{
     }
 
     
-    public void updateMonthlyQuota(SubscriberMonthlyQuotaDTO monthlyQuotaDTO, UserPrincipalDTO principal)  {
+    public void updateMonthlyQuota(SubscriberMonthlyQuotaDTO monthlyQuotaDTO)  {
         try {
             subscriberWS.updateMonthlyQuota(
                     monthlyQuotaDTO,
@@ -346,7 +346,7 @@ public class SubscriberClientAdapter{
     }
 
     
-    public void blockSubscriber(String username, String domain, UserPrincipalDTO principal)  {
+    public void blockSubscriber(String username, String domain)  {
         try {
             subscriberWS.blockSubscriber(
                     username,
@@ -359,7 +359,7 @@ public class SubscriberClientAdapter{
     }
 
     
-    public void activateSubscriber(String username, String domain, UserPrincipalDTO principal)  {
+    public void activateSubscriber(String username, String domain)  {
         try {
             subscriberWS.activateSubscriber(
                     username,
@@ -372,7 +372,7 @@ public class SubscriberClientAdapter{
     }
 
     
-    public void activateVoicemail(String username, String domain, Long voicemailPassword, UserPrincipalDTO principal)  {
+    public void activateVoicemail(String username, String domain, Long voicemailPassword)  {
         try {
             subscriberWS.activateVoicemail(
                     username,
@@ -386,7 +386,7 @@ public class SubscriberClientAdapter{
     }
 
     
-    public void blockVoicemail(String username, String domain, UserPrincipalDTO principal)  {
+    public void blockVoicemail(String username, String domain)  {
         try {
             subscriberWS.blockVoicemail(
                     username,
@@ -399,7 +399,7 @@ public class SubscriberClientAdapter{
     }
 
     
-    public void removeSubscriber(String username, String domain, UserPrincipalDTO principal)  {
+    public void removeSubscriber(String username, String domain)  {
         try {
             subscriberWS.removeSubscriber(
                     username,
@@ -412,7 +412,7 @@ public class SubscriberClientAdapter{
     }
 
 
-    public Double retrieveCredit(String username, String domain, UserPrincipalDTO principal)  {
+    public Double retrieveCredit(String username, String domain)  {
         try {
             return subscriberWS.retrieveCredit(
                     username,
@@ -425,7 +425,7 @@ public class SubscriberClientAdapter{
     }
 
 
-    public void addCredit(String username, String domain, Double value, String obs, UserPrincipalDTO principal)  {
+    public void addCredit(String username, String domain, Double value, String obs)  {
         try {
             subscriberWS.addCredit(
                     username,
@@ -440,7 +440,7 @@ public class SubscriberClientAdapter{
     }
 
 
-    public Integer insertSubscriber(SubscriberDTO subscriber, UserPrincipalDTO principal)  {
+    public Integer insertSubscriber(SubscriberDTO subscriber)  {
         try {
             return subscriberWS.insertSubscriber(
                     subscriber,
@@ -452,7 +452,7 @@ public class SubscriberClientAdapter{
     }
 
 
-    public void updateSubscriber(SubscriberDTO subscriber, UserPrincipalDTO principal)  {
+    public void updateSubscriber(SubscriberDTO subscriber)  {
         try {
             subscriberWS.updateSubscriber(
                     subscriber,
@@ -464,7 +464,7 @@ public class SubscriberClientAdapter{
     }
 
 
-    public void changePasswordWEB(String username, String domain, String actualPassword, String newPassword, String confirmNewPassword, UserPrincipalDTO principal)  {
+    public void changePasswordWEB(String username, String domain, String actualPassword, String newPassword, String confirmNewPassword)  {
         try {
             subscriberWS.changePasswordWEB(
                     username,
@@ -480,7 +480,7 @@ public class SubscriberClientAdapter{
     }
 
 
-    public void changeProfile(String username, String domain, Integer newProfileId, UserPrincipalDTO principal)  {
+    public void changeProfile(String username, String domain, Integer newProfileId)  {
         try {
             subscriberWS.changeProfile(
                     username,
@@ -494,7 +494,7 @@ public class SubscriberClientAdapter{
     }
 
 
-    public SubscriberDailyQuotaDTO retrieveDailyQuota(String username, String domain, UserPrincipalDTO principal)  {
+    public SubscriberDailyQuotaDTO retrieveDailyQuota(String username, String domain)  {
         try {
             return subscriberWS.retrieveDailyQuota(
                     username,
@@ -507,7 +507,7 @@ public class SubscriberClientAdapter{
     }
 
 
-    public SubscriberMonthlyQuotaDTO retrieveMonthlyQuotaDTO(String username, String domain, UserPrincipalDTO principal)  {
+    public SubscriberMonthlyQuotaDTO retrieveMonthlyQuotaDTO(String username, String domain)  {
         try {
             return subscriberWS.retrieveMonthlyQuotaDTO(
                     username,
@@ -520,7 +520,7 @@ public class SubscriberClientAdapter{
     }
 
 
-    public void activateSoftphone(String username, String domain, UserPrincipalDTO principal)  {
+    public void activateSoftphone(String username, String domain)  {
         try {
             subscriberWS.activateSoftphone(
                     username,
@@ -533,7 +533,7 @@ public class SubscriberClientAdapter{
     }
 
 
-    public void blockSoftphone(String username, String domain, UserPrincipalDTO principal)  {
+    public void blockSoftphone(String username, String domain)  {
         try {
             subscriberWS.blockSoftphone(
                     username,
@@ -546,7 +546,7 @@ public class SubscriberClientAdapter{
     }
 
 
-    public void activateEntry0303(String username, String domain, UserPrincipalDTO principal)  {
+    public void activateEntry0303(String username, String domain)  {
         try {
             subscriberWS.activateEntry0303(
                     username,
@@ -559,7 +559,7 @@ public class SubscriberClientAdapter{
     }
 
 
-    public void disableValidateSource0303(String username, String domain, UserPrincipalDTO principal)  {
+    public void disableValidateSource0303(String username, String domain)  {
         try {
             subscriberWS.disableValidateSource0303(
                     username,
@@ -572,7 +572,7 @@ public class SubscriberClientAdapter{
     }
 
 
-    public void activateValidateSource0303(String username, String domain, UserPrincipalDTO principal)  {
+    public void activateValidateSource0303(String username, String domain)  {
         try {
             subscriberWS.activateValidateSource0303(
                     username,
@@ -585,7 +585,7 @@ public class SubscriberClientAdapter{
     }
 
 
-    public void changePassword(String username, String domain, String actualPassword, String newPassword, String confirmNewPassword, UserPrincipalDTO principal)  {
+    public void changePassword(String username, String domain, String actualPassword, String newPassword, String confirmNewPassword)  {
         try {
             subscriberWS.changePassword(
                     username,

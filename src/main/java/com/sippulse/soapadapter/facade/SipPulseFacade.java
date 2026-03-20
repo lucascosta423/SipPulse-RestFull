@@ -1,7 +1,9 @@
 package com.sippulse.soapadapter.facade;
 
 import com.sippulse.soapadapter.dto.DidDTO;
+import com.sippulse.soapadapter.dto.SubscriberMinDTO;
 import com.sippulse.soapadapter.service.DidService;
+import com.sippulse.soapadapter.service.SubscriberService;
 import org.springframework.stereotype.Component;
 
 import java.util.List;
@@ -10,9 +12,16 @@ import java.util.List;
 public class SipPulseFacade {
 
     private final DidService service;
+    private final SubscriberService subscriberService;
 
-    public SipPulseFacade(DidService service) {
+    public SipPulseFacade(DidService service, SubscriberService subscriberService) {
         this.service = service;
+        this.subscriberService = subscriberService;
+    }
+
+    public Integer insertSubscriber(SubscriberMinDTO subscriber){
+
+        return subscriberService.insertSubscriber(subscriber);
     }
 
     public Integer insertDid(DidDTO did){

@@ -2,6 +2,8 @@ package com.sippulse.soapadapter.service;
 
 import com.sippulse.soapadapter.adapter.SubscriberClientAdapter;
 import com.sippulse.soapadapter.client.subscriberWS.*;
+import com.sippulse.soapadapter.dto.SubscriberMinDTO;
+import org.springframework.beans.BeanUtils;
 import org.springframework.stereotype.Service;
 
 @Service
@@ -11,6 +13,52 @@ public class SubscriberService {
 
     public SubscriberService(SubscriberClientAdapter adapter) {
         this.adapter = adapter;
+    }
+
+    public Integer insertSubscriber(SubscriberMinDTO subscriber){
+
+        var sub = new SubscriberDTO();
+
+        BeanUtils.copyProperties(subscriber,sub);
+
+        var response = adapter.insertSubscriber(sub);
+
+        updateSubscriberServices(subscriber);
+
+        return response;
+    }
+
+    public void updateSubscriberServices(SubscriberMinDTO subscriber) {
+
+        var subService = new SubscriberServicesDTO();
+
+        BeanUtils.copyProperties(subscriber,subService);
+
+        subService.setCps(0);
+        subService.setKeepAlive(1);
+        subService.setEmail(subscriber.emailAddress());
+
+        adapter.updateSubscriberServices(subService);
+    }
+
+    public void activateSubscriber(String username, String domain) {
+        adapter.activateSubscriber(username, domain);
+    }
+
+    public void blockSubscriber(String username, String domain) {
+        adapter.blockSubscriber(username, domain);
+    }
+
+    public void activateIncommingCalls(String username, String domain) {
+        adapter.activateIncommingCalls(username, domain);
+    }
+
+    public void blockIncommingCalls(String username, String domain) {
+        adapter.blockIncommingCalls(username, domain);
+    }
+
+    public void addCredit(String username, String domain, Double value, String obs) {
+        adapter.addCredit(username, domain, value, obs);
     }
 
     public void blockEntry0303(String username, String domain) {
@@ -29,167 +77,139 @@ public class SubscriberService {
         adapter.updateSubscriberClassV(subscriber);
     }
 
-    public void updateSubscriberBillingInfo(SubscriberBillingInfoDTO subscriber, UserPrincipalDTO principal) {
-        adapter.updateSubscriberBillingInfo(subscriber, principal);
+    public void updateSubscriberBillingInfo(SubscriberBillingInfoDTO subscriber) {
+        adapter.updateSubscriberBillingInfo(subscriber);
     }
 
-    public void updateSubscriberServices(SubscriberServicesDTO subscriber, UserPrincipalDTO principal) {
-        adapter.updateSubscriberServices(subscriber, principal);
+    public SubscriberDTO retrieveSubscriber(String username, String domain) {
+        return adapter.retrieveSubscriber(username, domain);
     }
 
-    public SubscriberDTO retrieveSubscriber(String username, String domain, UserPrincipalDTO principal) {
-        return adapter.retrieveSubscriber(username, domain, principal);
+    public SubscriberClassVDTO retrieveSubscriberClassV(String username, String domain) {
+        return adapter.retrieveSubscriberClassV(username, domain);
     }
 
-    public SubscriberClassVDTO retrieveSubscriberClassV(String username, String domain, UserPrincipalDTO principal) {
-        return adapter.retrieveSubscriberClassV(username, domain, principal);
+    public void activateOutgoingCalls(String username, String domain) {
+        adapter.activateOutgoingCalls(username, domain);
     }
 
-    public void activateIncommingCalls(String username, String domain, UserPrincipalDTO principal) {
-        adapter.activateIncommingCalls(username, domain, principal);
+    public void blockOutgoingCalls(String username, String domain) {
+        adapter.blockOutgoingCalls(username, domain);
     }
 
-    public void blockIncommingCalls(String username, String domain, UserPrincipalDTO principal) {
-        adapter.blockIncommingCalls(username, domain, principal);
+    public void activateCallsOnlyByIp(String username, String domain) {
+        adapter.activateCallsOnlyByIp(username, domain);
     }
 
-    public void activateOutgoingCalls(String username, String domain, UserPrincipalDTO principal) {
-        adapter.activateOutgoingCalls(username, domain, principal);
+    public void blockCallsOnlyByIp(String username, String domain) {
+        adapter.blockCallsOnlyByIp(username, domain);
     }
 
-    public void blockOutgoingCalls(String username, String domain, UserPrincipalDTO principal) {
-        adapter.blockOutgoingCalls(username, domain, principal);
+    public void activateCollectCalls(String username, String domain) {
+        adapter.activateCollectCalls(username, domain);
     }
 
-    public void activateCallsOnlyByIp(String username, String domain, UserPrincipalDTO principal) {
-        adapter.activateCallsOnlyByIp(username, domain, principal);
+    public void activateAnonymousCalls(String username, String domain) {
+        adapter.activateAnonymousCalls(username, domain);
     }
 
-    public void blockCallsOnlyByIp(String username, String domain, UserPrincipalDTO principal) {
-        adapter.blockCallsOnlyByIp(username, domain, principal);
+    public void activatePrivacyCalls(String username, String domain) {
+        adapter.activatePrivacyCalls(username, domain);
     }
 
-    public void activateCollectCalls(String username, String domain, UserPrincipalDTO principal) {
-        adapter.activateCollectCalls(username, domain, principal);
+    public void blockPrivacyCalls(String username, String domain) {
+        adapter.blockPrivacyCalls(username, domain);
     }
 
-    public void activateAnonymousCalls(String username, String domain, UserPrincipalDTO principal) {
-        adapter.activateAnonymousCalls(username, domain, principal);
+    public void activateLowCreditNotification(String username, String domain, Double lowCreditLimit) {
+        adapter.activateLowCreditNotification(username, domain, lowCreditLimit);
     }
 
-    public void activatePrivacyCalls(String username, String domain, UserPrincipalDTO principal) {
-        adapter.activatePrivacyCalls(username, domain, principal);
+    public void blockLowCreditNotification(String username, String domain) {
+        adapter.blockLowCreditNotification(username, domain);
     }
 
-    public void blockPrivacyCalls(String username, String domain, UserPrincipalDTO principal) {
-        adapter.blockPrivacyCalls(username, domain, principal);
+    public void activateDailyStatistics(String username, String domain) {
+        adapter.activateDailyStatistics(username, domain);
     }
 
-    public void activateLowCreditNotification(String username, String domain, Double lowCreditLimit, UserPrincipalDTO principal) {
-        adapter.activateLowCreditNotification(username, domain, lowCreditLimit, principal);
+    public void blockDailyStatistics(String username, String domain) {
+        adapter.blockDailyStatistics(username, domain);
     }
 
-    public void blockLowCreditNotification(String username, String domain, UserPrincipalDTO principal) {
-        adapter.blockLowCreditNotification(username, domain, principal);
+    public void updateDailyQuota(SubscriberDailyQuotaDTO dailyQuotaDTO) {
+        adapter.updateDailyQuota(dailyQuotaDTO);
     }
 
-    public void activateDailyStatistics(String username, String domain, UserPrincipalDTO principal) {
-        adapter.activateDailyStatistics(username, domain, principal);
+    public void blockCollectCalls(String username, String domain) {
+        adapter.blockCollectCalls(username, domain);
     }
 
-    public void blockDailyStatistics(String username, String domain, UserPrincipalDTO principal) {
-        adapter.blockDailyStatistics(username, domain, principal);
+    public void blockAnonymousCalls(String username, String domain) {
+        adapter.blockAnonymousCalls(username, domain);
     }
 
-    public void updateDailyQuota(SubscriberDailyQuotaDTO dailyQuotaDTO, UserPrincipalDTO principal) {
-        adapter.updateDailyQuota(dailyQuotaDTO, principal);
+    public void updateMonthlyQuota(SubscriberMonthlyQuotaDTO monthlyQuotaDTO) {
+        adapter.updateMonthlyQuota(monthlyQuotaDTO);
     }
 
-    public void blockCollectCalls(String username, String domain, UserPrincipalDTO principal) {
-        adapter.blockCollectCalls(username, domain, principal);
+    public void activateVoicemail(String username, String domain, Long voicemailPassword) {
+        adapter.activateVoicemail(username, domain, voicemailPassword);
     }
 
-    public void blockAnonymousCalls(String username, String domain, UserPrincipalDTO principal) {
-        adapter.blockAnonymousCalls(username, domain, principal);
+    public void blockVoicemail(String username, String domain) {
+        adapter.blockVoicemail(username, domain);
     }
 
-    public void updateMonthlyQuota(SubscriberMonthlyQuotaDTO monthlyQuotaDTO, UserPrincipalDTO principal) {
-        adapter.updateMonthlyQuota(monthlyQuotaDTO, principal);
+    public void removeSubscriber(String username, String domain) {
+        adapter.removeSubscriber(username, domain);
     }
 
-    public void blockSubscriber(String username, String domain, UserPrincipalDTO principal) {
-        adapter.blockSubscriber(username, domain, principal);
+    public Double retrieveCredit(String username, String domain) {
+        return adapter.retrieveCredit(username, domain);
     }
 
-    public void activateSubscriber(String username, String domain, UserPrincipalDTO principal) {
-        adapter.activateSubscriber(username, domain, principal);
+    public void updateSubscriber(SubscriberDTO subscriber) {
+        adapter.updateSubscriber(subscriber);
     }
 
-    public void activateVoicemail(String username, String domain, Long voicemailPassword, UserPrincipalDTO principal) {
-        adapter.activateVoicemail(username, domain, voicemailPassword, principal);
+    public void changePasswordWEB(String username, String domain, String actualPassword, String newPassword, String confirmNewPassword) {
+        adapter.changePasswordWEB(username, domain, actualPassword, newPassword, confirmNewPassword);
     }
 
-    public void blockVoicemail(String username, String domain, UserPrincipalDTO principal) {
-        adapter.blockVoicemail(username, domain, principal);
+    public void changeProfile(String username, String domain, Integer newProfileId) {
+        adapter.changeProfile(username, domain, newProfileId);
     }
 
-    public void removeSubscriber(String username, String domain, UserPrincipalDTO principal) {
-        adapter.removeSubscriber(username, domain, principal);
+    public SubscriberDailyQuotaDTO retrieveDailyQuota(String username, String domain) {
+        return adapter.retrieveDailyQuota(username, domain);
     }
 
-    public Double retrieveCredit(String username, String domain, UserPrincipalDTO principal) {
-        return adapter.retrieveCredit(username, domain, principal);
+    public SubscriberMonthlyQuotaDTO retrieveMonthlyQuotaDTO(String username, String domain) {
+        return adapter.retrieveMonthlyQuotaDTO(username, domain);
     }
 
-    public void addCredit(String username, String domain, Double value, String obs, UserPrincipalDTO principal) {
-        adapter.addCredit(username, domain, value, obs, principal);
+    public void activateSoftphone(String username, String domain) {
+        adapter.activateSoftphone(username, domain);
     }
 
-    public Integer insertSubscriber(SubscriberDTO subscriber, UserPrincipalDTO principal) {
-        return adapter.insertSubscriber(subscriber, principal);
+    public void blockSoftphone(String username, String domain) {
+        adapter.blockSoftphone(username, domain);
     }
 
-    public void updateSubscriber(SubscriberDTO subscriber, UserPrincipalDTO principal) {
-        adapter.updateSubscriber(subscriber, principal);
+    public void activateEntry0303(String username, String domain) {
+        adapter.activateEntry0303(username, domain);
     }
 
-    public void changePasswordWEB(String username, String domain, String actualPassword, String newPassword, String confirmNewPassword, UserPrincipalDTO principal) {
-        adapter.changePasswordWEB(username, domain, actualPassword, newPassword, confirmNewPassword, principal);
+    public void disableValidateSource0303(String username, String domain) {
+        adapter.disableValidateSource0303(username, domain);
     }
 
-    public void changeProfile(String username, String domain, Integer newProfileId, UserPrincipalDTO principal) {
-        adapter.changeProfile(username, domain, newProfileId, principal);
+    public void activateValidateSource0303(String username, String domain) {
+        adapter.activateValidateSource0303(username, domain);
     }
 
-    public SubscriberDailyQuotaDTO retrieveDailyQuota(String username, String domain, UserPrincipalDTO principal) {
-        return adapter.retrieveDailyQuota(username, domain, principal);
-    }
-
-    public SubscriberMonthlyQuotaDTO retrieveMonthlyQuotaDTO(String username, String domain, UserPrincipalDTO principal) {
-        return adapter.retrieveMonthlyQuotaDTO(username, domain, principal);
-    }
-
-    public void activateSoftphone(String username, String domain, UserPrincipalDTO principal) {
-        adapter.activateSoftphone(username, domain, principal);
-    }
-
-    public void blockSoftphone(String username, String domain, UserPrincipalDTO principal) {
-        adapter.blockSoftphone(username, domain, principal);
-    }
-
-    public void activateEntry0303(String username, String domain, UserPrincipalDTO principal) {
-        adapter.activateEntry0303(username, domain, principal);
-    }
-
-    public void disableValidateSource0303(String username, String domain, UserPrincipalDTO principal) {
-        adapter.disableValidateSource0303(username, domain, principal);
-    }
-
-    public void activateValidateSource0303(String username, String domain, UserPrincipalDTO principal) {
-        adapter.activateValidateSource0303(username, domain, principal);
-    }
-
-    public void changePassword(String username, String domain, String actualPassword, String newPassword, String confirmNewPassword, UserPrincipalDTO principal) {
-        adapter.changePassword(username, domain, actualPassword, newPassword, confirmNewPassword, principal);
+    public void changePassword(String username, String domain, String actualPassword, String newPassword, String confirmNewPassword) {
+        adapter.changePassword(username, domain, actualPassword, newPassword, confirmNewPassword);
     }
 }
