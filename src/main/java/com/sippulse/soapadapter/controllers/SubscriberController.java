@@ -57,7 +57,7 @@ public class SubscriberController {
                 ApiResponse.success(
                        null,
                         "Subscriber Activated",
-                        HttpStatus.CREATED.value(),
+                        HttpStatus.OK.value(),
                         request.getRequestURI()
                 )
         );
@@ -70,7 +70,7 @@ public class SubscriberController {
                 ApiResponse.success(
                         null,
                         "Blocked Subscriber",
-                        HttpStatus.CREATED.value(),
+                        HttpStatus.OK.value(),
                         request.getRequestURI()
                 )
         );
