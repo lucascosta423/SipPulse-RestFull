@@ -7,6 +7,7 @@ import com.sippulse.soapadapter.service.SubscriberService;
 import org.springframework.stereotype.Component;
 
 import java.util.List;
+import java.util.Map;
 
 @Component
 public class SipPulseFacade {
@@ -29,7 +30,7 @@ public class SipPulseFacade {
 
     }
 
-    public Integer insertSubscriberWithDid(SubscriberMinDTO subscriber) {
+    public Map<String, Integer> insertSubscriberWithDid(SubscriberMinDTO subscriber) {
 
         Integer subscriberID = subscriberService.insertSubscriber(subscriber);
 
@@ -50,9 +51,12 @@ public class SipPulseFacade {
 
         );
 
-        didService.insertDid(didDTO);
+        Integer didID = didService.insertDid(didDTO);
 
-        return subscriberID;
+        return Map.of(
+                "SubscriberID",subscriberID,
+                "DidID",didID
+        );
 
     }
 
