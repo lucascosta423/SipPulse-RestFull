@@ -15,6 +15,8 @@ public record SubscriberMinDTO(
         String rpid,
         Integer areaCode,
         Integer callLimit,
+        int keepAlive,
+        int cps,
         boolean activeIncomingCalls,
         boolean activeOutgoingCalls,
         Boolean callsOnlyByIp,
@@ -36,4 +38,8 @@ public record SubscriberMinDTO(
         String state,
         String zip,
         Integer resellerId
-) {}
+) {
+    public String accountCode() {
+        return username + "@" + domain;
+    }
+}
