@@ -3,6 +3,7 @@ package com.sippulse.soapadapter.service;
 import com.sippulse.soapadapter.adapter.SubscriberClientAdapter;
 import com.sippulse.soapadapter.client.subscriberWS.*;
 import com.sippulse.soapadapter.dto.SubscriberMinDTO;
+import com.sippulse.soapadapter.utils.AccountCodeUtils;
 import org.springframework.beans.BeanUtils;
 import org.springframework.stereotype.Service;
 
@@ -15,62 +16,24 @@ public class SubscriberService {
         this.adapter = adapter;
     }
 
-    public Integer insertSubscriber(SubscriberMinDTO subscriber){
+    public Integer insertSubscriber(SubscriberMinDTO subscriber) {
 
         var sub = new SubscriberDTO();
 
-        BeanUtils.copyProperties(subscriber,sub);
+        BeanUtils.copyProperties(subscriber, sub);
 
-        var response = adapter.insertSubscriber(sub);
-
-        updateSubscriberServices(subscriber);
-
-        return response;
+        return adapter.insertSubscriber(sub);
     }
 
     public void updateSubscriberServices(SubscriberMinDTO subscriber) {
 
         var subService = new SubscriberServicesDTO();
 
-        BeanUtils.copyProperties(subscriber,subService);
+        BeanUtils.copyProperties(subscriber, subService);
 
-        subService.setCps(0);
-        subService.setKeepAlive(1);
         subService.setEmail(subscriber.emailAddress());
 
         adapter.updateSubscriberServices(subService);
-    }
-
-    public void activateSubscriber(String username, String domain) {
-        adapter.activateSubscriber(username, domain);
-    }
-
-    public void blockSubscriber(String username, String domain) {
-        adapter.blockSubscriber(username, domain);
-    }
-
-    public void activateIncommingCalls(String username, String domain) {
-        adapter.activateIncommingCalls(username, domain);
-    }
-
-    public void blockIncommingCalls(String username, String domain) {
-        adapter.blockIncommingCalls(username, domain);
-    }
-
-    public void addCredit(String username, String domain, Double value, String obs) {
-        adapter.addCredit(username, domain, value, obs);
-    }
-
-    public void blockEntry0303(String username, String domain) {
-        adapter.blockEntry0303(username, domain);
-    }
-
-    public String retrievePassword(String username, String domain) {
-        return adapter.retrievePassword(username, domain);
-    }
-
-    public String retrievePasswordWEB(String username, String domain) {
-        return adapter.retrievePasswordWEB(username, domain);
     }
 
     public void updateSubscriberClassV(SubscriberClassVDTO subscriber) {
@@ -81,92 +44,156 @@ public class SubscriberService {
         adapter.updateSubscriberBillingInfo(subscriber);
     }
 
-    public SubscriberDTO retrieveSubscriber(String username, String domain) {
-        return adapter.retrieveSubscriber(username, domain);
+    public SubscriberDTO retrieveSubscriber(String accountcode) {
+        AccountCodeUtils ac = AccountCodeUtils.from(accountcode);
+        return adapter.retrieveSubscriber(ac.username(),ac.domain());
     }
 
-    public SubscriberClassVDTO retrieveSubscriberClassV(String username, String domain) {
-        return adapter.retrieveSubscriberClassV(username, domain);
+    public SubscriberClassVDTO retrieveSubscriberClassV(String accountcode) {
+        AccountCodeUtils ac = AccountCodeUtils.from(accountcode);
+        return adapter.retrieveSubscriberClassV(ac.username(),ac.domain());
     }
 
-    public void activateOutgoingCalls(String username, String domain) {
-        adapter.activateOutgoingCalls(username, domain);
+    public void activateSubscriber(String accountcode) {
+
+        AccountCodeUtils ac = AccountCodeUtils.from(accountcode);
+
+        adapter.activateSubscriber(ac.username(), ac.domain());
     }
 
-    public void blockOutgoingCalls(String username, String domain) {
-        adapter.blockOutgoingCalls(username, domain);
+    public void blockSubscriber(String accountcode) {
+        AccountCodeUtils ac = AccountCodeUtils.from(accountcode);
+
+        adapter.blockSubscriber(ac.username(), ac.domain());
     }
 
-    public void activateCallsOnlyByIp(String username, String domain) {
-        adapter.activateCallsOnlyByIp(username, domain);
+    public void activateIncommingCalls(String accountcode) {
+        AccountCodeUtils ac = AccountCodeUtils.from(accountcode);
+
+        adapter.activateIncommingCalls(ac.username(),ac.domain());
     }
 
-    public void blockCallsOnlyByIp(String username, String domain) {
-        adapter.blockCallsOnlyByIp(username, domain);
+    public void blockIncommingCalls(String accountcode) {
+        AccountCodeUtils ac = AccountCodeUtils.from(accountcode);
+        adapter.blockIncommingCalls(ac.username(),ac.domain());
     }
 
-    public void activateCollectCalls(String username, String domain) {
-        adapter.activateCollectCalls(username, domain);
+    public void blockOutgoingCalls(String accountcode) {
+        AccountCodeUtils ac = AccountCodeUtils.from(accountcode);
+        adapter.blockOutgoingCalls(ac.username(),ac.domain());
     }
 
-    public void activateAnonymousCalls(String username, String domain) {
-        adapter.activateAnonymousCalls(username, domain);
+    public void activateOutgoingCalls(String accountcode) {
+        AccountCodeUtils ac = AccountCodeUtils.from(accountcode);
+        adapter.activateOutgoingCalls(ac.username(), ac.domain());
     }
 
-    public void activatePrivacyCalls(String username, String domain) {
-        adapter.activatePrivacyCalls(username, domain);
+    public void addCredit(String accountcode, Double value, String obs) {
+        AccountCodeUtils ac = AccountCodeUtils.from(accountcode);
+        adapter.addCredit(ac.username(), ac.domain(), value, obs);
     }
 
-    public void blockPrivacyCalls(String username, String domain) {
-        adapter.blockPrivacyCalls(username, domain);
+    public void blockEntry0303(String accountcode) {
+        AccountCodeUtils ac = AccountCodeUtils.from(accountcode);
+        adapter.blockEntry0303(ac.username(), ac.domain());
     }
 
-    public void activateLowCreditNotification(String username, String domain, Double lowCreditLimit) {
-        adapter.activateLowCreditNotification(username, domain, lowCreditLimit);
+    public String retrievePassword(String accountcode) {
+        AccountCodeUtils ac = AccountCodeUtils.from(accountcode);
+        return adapter.retrievePassword(ac.username(), ac.domain());
     }
 
-    public void blockLowCreditNotification(String username, String domain) {
-        adapter.blockLowCreditNotification(username, domain);
+    public String retrievePasswordWEB(String accountcode) {
+        AccountCodeUtils ac = AccountCodeUtils.from(accountcode);
+        return adapter.retrievePasswordWEB(ac.username(), ac.domain());
     }
 
-    public void activateDailyStatistics(String username, String domain) {
-        adapter.activateDailyStatistics(username, domain);
+    public void activateCallsOnlyByIp(String accountcode) {
+        AccountCodeUtils ac = AccountCodeUtils.from(accountcode);
+        adapter.activateCallsOnlyByIp(ac.username(), ac.domain());
     }
 
-    public void blockDailyStatistics(String username, String domain) {
-        adapter.blockDailyStatistics(username, domain);
+    public void blockCallsOnlyByIp(String accountcode) {
+        AccountCodeUtils ac = AccountCodeUtils.from(accountcode);
+        adapter.blockCallsOnlyByIp(ac.username(), ac.domain());
+    }
+
+    public void activateCollectCalls(String accountcode) {
+        AccountCodeUtils ac = AccountCodeUtils.from(accountcode);
+        adapter.activateCollectCalls(ac.username(), ac.domain());
+    }
+
+    public void activateAnonymousCalls(String accountcode) {
+        AccountCodeUtils ac = AccountCodeUtils.from(accountcode);
+        adapter.activateAnonymousCalls(ac.username(), ac.domain());
+    }
+
+    public void activatePrivacyCalls(String accountcode) {
+        AccountCodeUtils ac = AccountCodeUtils.from(accountcode);
+        adapter.activatePrivacyCalls(ac.username(), ac.domain());
+    }
+
+    public void blockPrivacyCalls(String accountcode) {
+        AccountCodeUtils ac = AccountCodeUtils.from(accountcode);
+        adapter.blockPrivacyCalls(ac.username(), ac.domain());
+    }
+
+    public void activateLowCreditNotification(String accountcode, Double lowCreditLimit) {
+        AccountCodeUtils ac = AccountCodeUtils.from(accountcode);
+        adapter.activateLowCreditNotification(ac.username(), ac.domain(), lowCreditLimit);
+    }
+
+    public void blockLowCreditNotification(String accountcode) {
+        AccountCodeUtils ac = AccountCodeUtils.from(accountcode);
+        adapter.blockLowCreditNotification(ac.username(), ac.domain());
+    }
+
+    public void activateDailyStatistics(String accountcode) {
+        AccountCodeUtils ac = AccountCodeUtils.from(accountcode);
+        adapter.activateDailyStatistics(ac.username(), ac.domain());
+    }
+
+    public void blockDailyStatistics(String accountcode) {
+        AccountCodeUtils ac = AccountCodeUtils.from(accountcode);
+        adapter.blockDailyStatistics(ac.username(), ac.domain());
     }
 
     public void updateDailyQuota(SubscriberDailyQuotaDTO dailyQuotaDTO) {
         adapter.updateDailyQuota(dailyQuotaDTO);
     }
 
-    public void blockCollectCalls(String username, String domain) {
-        adapter.blockCollectCalls(username, domain);
+    public void blockCollectCalls(String accountcode) {
+        AccountCodeUtils ac = AccountCodeUtils.from(accountcode);
+        adapter.blockCollectCalls(ac.username(), ac.domain());
     }
 
-    public void blockAnonymousCalls(String username, String domain) {
-        adapter.blockAnonymousCalls(username, domain);
+    public void blockAnonymousCalls(String accountcode) {
+        AccountCodeUtils ac = AccountCodeUtils.from(accountcode);
+        adapter.blockAnonymousCalls(ac.username(), ac.domain());
     }
 
     public void updateMonthlyQuota(SubscriberMonthlyQuotaDTO monthlyQuotaDTO) {
         adapter.updateMonthlyQuota(monthlyQuotaDTO);
     }
 
-    public void activateVoicemail(String username, String domain, Long voicemailPassword) {
-        adapter.activateVoicemail(username, domain, voicemailPassword);
+    public void activateVoicemail(String accountcode, Long voicemailPassword) {
+        AccountCodeUtils ac = AccountCodeUtils.from(accountcode);
+        adapter.activateVoicemail(ac.username(), ac.domain(), voicemailPassword);
     }
 
-    public void blockVoicemail(String username, String domain) {
-        adapter.blockVoicemail(username, domain);
+    public void blockVoicemail(String accountcode) {
+        AccountCodeUtils ac = AccountCodeUtils.from(accountcode);
+        adapter.blockVoicemail(ac.username(), ac.domain());
     }
 
-    public void removeSubscriber(String username, String domain) {
-        adapter.removeSubscriber(username, domain);
+    public void removeSubscriber(String accountcode) {
+        AccountCodeUtils ac = AccountCodeUtils.from(accountcode);
+        adapter.removeSubscriber(ac.username(), ac.domain());
     }
 
-    public Double retrieveCredit(String username, String domain) {
-        return adapter.retrieveCredit(username, domain);
+    public Double retrieveCredit(String accountcode) {
+        AccountCodeUtils ac = AccountCodeUtils.from(accountcode);
+        return adapter.retrieveCredit(ac.username(), ac.domain());
     }
 
     public void updateSubscriber(SubscriberDTO subscriber) {
@@ -181,32 +208,39 @@ public class SubscriberService {
         adapter.changeProfile(username, domain, newProfileId);
     }
 
-    public SubscriberDailyQuotaDTO retrieveDailyQuota(String username, String domain) {
-        return adapter.retrieveDailyQuota(username, domain);
+    public SubscriberDailyQuotaDTO retrieveDailyQuota(String accountcode) {
+        AccountCodeUtils ac = AccountCodeUtils.from(accountcode);
+        return adapter.retrieveDailyQuota(ac.username(), ac.domain());
     }
 
-    public SubscriberMonthlyQuotaDTO retrieveMonthlyQuotaDTO(String username, String domain) {
-        return adapter.retrieveMonthlyQuotaDTO(username, domain);
+    public SubscriberMonthlyQuotaDTO retrieveMonthlyQuotaDTO(String accountcode) {
+        AccountCodeUtils ac = AccountCodeUtils.from(accountcode);
+        return adapter.retrieveMonthlyQuotaDTO(ac.username(), ac.domain());
     }
 
-    public void activateSoftphone(String username, String domain) {
-        adapter.activateSoftphone(username, domain);
+    public void activateSoftphone(String accountcode) {
+        AccountCodeUtils ac = AccountCodeUtils.from(accountcode);
+        adapter.activateSoftphone(ac.username(), ac.domain());
     }
 
-    public void blockSoftphone(String username, String domain) {
-        adapter.blockSoftphone(username, domain);
+    public void blockSoftphone(String accountcode) {
+        AccountCodeUtils ac = AccountCodeUtils.from(accountcode);
+        adapter.blockSoftphone(ac.username(), ac.domain());
     }
 
-    public void activateEntry0303(String username, String domain) {
-        adapter.activateEntry0303(username, domain);
+    public void activateEntry0303(String accountcode) {
+        AccountCodeUtils ac = AccountCodeUtils.from(accountcode);
+        adapter.activateEntry0303(ac.username(), ac.domain());
     }
 
-    public void disableValidateSource0303(String username, String domain) {
-        adapter.disableValidateSource0303(username, domain);
+    public void disableValidateSource0303(String accountcode) {
+        AccountCodeUtils ac = AccountCodeUtils.from(accountcode);
+        adapter.disableValidateSource0303(ac.username(), ac.domain());
     }
 
-    public void activateValidateSource0303(String username, String domain) {
-        adapter.activateValidateSource0303(username, domain);
+    public void activateValidateSource0303(String accountcode) {
+        AccountCodeUtils ac = AccountCodeUtils.from(accountcode);
+        adapter.activateValidateSource0303(ac.username(), ac.domain());
     }
 
     public void changePassword(String username, String domain, String actualPassword, String newPassword, String confirmNewPassword) {

@@ -11,37 +11,72 @@ import java.util.List;
 @Component
 public class SipPulseFacade {
 
-    private final DidService service;
+    private final DidService didService;
     private final SubscriberService subscriberService;
 
-    public SipPulseFacade(DidService service, SubscriberService subscriberService) {
-        this.service = service;
+    public SipPulseFacade(DidService didService, SubscriberService subscriberService) {
+        this.didService = didService;
         this.subscriberService = subscriberService;
     }
 
-    public Integer insertSubscriber(SubscriberMinDTO subscriber){
+    public Integer insertSubscriber(SubscriberMinDTO subscriber) {
 
-        return subscriberService.insertSubscriber(subscriber);
-    }
+        Integer subscriberID = subscriberService.insertSubscriber(subscriber);
 
-    public Integer insertDid(DidDTO did){
+        subscriberService.updateSubscriberServices(subscriber);
 
-        return service.insertDid(did);
-
-    }
-
-    public List<String> listAvailablesNumbers(String domain){
-
-        return service.listAvailablesNumbers(domain);
+        return subscriberID;
 
     }
 
-    public List<DidDTO> listByAcc(String accountCode){
+    public Integer insertSubscriberWithDid(SubscriberMinDTO subscriber) {
 
-        return  service.listByAcc(accountCode);
+        Integer subscriberID = subscriberService.insertSubscriber(subscriber);
+
+        subscriberService.updateSubscriberServices(subscriber);
+
+        DidDTO didDTO = new DidDTO(
+                subscriber.accountCode(),
+                subscriber.username(),
+                "",
+                true,
+                subscriber.domain(),
+                "",
+                null,
+                "",
+                0.0,
+                false,
+                ""
+
+        );
+
+        didService.insertDid(didDTO);
+
+        return subscriberID;
+
     }
 
-    public void deleteDid(Integer didId ) {
-        service.deleteDid(didId);
+    public void activateSubscriber(String accountcode) {
+        subscriberService.activateSubscriber(accountcode);
+    }
+
+    public void blockSubscriber(String accountcode) {
+        subscriberService.blockSubscriber(accountcode);
+    }
+
+    public Integer insertDid(DidDTO did) {
+        return didService.insertDid(did);
+    }
+
+    public List<String> listAvailablesNumbers(String domain) {
+        return didService.listAvailablesNumbers(domain);
+    }
+
+    public List<DidDTO> listByAcc(String accountCode) {
+        return didService.listByAcc(accountCode);
+    }
+
+    public void deleteDid(Integer didId) {
+        didService.deleteDid(didId);
     }
 }
