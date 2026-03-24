@@ -6,7 +6,7 @@ import com.sippulse.soapadapter.client.didWS.DidWS;
 import com.sippulse.soapadapter.client.didWS.UserPrincipalDTO;
 import com.sippulse.soapadapter.client.didWS.WSException;
 import com.sippulse.soapadapter.dto.DidDTO;
-import com.sippulse.soapadapter.mapper.SipPulseAuthMapper;
+import com.sippulse.soapadapter.mapper.SoapAuthMapper;
 import org.springframework.stereotype.Component;
 
 import java.util.List;
@@ -14,9 +14,9 @@ import java.util.List;
 @Component
 public class DidClientAdapter {
     private final DidWS didWS;
-    private final SipPulseAuthMapper authMapper;
+    private final SoapAuthMapper authMapper;
 
-    public DidClientAdapter(DidWS didWS, SipPulseAuthMapper authMapper) {
+    public DidClientAdapter(DidWS didWS, SoapAuthMapper authMapper) {
         this.didWS = didWS;
         this.authMapper = authMapper;
     }

@@ -1,7 +1,7 @@
 package com.sippulse.soapadapter.adapter;
 
 import com.sippulse.soapadapter.client.accountGroupWS.*;
-import com.sippulse.soapadapter.mapper.SipPulseAuthMapper;
+import com.sippulse.soapadapter.mapper.SoapAuthMapper;
 import org.springframework.stereotype.Component;
 
 import java.util.List;
@@ -10,9 +10,9 @@ import java.util.List;
 public class AccountGroupClientAdapter {
 
     private final AccountGroupWS accountGroupWS;
-    private final SipPulseAuthMapper authMapper;
+    private final SoapAuthMapper authMapper;
 
-    public AccountGroupClientAdapter(AccountGroupWS accountGroupWS, SipPulseAuthMapper authMapper) {
+    public AccountGroupClientAdapter(AccountGroupWS accountGroupWS, SoapAuthMapper authMapper) {
         this.accountGroupWS = accountGroupWS;
         this.authMapper = authMapper;
     }

@@ -1,7 +1,7 @@
 package com.sippulse.soapadapter.adapter;
 
 import com.sippulse.soapadapter.client.domainWS.*;
-import com.sippulse.soapadapter.mapper.SipPulseAuthMapper;
+import com.sippulse.soapadapter.mapper.SoapAuthMapper;
 import org.springframework.stereotype.Component;
 
 import java.util.List;
@@ -10,9 +10,9 @@ import java.util.List;
 public class DomainClientAdapter {
 
     private final DomainWS domainWS;
-    private final SipPulseAuthMapper authMapper;
+    private final SoapAuthMapper authMapper;
 
-    public DomainClientAdapter(DomainWS domainWS, SipPulseAuthMapper authMapper) {
+    public DomainClientAdapter(DomainWS domainWS, SoapAuthMapper authMapper) {
         this.domainWS = domainWS;
         this.authMapper = authMapper;
     }

@@ -1,16 +1,16 @@
 package com.sippulse.soapadapter.adapter;
 
 import com.sippulse.soapadapter.client.subscriberWS.*;
-import com.sippulse.soapadapter.mapper.SipPulseAuthMapper;
+import com.sippulse.soapadapter.mapper.SoapAuthMapper;
 import org.springframework.stereotype.Component;
 
 @Component
 public class SubscriberClientAdapter{
 
     private final SubscriberWS subscriberWS;
-    private final SipPulseAuthMapper authMapper;
+    private final SoapAuthMapper authMapper;
 
-    public SubscriberClientAdapter(SubscriberWS subscriberWS, SipPulseAuthMapper authMapper) {
+    public SubscriberClientAdapter(SubscriberWS subscriberWS, SoapAuthMapper authMapper) {
         this.subscriberWS = subscriberWS;
         this.authMapper = authMapper;
     }

@@ -1,7 +1,7 @@
 package com.sippulse.soapadapter.adapter;
 
 import com.sippulse.soapadapter.client.whitelistWS.*;
-import com.sippulse.soapadapter.mapper.SipPulseAuthMapper;
+import com.sippulse.soapadapter.mapper.SoapAuthMapper;
 import org.springframework.stereotype.Component;
 
 import java.util.List;
@@ -10,9 +10,9 @@ import java.util.List;
 public class WhitelistClientAdapter {
 
     private final WhiteListWS whiteListWS;
-    private final SipPulseAuthMapper authMapper;
+    private final SoapAuthMapper authMapper;
 
-    public WhitelistClientAdapter(WhiteListWS whiteListWS, SipPulseAuthMapper authMapper) {
+    public WhitelistClientAdapter(WhiteListWS whiteListWS, SoapAuthMapper authMapper) {
         this.whiteListWS = whiteListWS;
         this.authMapper = authMapper;
     }

@@ -1,7 +1,7 @@
 package com.sippulse.soapadapter.adapter;
 
 import com.sippulse.soapadapter.client.huntGroupWS.*;
-import com.sippulse.soapadapter.mapper.SipPulseAuthMapper;
+import com.sippulse.soapadapter.mapper.SoapAuthMapper;
 import jakarta.xml.ws.Holder;
 import org.springframework.stereotype.Component;
 
@@ -11,9 +11,9 @@ import java.util.List;
 public class HuntGroupClientAdapter {
 
     private final HuntGroupWS huntGroupWS;
-    private final SipPulseAuthMapper authMapper;
+    private final SoapAuthMapper authMapper;
 
-    public HuntGroupClientAdapter(HuntGroupWS huntGroupWS, SipPulseAuthMapper authMapper) {
+    public HuntGroupClientAdapter(HuntGroupWS huntGroupWS, SoapAuthMapper authMapper) {
         this.huntGroupWS = huntGroupWS;
         this.authMapper = authMapper;
     }

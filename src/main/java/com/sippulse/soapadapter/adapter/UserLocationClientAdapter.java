@@ -1,7 +1,7 @@
 package com.sippulse.soapadapter.adapter;
 
 import com.sippulse.soapadapter.client.userLocationWS.*;
-import com.sippulse.soapadapter.mapper.SipPulseAuthMapper;
+import com.sippulse.soapadapter.mapper.SoapAuthMapper;
 import org.springframework.stereotype.Component;
 
 import java.util.List;
@@ -10,9 +10,9 @@ import java.util.List;
 public class UserLocationClientAdapter {
 
     private final UserLocationWS userLocationWS;
-    private final SipPulseAuthMapper authMapper;
+    private final SoapAuthMapper authMapper;
 
-    public UserLocationClientAdapter(UserLocationWS userLocationWS, SipPulseAuthMapper authMapper) {
+    public UserLocationClientAdapter(UserLocationWS userLocationWS, SoapAuthMapper authMapper) {
         this.userLocationWS = userLocationWS;
         this.authMapper = authMapper;
     }
