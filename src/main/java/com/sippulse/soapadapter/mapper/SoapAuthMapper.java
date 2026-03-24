@@ -7,11 +7,11 @@ import org.springframework.stereotype.Component;
 import java.util.function.Supplier;
 
 @Component
-public class SipPulseAuthMapper {
+public class SoapAuthMapper {
 
     private final SoapCredentials credentials;
 
-    public SipPulseAuthMapper(SoapCredentials credentials) {
+    public SoapAuthMapper(SoapCredentials credentials) {
         this.credentials = credentials;
     }
 

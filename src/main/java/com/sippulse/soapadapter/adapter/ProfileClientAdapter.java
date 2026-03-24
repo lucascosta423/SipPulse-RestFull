@@ -1,7 +1,7 @@
 package com.sippulse.soapadapter.adapter;
 
 import com.sippulse.soapadapter.client.profileWS.*;
-import com.sippulse.soapadapter.mapper.SipPulseAuthMapper;
+import com.sippulse.soapadapter.mapper.SoapAuthMapper;
 import org.springframework.stereotype.Component;
 
 import java.util.List;
@@ -10,9 +10,9 @@ import java.util.List;
 public class ProfileClientAdapter {
 
     private final ProfileWS profileWS;
-    private final SipPulseAuthMapper authMapper;
+    private final SoapAuthMapper authMapper;
 
-    public ProfileClientAdapter(ProfileWS profileWS, SipPulseAuthMapper authMapper) {
+    public ProfileClientAdapter(ProfileWS profileWS, SoapAuthMapper authMapper) {
         this.profileWS = profileWS;
         this.authMapper = authMapper;
     }

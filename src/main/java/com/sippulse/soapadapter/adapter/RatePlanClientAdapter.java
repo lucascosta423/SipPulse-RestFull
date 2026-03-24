@@ -1,7 +1,7 @@
 package com.sippulse.soapadapter.adapter;
 
 import com.sippulse.soapadapter.client.ratePlanWS.*;
-import com.sippulse.soapadapter.mapper.SipPulseAuthMapper;
+import com.sippulse.soapadapter.mapper.SoapAuthMapper;
 import jakarta.xml.ws.Holder;
 import org.springframework.stereotype.Component;
 
@@ -11,9 +11,9 @@ import java.util.List;
 public class RatePlanClientAdapter {
 
     private final RatePlanWS ratePlanWS;
-    private final SipPulseAuthMapper authMapper;
+    private final SoapAuthMapper authMapper;
 
-    public RatePlanClientAdapter(RatePlanWS ratePlanWS, SipPulseAuthMapper authMapper) {
+    public RatePlanClientAdapter(RatePlanWS ratePlanWS, SoapAuthMapper authMapper) {
         this.ratePlanWS = ratePlanWS;
         this.authMapper = authMapper;
     }
