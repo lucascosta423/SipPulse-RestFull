@@ -1,8 +1,9 @@
-package com.sippulse.soapadapter.config;
+package com.sippulse.soapadapter.config.WSconfig;
 
-import com.sippulse.soapadapter.client.profileWS.ProfileWS;
-import com.sippulse.soapadapter.client.profileWS.SipPulse;
+import com.sippulse.soapadapter.client.huntGroupWS.HuntGroupWS;
+import com.sippulse.soapadapter.client.huntGroupWS.SipPulse;
 
+import com.sippulse.soapadapter.config.soap.SoapProperties;
 import jakarta.xml.ws.BindingProvider;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
@@ -10,24 +11,24 @@ import org.springframework.context.annotation.Configuration;
 import java.net.URL;
 
 @Configuration
-public class ProfileWSConfig {
+public class HuntGroupWSConfig {
 
     @Bean
-    public ProfileWS profileWS(SoapProperties properties) {
+    public HuntGroupWS huntGroupWS(SoapProperties properties) {
         try {
-            String baseUrl = properties.getEndpoints().get("profile");
+            String baseUrl = properties.getEndpoints().get("hunt_group");
 
             URL wsdlUrl = new URL(baseUrl + "?wsdl");
 
             SipPulse service = new SipPulse(wsdlUrl);
 
-            ProfileWS port = service.getProfileWSPort();
+            HuntGroupWS port = service.getHuntGroupWSPort();
 
             configure((BindingProvider) port, baseUrl);
 
             return port;
         } catch (Exception e) {
-            throw new RuntimeException("Erro ao criar ProfileWS", e);
+            throw new RuntimeException("Erro ao criar HuntGroupWS", e);
         }
     }
 

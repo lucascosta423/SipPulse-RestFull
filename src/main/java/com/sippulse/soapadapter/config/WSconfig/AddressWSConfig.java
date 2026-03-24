@@ -1,7 +1,8 @@
-package com.sippulse.soapadapter.config;
+package com.sippulse.soapadapter.config.WSconfig;
 
-import com.sippulse.soapadapter.client.didWS.DidWS;
-import com.sippulse.soapadapter.client.didWS.SipPulse;
+import com.sippulse.soapadapter.client.addressWS.AddressWS;
+import com.sippulse.soapadapter.client.addressWS.SipPulse;
+import com.sippulse.soapadapter.config.soap.SoapProperties;
 import jakarta.xml.ws.BindingProvider;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
@@ -9,25 +10,25 @@ import org.springframework.context.annotation.Configuration;
 import java.net.URL;
 
 @Configuration
-public class DidWSConfig {
+public class AddressWSConfig {
 
         @Bean
-        public DidWS didWS(SoapProperties properties) {
+        public AddressWS addressWS(SoapProperties properties) {
             try {
-                String baseUrl = properties.getEndpoints().get("did");
+                String baseUrl = properties.getEndpoints().get("address");
 
                 URL wsdlUrl = new URL(baseUrl + "?wsdl");
 
                 SipPulse service = new SipPulse(wsdlUrl);
 
-                DidWS port = service.getDidWSPort();
+                AddressWS port = service.getAddressWSPort();
 
                 configure((BindingProvider) port, baseUrl);
 
                 return port;
 
             } catch (Exception e) {
-                throw new RuntimeException("Erro ao criar DidWS", e);
+                throw new RuntimeException("Erro ao criar AddressWS", e);
             }
         }
 

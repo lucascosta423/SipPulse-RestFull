@@ -17,7 +17,7 @@ public class DomainClientAdapter {
         this.authMapper = authMapper;
     }
 
-    public List<Domain> listDomains(UserPrincipalDTO principal) {
+    public List<Domain> listDomains() {
         try {
             return domainWS.listDomains(
                     authMapper.toSoapUser(UserPrincipalDTO::new)

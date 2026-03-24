@@ -1,7 +1,7 @@
 package com.sippulse.soapadapter.mapper;
 
 
-import com.sippulse.soapadapter.config.SipPulseCredentials;
+import com.sippulse.soapadapter.config.soap.SoapCredentials;
 import org.springframework.stereotype.Component;
 
 import java.util.function.Supplier;
@@ -9,9 +9,9 @@ import java.util.function.Supplier;
 @Component
 public class SipPulseAuthMapper {
 
-    private final SipPulseCredentials credentials;
+    private final SoapCredentials credentials;
 
-    public SipPulseAuthMapper(SipPulseCredentials credentials) {
+    public SipPulseAuthMapper(SoapCredentials credentials) {
         this.credentials = credentials;
     }
 
