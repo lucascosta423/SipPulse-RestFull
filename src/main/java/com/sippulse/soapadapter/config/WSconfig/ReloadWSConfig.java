@@ -1,7 +1,9 @@
-package com.sippulse.soapadapter.config;
+package com.sippulse.soapadapter.config.WSconfig;
 
-import com.sippulse.soapadapter.client.addressWS.AddressWS;
-import com.sippulse.soapadapter.client.addressWS.SipPulse;
+import com.sippulse.soapadapter.client.reloadWS.ReloadModulesWS;
+import com.sippulse.soapadapter.client.reloadWS.SipPulse;
+
+import com.sippulse.soapadapter.config.soap.SoapProperties;
 import jakarta.xml.ws.BindingProvider;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
@@ -9,25 +11,25 @@ import org.springframework.context.annotation.Configuration;
 import java.net.URL;
 
 @Configuration
-public class AddressWSConfig {
+public class ReloadWSConfig {
 
         @Bean
-        public AddressWS addressWS(SoapProperties properties) {
+        public ReloadModulesWS reloadModulesWS(SoapProperties properties) {
             try {
-                String baseUrl = properties.getEndpoints().get("address");
+                String baseUrl = properties.getEndpoints().get("reload");
 
                 URL wsdlUrl = new URL(baseUrl + "?wsdl");
 
                 SipPulse service = new SipPulse(wsdlUrl);
 
-                AddressWS port = service.getAddressWSPort();
+                ReloadModulesWS port = service.getReloadModulesWSPort();
 
                 configure((BindingProvider) port, baseUrl);
 
                 return port;
 
             } catch (Exception e) {
-                throw new RuntimeException("Erro ao criar AddressWS", e);
+                throw new RuntimeException("Erro ao criar ReloadModulesWS", e);
             }
         }
 

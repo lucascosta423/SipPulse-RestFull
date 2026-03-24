@@ -1,17 +1,17 @@
-package com.sippulse.soapadapter.config;
+package com.sippulse.soapadapter.config.soap;
 
 import org.springframework.boot.context.properties.EnableConfigurationProperties;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 
-@EnableConfigurationProperties(SipPulseAuthProperties.class)
+@EnableConfigurationProperties(SoapAuthProperties.class)
 @Configuration
 public class SoapConfig {
 
     @Bean
-    public SipPulseCredentials sipPulseCredentials(SipPulseAuthProperties properties) {
+    public SoapCredentials sipPulseCredentials(SoapAuthProperties properties) {
 
-        return new SipPulseCredentials(
+        return new SoapCredentials(
                 properties.getLogin(),
                 properties.getPassword()
         );

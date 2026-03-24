@@ -16,7 +16,7 @@ public class DomainService {
         this.adapter = adapter;
     }
 
-    public List<Domain> listDomains(UserPrincipalDTO principal) {
-        return adapter.listDomains(principal);
+    public List<Domain> listDomains() {
+        return adapter.listDomains();
     }
 }

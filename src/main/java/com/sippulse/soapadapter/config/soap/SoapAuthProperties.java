@@ -1,9 +1,9 @@
-package com.sippulse.soapadapter.config;
+package com.sippulse.soapadapter.config.soap;
 
 import org.springframework.boot.context.properties.ConfigurationProperties;
 
 @ConfigurationProperties(prefix = "sippulse.auth")
-public class SipPulseAuthProperties {
+public class SoapAuthProperties {
 
     private String login;
     private String password;

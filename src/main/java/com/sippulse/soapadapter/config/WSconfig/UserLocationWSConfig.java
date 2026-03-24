@@ -1,8 +1,9 @@
-package com.sippulse.soapadapter.config;
+package com.sippulse.soapadapter.config.WSconfig;
 
 import com.sippulse.soapadapter.client.userLocationWS.SipPulse;
 import com.sippulse.soapadapter.client.userLocationWS.UserLocationWS;
 
+import com.sippulse.soapadapter.config.soap.SoapProperties;
 import jakarta.xml.ws.BindingProvider;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;

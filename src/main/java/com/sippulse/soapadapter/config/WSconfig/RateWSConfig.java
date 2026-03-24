@@ -1,8 +1,9 @@
-package com.sippulse.soapadapter.config;
+package com.sippulse.soapadapter.config.WSconfig;
 
+import com.sippulse.soapadapter.client.rateWS.RateWS;
+import com.sippulse.soapadapter.client.rateWS.SipPulse;
 
-import com.sippulse.soapadapter.client.subscriberWS.SipPulse;
-import com.sippulse.soapadapter.client.subscriberWS.SubscriberWS;
+import com.sippulse.soapadapter.config.soap.SoapProperties;
 import jakarta.xml.ws.BindingProvider;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
@@ -10,25 +11,25 @@ import org.springframework.context.annotation.Configuration;
 import java.net.URL;
 
 @Configuration
-public class SubscriberWSConfig {
+public class RateWSConfig {
 
     @Bean
-    public SubscriberWS subscriberWS(SoapProperties properties) {
+    public RateWS rateWS(SoapProperties properties){
         try {
-            String baseUrl = properties.getEndpoints().get("subscriber");
+            String baseUrl = properties.getEndpoints().get("rate");
 
             URL wsdlUrl = new URL(baseUrl + "?wsdl");
 
             SipPulse service = new SipPulse(wsdlUrl);
 
-            SubscriberWS port = service.getSubscriberWSPort();
+            RateWS port = service.getRateWSPort();
 
             configure((BindingProvider) port, baseUrl);
 
             return port;
 
         } catch (Exception e) {
-            throw new RuntimeException("Erro ao criar SubscriberWS", e);
+            throw new RuntimeException("Erro ao criar RateWS", e);
         }
     }
 
@@ -40,4 +41,5 @@ public class SubscriberWSConfig {
         bp.getRequestContext().put("com.sun.xml.ws.connect.timeout", 5000);
         bp.getRequestContext().put("com.sun.xml.ws.request.timeout", 10000);
     }
+
 }
