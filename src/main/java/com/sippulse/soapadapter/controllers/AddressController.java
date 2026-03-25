@@ -1,6 +1,7 @@
 package com.sippulse.soapadapter.controllers;
 
 import com.sippulse.soapadapter.client.addressWS.Address;
+import com.sippulse.soapadapter.dto.AddressDTO;
 import com.sippulse.soapadapter.dto.ApiResponse;
 import com.sippulse.soapadapter.service.AddressService;
 import jakarta.servlet.http.HttpServletRequest;
@@ -33,11 +34,11 @@ public class AddressController {
 
 
     @PostMapping
-    public ResponseEntity<ApiResponse<Void>> insertAddress(HttpServletRequest request){
+    public ResponseEntity<ApiResponse<Address>> insertAddress(@RequestBody AddressDTO addressDTO, HttpServletRequest request){
 
         return ResponseEntity.status(HttpStatus.CREATED).body(
                 ApiResponse.success(
-                        null,
+                        addressService.insertAddress(addressDTO),
                         "Address added",
                         HttpStatus.CREATED.value(),
                         request.getRequestURI()
@@ -46,11 +47,11 @@ public class AddressController {
     }
 
     @PatchMapping
-    public ResponseEntity<ApiResponse<Void>> updateAddress(HttpServletRequest request){
+    public ResponseEntity<ApiResponse<Address>> updateAddress(@RequestBody AddressDTO addressDTO, HttpServletRequest request){
 
         return ResponseEntity.ok().body(
                 ApiResponse.success(
-                        null,
+                        addressService.updateAddress(addressDTO),
                         "Updated Address",
                         HttpStatus.OK.value(),
                         request.getRequestURI()
@@ -58,8 +59,11 @@ public class AddressController {
         );
     }
 
-    @DeleteMapping
-    public ResponseEntity<ApiResponse<Void>> removeAddress(HttpServletRequest request){
+    @DeleteMapping("/{domain}/{id}")
+    public ResponseEntity<ApiResponse<Void>> removeAddress(
+            @PathVariable String domain, @PathVariable Integer id,HttpServletRequest request)
+    {
+        addressService.removeAddress(domain,id);
         return ResponseEntity.ok().body(
                 ApiResponse.success(
                         null,
