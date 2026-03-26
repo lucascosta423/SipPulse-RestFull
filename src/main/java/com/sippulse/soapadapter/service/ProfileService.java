@@ -16,7 +16,7 @@ public class ProfileService {
         this.adapter = adapter;
     }
 
-    public List<Profile> listProfilesByDomain(String domain, UserPrincipalDTO principal) {
-        return adapter.listProfilesByDomain(domain, principal);
+    public List<Profile> listProfilesByDomain(String domain) {
+        return adapter.listProfilesByDomain(domain);
     }
 }

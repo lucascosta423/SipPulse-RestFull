@@ -16,12 +16,12 @@ soap:
     whitelist: ${URL}/SipPulse/WhiteListWS
     ratePlan: ${URL}/SipPulse/RatePlanWS
     rate: ${URL}/SipPulse/RateWS
-    account_group: ${URL}/SipPulse/AccountGroupWS
+    accountGroup: ${URL}/SipPulse/AccountGroupWS
     customer: ${URL}/SipPulse/CustomerWS
-    user_location: ${URL}/SipPulse/UserLocationWS
+    userLocation: ${URL}/SipPulse/UserLocationWS
     address: ${URL}/SipPulse/AddressWS
-    hunt_group: ${URL}/SipPulse/HuntGroupWS
-    reload_module: ${URL}/SipPulse/ReloadModulesWS
+    huntGroup: ${URL}/SipPulse/HuntGroupWS
+    reloadModule: ${URL}/SipPulse/ReloadModulesWS
 
 logging:
   level:

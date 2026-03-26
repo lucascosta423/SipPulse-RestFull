@@ -17,7 +17,7 @@ public class ProfileClientAdapter {
         this.authMapper = authMapper;
     }
 
-    public List<Profile> listProfilesByDomain(String domain, UserPrincipalDTO principal) {
+    public List<Profile> listProfilesByDomain(String domain) {
         try {
             return profileWS.listProfilesByDomain(
                     domain,

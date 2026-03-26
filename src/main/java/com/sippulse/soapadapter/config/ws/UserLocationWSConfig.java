@@ -1,9 +1,9 @@
-package com.sippulse.soapadapter.config.WSconfig;
+package com.sippulse.soapadapter.config.ws;
 
-import com.sippulse.soapadapter.client.whitelistWS.SipPulse;
-import com.sippulse.soapadapter.client.whitelistWS.WhiteListWS;
+import com.sippulse.soapadapter.client.userLocationWS.SipPulse;
+import com.sippulse.soapadapter.client.userLocationWS.UserLocationWS;
 
-import com.sippulse.soapadapter.config.soap.SoapProperties;
+import com.sippulse.soapadapter.config.soap.properties.SoapProperties;
 import jakarta.xml.ws.BindingProvider;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
@@ -11,24 +11,24 @@ import org.springframework.context.annotation.Configuration;
 import java.net.URL;
 
 @Configuration
-public class WhitelistWSConfig {
+public class UserLocationWSConfig {
 
     @Bean
-    public WhiteListWS whiteListWS(SoapProperties properties) {
+    public UserLocationWS userLocationWS(SoapProperties properties) {
         try {
-            String baseUrl = properties.getEndpoints().get("whitelist");
+            String baseUrl = properties.getEndpoints().getUserLocation();
 
             URL wsdlUrl = new URL(baseUrl + "?wsdl");
 
             SipPulse service = new SipPulse(wsdlUrl);
 
-            WhiteListWS port = service.getWhiteListWSPort();
+            UserLocationWS port = service.getUserLocationWSPort();
 
             configure((BindingProvider) port, baseUrl);
 
             return port;
         } catch (Exception e) {
-            throw new RuntimeException("Erro ao criar WhiteListWS", e);
+            throw new RuntimeException("Erro ao criar UserLocationWS", e);
         }
     }
 

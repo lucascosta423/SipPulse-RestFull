@@ -1,9 +1,9 @@
-package com.sippulse.soapadapter.config.WSconfig;
+package com.sippulse.soapadapter.config.ws;
 
 import com.sippulse.soapadapter.client.rateWS.RateWS;
 import com.sippulse.soapadapter.client.rateWS.SipPulse;
 
-import com.sippulse.soapadapter.config.soap.SoapProperties;
+import com.sippulse.soapadapter.config.soap.properties.SoapProperties;
 import jakarta.xml.ws.BindingProvider;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
@@ -16,7 +16,7 @@ public class RateWSConfig {
     @Bean
     public RateWS rateWS(SoapProperties properties){
         try {
-            String baseUrl = properties.getEndpoints().get("rate");
+            String baseUrl = properties.getEndpoints().getRate();
 
             URL wsdlUrl = new URL(baseUrl + "?wsdl");
 

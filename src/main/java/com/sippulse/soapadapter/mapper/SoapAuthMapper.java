@@ -1,7 +1,7 @@
 package com.sippulse.soapadapter.mapper;
 
 
-import com.sippulse.soapadapter.config.soap.SoapCredentials;
+import com.sippulse.soapadapter.config.soap.auth.SoapCredentials;
 import org.springframework.stereotype.Component;
 
 import java.util.function.Supplier;

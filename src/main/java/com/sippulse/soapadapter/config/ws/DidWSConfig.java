@@ -1,8 +1,8 @@
-package com.sippulse.soapadapter.config.WSconfig;
+package com.sippulse.soapadapter.config.ws;
 
 import com.sippulse.soapadapter.client.didWS.DidWS;
 import com.sippulse.soapadapter.client.didWS.SipPulse;
-import com.sippulse.soapadapter.config.soap.SoapProperties;
+import com.sippulse.soapadapter.config.soap.properties.SoapProperties;
 import jakarta.xml.ws.BindingProvider;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
@@ -15,7 +15,7 @@ public class DidWSConfig {
         @Bean
         public DidWS didWS(SoapProperties properties) {
             try {
-                String baseUrl = properties.getEndpoints().get("did");
+                String baseUrl = properties.getEndpoints().getDid();
 
                 URL wsdlUrl = new URL(baseUrl + "?wsdl");
 

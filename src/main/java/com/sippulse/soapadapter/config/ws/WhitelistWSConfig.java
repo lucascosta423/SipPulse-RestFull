@@ -1,9 +1,9 @@
-package com.sippulse.soapadapter.config.WSconfig;
+package com.sippulse.soapadapter.config.ws;
 
-import com.sippulse.soapadapter.client.ratePlanWS.RatePlanWS;
-import com.sippulse.soapadapter.client.ratePlanWS.SipPulse;
+import com.sippulse.soapadapter.client.whitelistWS.SipPulse;
+import com.sippulse.soapadapter.client.whitelistWS.WhiteListWS;
 
-import com.sippulse.soapadapter.config.soap.SoapProperties;
+import com.sippulse.soapadapter.config.soap.properties.SoapProperties;
 import jakarta.xml.ws.BindingProvider;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
@@ -11,24 +11,24 @@ import org.springframework.context.annotation.Configuration;
 import java.net.URL;
 
 @Configuration
-public class RatePlanWSConfig {
+public class WhitelistWSConfig {
 
     @Bean
-    public RatePlanWS ratePlanWS(SoapProperties properties) {
+    public WhiteListWS whiteListWS(SoapProperties properties) {
         try {
-            String baseUrl = properties.getEndpoints().get("ratePlan");
+            String baseUrl = properties.getEndpoints().getWhitelist();
 
             URL wsdlUrl = new URL(baseUrl + "?wsdl");
 
             SipPulse service = new SipPulse(wsdlUrl);
 
-            RatePlanWS port = service.getRatePlanWSPort();
+            WhiteListWS port = service.getWhiteListWSPort();
 
             configure((BindingProvider) port, baseUrl);
 
             return port;
         } catch (Exception e) {
-            throw new RuntimeException("Erro ao criar RatePlanWS", e);
+            throw new RuntimeException("Erro ao criar WhiteListWS", e);
         }
     }
 

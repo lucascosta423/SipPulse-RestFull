@@ -1,4 +1,4 @@
-package com.sippulse.soapadapter.config.soap;
+package com.sippulse.soapadapter.config.soap.properties;
 
 import org.springframework.boot.context.properties.ConfigurationProperties;
 

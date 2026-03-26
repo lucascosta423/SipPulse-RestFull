@@ -1,9 +1,9 @@
-package com.sippulse.soapadapter.config.WSconfig;
+package com.sippulse.soapadapter.config.ws;
 
+import com.sippulse.soapadapter.client.ratePlanWS.RatePlanWS;
+import com.sippulse.soapadapter.client.ratePlanWS.SipPulse;
 
-import com.sippulse.soapadapter.client.subscriberWS.SipPulse;
-import com.sippulse.soapadapter.client.subscriberWS.SubscriberWS;
-import com.sippulse.soapadapter.config.soap.SoapProperties;
+import com.sippulse.soapadapter.config.soap.properties.SoapProperties;
 import jakarta.xml.ws.BindingProvider;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
@@ -11,25 +11,24 @@ import org.springframework.context.annotation.Configuration;
 import java.net.URL;
 
 @Configuration
-public class SubscriberWSConfig {
+public class RatePlanWSConfig {
 
     @Bean
-    public SubscriberWS subscriberWS(SoapProperties properties) {
+    public RatePlanWS ratePlanWS(SoapProperties properties) {
         try {
-            String baseUrl = properties.getEndpoints().get("subscriber");
+            String baseUrl = properties.getEndpoints().getRatePlan();
 
             URL wsdlUrl = new URL(baseUrl + "?wsdl");
 
             SipPulse service = new SipPulse(wsdlUrl);
 
-            SubscriberWS port = service.getSubscriberWSPort();
+            RatePlanWS port = service.getRatePlanWSPort();
 
             configure((BindingProvider) port, baseUrl);
 
             return port;
-
         } catch (Exception e) {
-            throw new RuntimeException("Erro ao criar SubscriberWS", e);
+            throw new RuntimeException("Erro ao criar RatePlanWS", e);
         }
     }
 

@@ -1,5 +1,7 @@
-package com.sippulse.soapadapter.config.soap;
+package com.sippulse.soapadapter.config.soap.config;
 
+import com.sippulse.soapadapter.config.soap.auth.SoapCredentials;
+import com.sippulse.soapadapter.config.soap.properties.SoapAuthProperties;
 import org.springframework.boot.context.properties.EnableConfigurationProperties;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;

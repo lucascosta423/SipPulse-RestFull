@@ -1,9 +1,8 @@
-package com.sippulse.soapadapter.config.WSconfig;
+package com.sippulse.soapadapter.config.ws;
 
-
-import com.sippulse.soapadapter.client.customerWS.CustomerWS;
-import com.sippulse.soapadapter.client.customerWS.SipPulse;
-import com.sippulse.soapadapter.config.soap.SoapProperties;
+import com.sippulse.soapadapter.client.accountGroupWS.AccountGroupWS;
+import com.sippulse.soapadapter.client.accountGroupWS.SipPulse;
+import com.sippulse.soapadapter.config.soap.properties.SoapProperties;
 import jakarta.xml.ws.BindingProvider;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
@@ -11,25 +10,24 @@ import org.springframework.context.annotation.Configuration;
 import java.net.URL;
 
 @Configuration
-public class CustomerWSConfig {
+public class AccountGroupWSConfig {
 
     @Bean
-    public CustomerWS customerWS(SoapProperties properties){
+    public AccountGroupWS accountGroupWS(SoapProperties properties) {
         try {
-            String baseUrl = properties.getEndpoints().get("customer");
+            String baseUrl = properties.getEndpoints().getAccountGroup();
 
             URL wsdlUrl = new URL(baseUrl + "?wsdl");
 
             SipPulse service = new SipPulse(wsdlUrl);
 
-            CustomerWS port = service.getCustomerWSPort();
+            AccountGroupWS port = service.getAccountGroupWSPort();
 
             configure((BindingProvider) port, baseUrl);
 
             return port;
-
         } catch (Exception e) {
-            throw new RuntimeException("Erro ao criar CustomerWS", e);
+            throw new RuntimeException("Erro ao criar AccountGroupWS", e);
         }
     }
 
