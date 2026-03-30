@@ -16,19 +16,19 @@ public class RatePlanService {
         this.adapter = adapter;
     }
 
-    public List<RatePlan> listRatePlansByDomain(String domain, UserPrincipalDTO principal) {
-        return adapter.listRatePlansByDomain(domain, principal);
+    public List<RatePlan> listRatePlansByDomain(String domain) {
+        return adapter.listRatePlansByDomain(domain);
     }
 
-    public void insertRatePlan(RatePlan ratePlan, UserPrincipalDTO principal) {
-        adapter.insertRatePlan(ratePlan, principal);
+    public void insertRatePlan(RatePlan ratePlan) {
+        adapter.insertRatePlan(ratePlan);
     }
 
-    public void updateRatePlan(RatePlan ratePlan, UserPrincipalDTO principal) {
-        adapter.updateRatePlan(ratePlan, principal);
+    public void updateRatePlan(RatePlan ratePlan) {
+        adapter.updateRatePlan(ratePlan);
     }
 
-    public void removeRatePlan(Integer idRatePlan, UserPrincipalDTO principal) {
-        adapter.removeRatePlan(idRatePlan, principal);
+    public void removeRatePlan(Integer idRatePlan) {
+        adapter.removeRatePlan(idRatePlan);
     }
 }

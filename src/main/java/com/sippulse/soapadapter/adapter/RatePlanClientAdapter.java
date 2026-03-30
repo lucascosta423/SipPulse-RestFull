@@ -18,7 +18,7 @@ public class RatePlanClientAdapter {
         this.authMapper = authMapper;
     }
 
-    public List<RatePlan> listRatePlansByDomain(String domain, UserPrincipalDTO principal) {
+    public List<RatePlan> listRatePlansByDomain(String domain) {
         try {
             return ratePlanWS.listRatePlansByDomain(
                     domain,
@@ -29,7 +29,7 @@ public class RatePlanClientAdapter {
         }
     }
 
-    public void insertRatePlan(RatePlan ratePlan, UserPrincipalDTO principal) {
+    public void insertRatePlan(RatePlan ratePlan) {
         try {
             Holder<RatePlan> holder = new Holder<>(ratePlan);
             ratePlanWS.insertRatePlan(
@@ -41,7 +41,7 @@ public class RatePlanClientAdapter {
         }
     }
 
-    public void updateRatePlan(RatePlan ratePlan, UserPrincipalDTO principal) {
+    public void updateRatePlan(RatePlan ratePlan) {
         try {
             Holder<RatePlan> holder = new Holder<>(ratePlan);
             ratePlanWS.updateRatePlan(
@@ -53,7 +53,7 @@ public class RatePlanClientAdapter {
         }
     }
 
-    public void removeRatePlan(Integer idRatePlan, UserPrincipalDTO principal) {
+    public void removeRatePlan(Integer idRatePlan) {
         try {
             ratePlanWS.removeRatePlan(
                     idRatePlan,
