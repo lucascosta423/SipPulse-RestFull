@@ -16,15 +16,15 @@ public class UserLocationService {
         this.adapter = adapter;
     }
 
-    public List<UserLocationDTO> listUserLocations(String username, String domain, UserPrincipalDTO principal) {
-        return adapter.listUserLocations(username, domain, principal);
+    public List<UserLocationDTO> listUserLocations(String username, String domain) {
+        return adapter.listUserLocations(username, domain);
     }
 
-    public void addUserLocation(String username, String domain, String contact, UserPrincipalDTO principal) {
-        adapter.addUserLocation(username, domain, contact, principal);
+    public void addUserLocation(String username, String domain, String contact) {
+        adapter.addUserLocation(username, domain, contact);
     }
 
-    public void removeUserLocation(String username, String domain, String contact, UserPrincipalDTO principal) {
-        adapter.removeUserLocation(username, domain, contact, principal);
+    public void removeUserLocation(String username, String domain, String contact) {
+        adapter.removeUserLocation(username, domain, contact);
     }
 }

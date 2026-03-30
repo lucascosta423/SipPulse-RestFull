@@ -17,7 +17,7 @@ public class UserLocationClientAdapter {
         this.authMapper = authMapper;
     }
 
-    public List<UserLocationDTO> listUserLocations(String username, String domain, UserPrincipalDTO principal) {
+    public List<UserLocationDTO> listUserLocations(String username, String domain) {
         try {
             return userLocationWS.listUserLocations(
                     username,
@@ -29,7 +29,7 @@ public class UserLocationClientAdapter {
         }
     }
 
-    public void addUserLocation(String username, String domain, String contact, UserPrincipalDTO principal) {
+    public void addUserLocation(String username, String domain, String contact) {
         try {
             userLocationWS.addUserLocation(
                     username,
@@ -42,7 +42,7 @@ public class UserLocationClientAdapter {
         }
     }
 
-    public void removeUserLocation(String username, String domain, String contact, UserPrincipalDTO principal) {
+    public void removeUserLocation(String username, String domain, String contact) {
         try {
             userLocationWS.removeUserLocation(
                     username,
