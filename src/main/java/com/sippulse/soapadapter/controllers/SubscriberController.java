@@ -3,6 +3,7 @@ package com.sippulse.soapadapter.controllers;
 import com.sippulse.soapadapter.dto.ApiResponse;
 import com.sippulse.soapadapter.dto.SubscriberMinDTO;
 import com.sippulse.soapadapter.facade.SipPulseFacade;
+import com.sippulse.soapadapter.service.SubscriberService;
 import jakarta.servlet.http.HttpServletRequest;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -33,20 +34,18 @@ import java.util.Map;
 @RequestMapping("/subscriber")
 public class SubscriberController {
 
-    private final SipPulseFacade sipPulseFacade;
+    private final SubscriberService subscriberService;
 
-    public SubscriberController(SipPulseFacade sipPulseFacade) {
-        this.sipPulseFacade = sipPulseFacade;
+
+    public SubscriberController(SubscriberService subscriberService) {
+        this.subscriberService = subscriberService;
     }
 
-    //Get
-
-    //Post
     @PostMapping
     public ResponseEntity<ApiResponse<Integer>> insertSubscriber(@RequestBody SubscriberMinDTO subscriberMinDTO, HttpServletRequest request) {
           return ResponseEntity.status(HttpStatus.CREATED).body(
                 ApiResponse.success(
-                        sipPulseFacade.insertSubscriber(subscriberMinDTO),
+                        subscriberService.insertSubscriber(subscriberMinDTO),
                         "Registered Subscriber",
                         HttpStatus.CREATED.value(),
                         request.getRequestURI()
@@ -54,23 +53,10 @@ public class SubscriberController {
         );
     }
 
-    @PostMapping( "/withdid")
-    public ResponseEntity<ApiResponse<Map<String,Integer>>> insertSubscriberWithDid(@RequestBody SubscriberMinDTO subscriberMinDTO, HttpServletRequest request) {
-        return ResponseEntity.status(HttpStatus.CREATED).body(
-                ApiResponse.success(
-                        sipPulseFacade.insertSubscriberWithDid(subscriberMinDTO),
-                        "Subscriber and Registered",
-                        HttpStatus.CREATED.value(),
-                        request.getRequestURI()
-                )
-        );
-    }
-
-    //Patch
     @PatchMapping("/{accountcode}/active")
     public ResponseEntity<ApiResponse<Void>> activateSubscriber(@PathVariable String accountcode,HttpServletRequest request) {
 
-        sipPulseFacade.activateSubscriber(accountcode);
+        subscriberService.activateSubscriber(accountcode);
 
         return ResponseEntity.status(HttpStatus.OK).body(
                 ApiResponse.success(
@@ -84,7 +70,7 @@ public class SubscriberController {
 
     @PatchMapping("/{accountcode}/block")
     public ResponseEntity<ApiResponse<Void>> blockSubscriber(@PathVariable String accountcode, HttpServletRequest request) {
-        sipPulseFacade.blockSubscriber(accountcode);
+        subscriberService.blockSubscriber(accountcode);
         return ResponseEntity.status(HttpStatus.OK).body(
                 ApiResponse.success(
                         null,
@@ -94,7 +80,4 @@ public class SubscriberController {
                 )
         );
     }
-
-    //Delete
-
 }

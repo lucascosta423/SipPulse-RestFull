@@ -3,6 +3,8 @@ package com.sippulse.soapadapter.service;
 import com.sippulse.soapadapter.adapter.SubscriberClientAdapter;
 import com.sippulse.soapadapter.client.subscriberWS.*;
 import com.sippulse.soapadapter.dto.SubscriberMinDTO;
+import com.sippulse.soapadapter.mapper.SubscriberMapper;
+import com.sippulse.soapadapter.mapper.UpdateSubscriberMapper;
 import com.sippulse.soapadapter.utils.AccountCodeUtils;
 import org.springframework.beans.BeanUtils;
 import org.springframework.stereotype.Service;
@@ -30,27 +32,29 @@ import org.springframework.stereotype.Service;
 public class SubscriberService {
 
     private final SubscriberClientAdapter adapter;
+    private final SubscriberMapper subscriberMapper;
+    private final UpdateSubscriberMapper updateMapper;
 
-    public SubscriberService(SubscriberClientAdapter adapter) {
+    public SubscriberService(SubscriberClientAdapter adapter, SubscriberMapper subscriberMapper, UpdateSubscriberMapper updateMapper) {
         this.adapter = adapter;
+        this.subscriberMapper = subscriberMapper;
+        this.updateMapper = updateMapper;
     }
 
     public Integer insertSubscriber(SubscriberMinDTO subscriber) {
 
-        var sub = new SubscriberDTO();
+        SubscriberDTO subscriberDTO = subscriberMapper.toSoap(subscriber);
 
-        BeanUtils.copyProperties(subscriber, sub);
+        Integer subscriberID = adapter.insertSubscriber(subscriberDTO);
 
-        return adapter.insertSubscriber(sub);
+        updateSubscriberServices(subscriber);
+
+        return subscriberID;
     }
 
     public void updateSubscriberServices(SubscriberMinDTO subscriber) {
 
-        var subService = new SubscriberServicesDTO();
-
-        BeanUtils.copyProperties(subscriber, subService);
-
-        subService.setEmail(subscriber.emailAddress());
+        var subService = updateMapper.toSoap(subscriber);
 
         adapter.updateSubscriberServices(subService);
     }
@@ -65,12 +69,12 @@ public class SubscriberService {
 
     public SubscriberDTO retrieveSubscriber(String accountcode) {
         AccountCodeUtils ac = AccountCodeUtils.from(accountcode);
-        return adapter.retrieveSubscriber(ac.username(),ac.domain());
+        return adapter.retrieveSubscriber(ac.username(), ac.domain());
     }
 
     public SubscriberClassVDTO retrieveSubscriberClassV(String accountcode) {
         AccountCodeUtils ac = AccountCodeUtils.from(accountcode);
-        return adapter.retrieveSubscriberClassV(ac.username(),ac.domain());
+        return adapter.retrieveSubscriberClassV(ac.username(), ac.domain());
     }
 
     public void activateSubscriber(String accountcode) {
@@ -89,17 +93,17 @@ public class SubscriberService {
     public void activateIncommingCalls(String accountcode) {
         AccountCodeUtils ac = AccountCodeUtils.from(accountcode);
 
-        adapter.activateIncommingCalls(ac.username(),ac.domain());
+        adapter.activateIncommingCalls(ac.username(), ac.domain());
     }
 
     public void blockIncommingCalls(String accountcode) {
         AccountCodeUtils ac = AccountCodeUtils.from(accountcode);
-        adapter.blockIncommingCalls(ac.username(),ac.domain());
+        adapter.blockIncommingCalls(ac.username(), ac.domain());
     }
 
     public void blockOutgoingCalls(String accountcode) {
         AccountCodeUtils ac = AccountCodeUtils.from(accountcode);
-        adapter.blockOutgoingCalls(ac.username(),ac.domain());
+        adapter.blockOutgoingCalls(ac.username(), ac.domain());
     }
 
     public void activateOutgoingCalls(String accountcode) {

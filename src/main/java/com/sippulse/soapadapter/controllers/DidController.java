@@ -3,6 +3,7 @@ package com.sippulse.soapadapter.controllers;
 import com.sippulse.soapadapter.dto.ApiResponse;
 import com.sippulse.soapadapter.dto.DidDTO;
 import com.sippulse.soapadapter.facade.SipPulseFacade;
+import com.sippulse.soapadapter.service.DidService;
 import jakarta.servlet.http.HttpServletRequest;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -50,17 +51,17 @@ import java.util.List;
 @RequestMapping("/dids")
 public class DidController {
 
-    private final SipPulseFacade sipPulseFacade;
-    
-    public DidController(SipPulseFacade sipPulseFacade) {
-        this.sipPulseFacade = sipPulseFacade;
+    private final DidService didService;
+
+    public DidController(DidService didService) {
+        this.didService = didService;
     }
 
     @GetMapping("/available")
     public ResponseEntity<ApiResponse<List<String>>> listAvailablesNumbers(@RequestParam String domain, HttpServletRequest request) {
         return ResponseEntity.ok(
                 ApiResponse.success(
-                        sipPulseFacade.listAvailablesNumbers(domain),
+                        didService.listAvailablesNumbers(domain),
                         "Available Dids",
                         HttpStatus.OK.value(),
                         request.getRequestURI()
@@ -72,7 +73,7 @@ public class DidController {
     public ResponseEntity<ApiResponse<List<DidDTO>>> listByAcc(@RequestParam String accountcode, HttpServletRequest request) {
         return ResponseEntity.ok(
                 ApiResponse.success(
-                        sipPulseFacade.listByAcc(accountcode),
+                        didService.listByAcc(accountcode),
                         "Dids Found",
                         HttpStatus.OK.value(),
                         request.getRequestURI()
@@ -84,7 +85,7 @@ public class DidController {
     public ResponseEntity<ApiResponse<Integer>> insertDid(@RequestBody DidDTO didDTO,HttpServletRequest request) {
         return ResponseEntity.status(HttpStatus.CREATED).body(
                 ApiResponse.success(
-                        sipPulseFacade.insertDid(didDTO),
+                        didService.insertDid(didDTO),
                         "Did Registered",
                         HttpStatus.CREATED.value(),
                         request.getRequestURI()
@@ -95,7 +96,7 @@ public class DidController {
     @DeleteMapping("/{id}")
     public ResponseEntity<ApiResponse<Void>> deleteDid(@PathVariable Integer id,HttpServletRequest request) {
 
-        sipPulseFacade.deleteDid(id);
+        didService.deleteDid(id);
 
         return ResponseEntity.ok(
                 ApiResponse.success(
