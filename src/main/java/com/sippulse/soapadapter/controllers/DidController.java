@@ -2,7 +2,6 @@ package com.sippulse.soapadapter.controllers;
 
 import com.sippulse.soapadapter.dto.ApiResponse;
 import com.sippulse.soapadapter.dto.DidDTO;
-import com.sippulse.soapadapter.facade.SipPulseFacade;
 import com.sippulse.soapadapter.service.DidService;
 import jakarta.servlet.http.HttpServletRequest;
 import org.springframework.http.HttpStatus;

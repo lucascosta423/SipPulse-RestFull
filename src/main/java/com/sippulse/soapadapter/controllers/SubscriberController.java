@@ -2,14 +2,11 @@ package com.sippulse.soapadapter.controllers;
 
 import com.sippulse.soapadapter.dto.ApiResponse;
 import com.sippulse.soapadapter.dto.SubscriberMinDTO;
-import com.sippulse.soapadapter.facade.SipPulseFacade;
 import com.sippulse.soapadapter.service.SubscriberService;
 import jakarta.servlet.http.HttpServletRequest;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
-
-import java.util.Map;
 
 /**
  * SipPulse-RestFull
