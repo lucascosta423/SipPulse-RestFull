@@ -64,7 +64,7 @@ git commit -m "feat: descrição clara da mudança"
 # 5. Envie para o seu fork
 git push origin feat/nome-da-feature
 
-# 6. Abra um Pull Request para a branch main
+# 6. Abra um Pull Request para a branch develop
 ```
 
 ---
