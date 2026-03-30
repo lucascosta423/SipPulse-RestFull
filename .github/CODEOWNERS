@@ -1,0 +1,16 @@
+# CODEOWNERS — SipPulse-RestFull
+#
+# Qualquer Pull Request aberto neste repositório
+# requer aprovação do owner antes do merge.
+#
+# Formato: <padrão de arquivo> <usuário ou time>
+
+# Owner de tudo no repositório
+* @lucascosta423
+
+# Arquivos críticos de configuração — revisão obrigatória
+*.yml                 @lucascosta423
+*.yaml                @lucascosta423
+*.xml                 @lucascosta423
+pom.xml               @lucascosta423
+.github/              @lucascosta423
