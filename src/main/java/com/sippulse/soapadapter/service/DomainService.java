@@ -2,7 +2,6 @@ package com.sippulse.soapadapter.service;
 
 import com.sippulse.soapadapter.adapter.DomainClientAdapter;
 import com.sippulse.soapadapter.client.domainWS.Domain;
-import com.sippulse.soapadapter.client.domainWS.UserPrincipalDTO;
 import org.springframework.stereotype.Service;
 
 import java.util.List;

@@ -1,7 +1,6 @@
 package com.sippulse.soapadapter.service;
 
 import com.sippulse.soapadapter.adapter.ReloadModuleClientAdpter;
-import com.sippulse.soapadapter.client.reloadWS.UserPrincipalDTO;
 import com.sippulse.soapadapter.utils.AccountCodeUtils;
 import org.springframework.stereotype.Service;
 

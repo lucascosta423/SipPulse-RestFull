@@ -2,7 +2,6 @@ package com.sippulse.soapadapter.service;
 
 import com.sippulse.soapadapter.adapter.RatePlanClientAdapter;
 import com.sippulse.soapadapter.client.ratePlanWS.RatePlan;
-import com.sippulse.soapadapter.client.ratePlanWS.UserPrincipalDTO;
 import org.springframework.stereotype.Service;
 
 import java.util.List;

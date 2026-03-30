@@ -2,7 +2,6 @@ package com.sippulse.soapadapter.service;
 
 import com.sippulse.soapadapter.adapter.UserLocationClientAdapter;
 import com.sippulse.soapadapter.client.userLocationWS.UserLocationDTO;
-import com.sippulse.soapadapter.client.userLocationWS.UserPrincipalDTO;
 import org.springframework.stereotype.Service;
 
 import java.util.List;

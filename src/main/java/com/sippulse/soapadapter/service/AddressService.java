@@ -5,7 +5,6 @@ import com.sippulse.soapadapter.client.addressWS.Address;
 import com.sippulse.soapadapter.dto.AddressDTO;
 import com.sippulse.soapadapter.mapper.AddressMapper;
 import com.sippulse.soapadapter.utils.AccountCodeUtils;
-import org.springframework.beans.BeanUtils;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
