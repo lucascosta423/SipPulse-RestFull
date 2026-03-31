@@ -1,0 +1,724 @@
+type: collection.insomnia.rest/5.0
+name: SolarMarket
+meta:
+  id: wrk_a65d7939bab04b26b10f73cbbbff4872
+  created: 1773165774688
+  modified: 1773165774688
+  description: ""
+collection:
+  - name: SolarMarket
+    meta:
+      id: fld_ae727ee250734b7eb26118d8f79f0ba0
+      created: 1773165774689
+      modified: 1773165774689
+      sortKey: -1773165772924
+      description: ""
+    children:
+      - url: ok
+        name: New Request
+        meta:
+          id: req_8213c0f10343435db0f87fc1eab501aa
+          created: 1774963910251
+          modified: 1774963917927
+          isPrivate: false
+          description: ""
+          sortKey: -1773165773023
+        method: GET
+        headers:
+          - name: User-Agent
+            value: insomnia/12.0.0
+        settings:
+          renderRequestBody: true
+          encodeUrl: true
+          followRedirects: global
+          cookies:
+            send: true
+            store: true
+          rebuildPath: true
+      - name: Autenticação
+        meta:
+          id: fld_4b06af3afdb544f9ab1d39e66872f3cc
+          created: 1773165774689
+          modified: 1773165774689
+          sortKey: -1773165772923
+          description: ""
+        children:
+          - url: "{{url}}/auth/signin"
+            name: Autenticar usuário
+            meta:
+              id: req_ee9b7a34261f440c9299523ea611d87c
+              created: 1773165774689
+              modified: 1773165774689
+              isPrivate: false
+              description: ""
+              sortKey: -1773165772922
+            method: POST
+            body:
+              mimeType: text/plain
+              text: "{\r
+
+                \    \"token\": \"{{token}}\"\r
+
+                }"
+            headers:
+              - name: Content-Type
+                value: application/json
+            settings:
+              renderRequestBody: true
+              encodeUrl: true
+              followRedirects: global
+              cookies:
+                send: true
+                store: true
+              rebuildPath: true
+      - name: Usuários
+        meta:
+          id: fld_bbc90d0b1ddc499584c1c4244608cee2
+          created: 1773165774690
+          modified: 1773165774690
+          sortKey: -1773165772921
+          description: ""
+        children:
+          - url: "{{url}}/users/me"
+            name: Listar usuário autenticado
+            meta:
+              id: req_60a29cbba6f44cf1b4543b8acb0aebe3
+              created: 1773165774690
+              modified: 1773165774690
+              isPrivate: false
+              description: ""
+              sortKey: -1773165772920
+            method: GET
+            authentication:
+              type: bearer
+              disabled: false
+              token: "{{access_token}}"
+              prefix: ""
+            settings:
+              renderRequestBody: true
+              encodeUrl: true
+              followRedirects: global
+              cookies:
+                send: true
+                store: true
+              rebuildPath: true
+          - url: "{{url}}/users"
+            name: Listar usuários
+            meta:
+              id: req_84ac4e1e325f4df9820f1853a0ced248
+              created: 1773165774690
+              modified: 1773165774690
+              isPrivate: false
+              description: ""
+              sortKey: -1773165772919
+            method: GET
+            parameters:
+              - name: limit
+                value: "100"
+                disabled: false
+              - name: page
+                value: "1"
+                disabled: false
+            authentication:
+              type: bearer
+              disabled: false
+              token: "{{access_token}}"
+              prefix: ""
+            settings:
+              renderRequestBody: true
+              encodeUrl: true
+              followRedirects: global
+              cookies:
+                send: true
+                store: true
+              rebuildPath: true
+      - name: Clientes
+        meta:
+          id: fld_8d23a42dfed5470cac494837051d9c64
+          created: 1773165774691
+          modified: 1773165774691
+          sortKey: -1773165772918
+          description: ""
+        children:
+          - url: "{{url}}/clients"
+            name: Listar / Procurar clientes
+            meta:
+              id: req_31a34e0e1e7d4eeb972d384947e6117c
+              created: 1773165774691
+              modified: 1773165774691
+              isPrivate: false
+              description: ""
+              sortKey: -1773165772917
+            method: GET
+            parameters:
+              - name: limit
+                value: "100"
+                disabled: false
+              - name: page
+                value: "1"
+                disabled: false
+              - name: id
+                value: "7"
+                disabled: true
+              - name: email
+                value: teste@teste.com.br
+                disabled: true
+              - name: name
+                value: teste
+                disabled: true
+              - name: phone
+                value: "21988888888"
+                disabled: true
+              - name: createdBefore
+                value: 2024-05-24
+                disabled: true
+              - name: createdAfter
+                value: 2019-01-01
+                disabled: true
+            authentication:
+              type: bearer
+              disabled: false
+              token: "{{access_token}}"
+              prefix: ""
+            settings:
+              renderRequestBody: true
+              encodeUrl: true
+              followRedirects: global
+              cookies:
+                send: true
+                store: true
+              rebuildPath: true
+          - url: "{{url}}/clients"
+            name: Criar cliente
+            meta:
+              id: req_3e741ab0ceea43e1aab1a46296ef04f0
+              created: 1773165774691
+              modified: 1773165774691
+              isPrivate: false
+              description: ""
+              sortKey: -1773165772916
+            method: POST
+            body:
+              mimeType: application/json
+              text: |-
+                {
+                	"name": "João da Silva",
+                	"company": "Empresa S.A.",
+                	"cnpjCpf": "123.456.789-09",
+                	"email": "email@email.com.br",
+                	"primaryPhone": "5521988887777",
+                	"secondaryPhone": null,
+                	"zipCode": "22470-010",
+                	"address": "Rua Teste",
+                	"number": "25",
+                	"complement": "700 BL 1",
+                	"neighborhood": "Copacabana",
+                	"city": "Rio de Janeiro",
+                	"state": "RJ",
+                	"responsibleId": 50,
+                	"representativeId": 67
+                }
+            headers:
+              - name: Content-Type
+                value: application/json
+            authentication:
+              type: bearer
+              disabled: false
+              token: "{{access_token}}"
+              prefix: ""
+            settings:
+              renderRequestBody: true
+              encodeUrl: true
+              followRedirects: global
+              cookies:
+                send: true
+                store: true
+              rebuildPath: true
+          - url: "{{url}}/clients/:id"
+            name: Atualizar cliente
+            meta:
+              id: req_5471a043c1fd4dcabae4f6047de2e603
+              created: 1773165774692
+              modified: 1773165774692
+              isPrivate: false
+              description: ""
+              sortKey: -1773165772915
+            method: PATCH
+            body:
+              mimeType: application/json
+              text: |-
+                {
+                	"name": "João da Silva",
+                	"company": "Empresa S.A.",
+                	"cnpjCpf": "123.456.789-09",
+                	"email": "email@email.com.br",
+                	"primaryPhone": "5521988887777",
+                	"secondaryPhone": null,
+                	"zipCode": "22470-010",
+                	"address": "Rua Teste",
+                	"number": "25",
+                	"complement": "700 BL 1",
+                	"neighborhood": "Copacabana",
+                	"city": "Rio de Janeiro",
+                	"state": "RJ",
+                	"responsibleId": 50,
+                	"representativeId": 67
+                }
+            headers:
+              - name: Content-Type
+                value: application/json
+            authentication:
+              type: bearer
+              disabled: false
+              token: "{{access_token}}"
+              prefix: ""
+            settings:
+              renderRequestBody: true
+              encodeUrl: true
+              followRedirects: global
+              cookies:
+                send: true
+                store: true
+              rebuildPath: true
+            pathParameters:
+              - name: id
+                value: "8150"
+          - url: "{{url}}/clients/:id"
+            name: Deletar cliente
+            meta:
+              id: req_3159c502b67b49bfae80aedf11108379
+              created: 1773165774693
+              modified: 1773165774693
+              isPrivate: false
+              description: ""
+              sortKey: -1773165772914
+            method: DELETE
+            body:
+              mimeType: application/json
+              text: |-
+                {
+                	"name": "João da Silva",
+                	"company": "Empresa S.A.",
+                	"cnpjCpf": "123.456.789-09",
+                	"email": "email@email.com.br",
+                	"primaryPhone": "5521988887777",
+                	"secondaryPhone": null,
+                	"zipCode": "22470-010",
+                	"address": "Rua Teste",
+                	"number": "25",
+                	"complement": "700 BL 1",
+                	"neighborhood": "Copacabana",
+                	"city": "Rio de Janeiro",
+                	"state": "RJ",
+                	"responsibleId": 50,
+                	"representativeId": 50
+                }
+            headers:
+              - name: Content-Type
+                value: application/json
+            authentication:
+              type: bearer
+              disabled: false
+              token: "{{access_token}}"
+              prefix: ""
+            settings:
+              renderRequestBody: true
+              encodeUrl: true
+              followRedirects: global
+              cookies:
+                send: true
+                store: true
+              rebuildPath: true
+            pathParameters:
+              - name: id
+                value: "8132"
+      - name: Projetos
+        meta:
+          id: fld_6da2d3c34d74487c9dd775c588da660a
+          created: 1773165774693
+          modified: 1773165774693
+          sortKey: -1773165772913
+          description: ""
+        children:
+          - url: "{{url}}/projects"
+            name: Listar / Procurar projetos
+            meta:
+              id: req_440d74d4253f4ec78805e22c03a727ef
+              created: 1773165774694
+              modified: 1773165774694
+              isPrivate: false
+              description: ""
+              sortKey: -1773165772912
+            method: GET
+            parameters:
+              - name: limit
+                value: "100"
+                disabled: false
+              - name: page
+                value: "1"
+                disabled: false
+              - name: id
+                value: "1"
+                disabled: true
+              - name: clientId
+                value: "1"
+                disabled: true
+              - name: name
+                value: teste
+                disabled: true
+              - name: createdBefore
+                value: 2020-02-01
+                disabled: true
+              - name: createdAfter
+                value: 2020-01-01
+                disabled: true
+            authentication:
+              type: bearer
+              disabled: false
+              token: "{{access_token}}"
+              prefix: ""
+            settings:
+              renderRequestBody: true
+              encodeUrl: true
+              followRedirects: global
+              cookies:
+                send: true
+                store: true
+              rebuildPath: true
+          - url: "{{url}}/projects"
+            name: Criar projeto
+            meta:
+              id: req_e7a4c60bd7754287b636ead64b26ef5b
+              created: 1773165774694
+              modified: 1773165774694
+              isPrivate: false
+              description: ""
+              sortKey: -1773165772911
+            method: POST
+            body:
+              mimeType: application/json
+              text: |-
+                {
+                	"name": "Meu projeto",
+                	"description": null,
+                	"clientId": null,
+                    "client": {
+                        "name": "Novo cliente"
+                    },
+                	"stageId": 13603,
+                	"responsibleId": 50,
+                	"representativeId": null
+                }
+            headers:
+              - name: Content-Type
+                value: application/json
+            authentication:
+              type: bearer
+              disabled: false
+              token: "{{access_token}}"
+              prefix: ""
+            settings:
+              renderRequestBody: true
+              encodeUrl: true
+              followRedirects: global
+              cookies:
+                send: true
+                store: true
+              rebuildPath: true
+          - url: "{{url}}/projects/:id"
+            name: Deletar projeto
+            meta:
+              id: req_1678a3731cf64c9980adfd953d0001e2
+              created: 1773165774695
+              modified: 1773165774695
+              isPrivate: false
+              description: ""
+              sortKey: -1773165772909
+            method: DELETE
+            headers:
+              - name: Content-Type
+                value: application/json
+            authentication:
+              type: bearer
+              disabled: false
+              token: "{{access_token}}"
+              prefix: ""
+            settings:
+              renderRequestBody: true
+              encodeUrl: true
+              followRedirects: global
+              cookies:
+                send: true
+                store: true
+              rebuildPath: true
+            pathParameters:
+              - name: id
+                value: "3264"
+          - url: "{{_['url']}}/projects/:id/custom-fields"
+            name: Listar campos customizados do projeto
+            meta:
+              id: req_58d0d37e1af742ff80e17602722cd92e
+              created: 1773165774695
+              modified: 1773165774695
+              isPrivate: false
+              description: ""
+              sortKey: -1773165772908
+            method: GET
+            parameters:
+              - name: limit
+                value: "100"
+                disabled: false
+              - name: page
+                value: "1"
+                disabled: false
+              - name: projectId
+                value: "1"
+                disabled: true
+              - name: customFieldId
+                value: "1"
+                disabled: true
+            authentication:
+              type: bearer
+              disabled: false
+              token: "{{access_token}}"
+              prefix: ""
+            settings:
+              renderRequestBody: true
+              encodeUrl: true
+              followRedirects: global
+              cookies:
+                send: true
+                store: true
+              rebuildPath: true
+            pathParameters:
+              - name: id
+                value: "1"
+          - url: "{{_['url']}}/projects/:id/custom-fields/:customFieldId"
+            name: Atualizar valor do campo customizado do projeto
+            meta:
+              id: req_803d8e97b1924ee5b8f4605007c5499d
+              created: 1773165774695
+              modified: 1773165774695
+              isPrivate: false
+              description: ""
+              sortKey: -1773165772907
+            method: POST
+            body:
+              mimeType: application/json
+              text: "{\r
+
+                \    \"value\": \"Texto atualizado\"\r
+
+                }"
+            headers:
+              - name: Content-Type
+                value: application/json
+            authentication:
+              type: bearer
+              disabled: false
+              token: "{{access_token}}"
+              prefix: ""
+            settings:
+              renderRequestBody: true
+              encodeUrl: true
+              followRedirects: global
+              cookies:
+                send: true
+                store: true
+              rebuildPath: true
+            pathParameters:
+              - name: id
+                value: "1"
+              - name: customFieldId
+                value: "39569"
+          - url: "{{url}}/projects/:id"
+            name: Atualizar projeto
+            meta:
+              id: req_e6eeade555b240f09401192db129af70
+              created: 1773165774695
+              modified: 1773165774695
+              isPrivate: false
+              description: ""
+              sortKey: -1773165772910
+            method: PATCH
+            body:
+              mimeType: application/json
+              text: |-
+                {
+                	"name": "Novo nome do projeto",
+                	"description": "nova descrição",
+                	"responsibleId": 67,
+                	"representativeId": null
+                }
+            headers:
+              - name: Content-Type
+                value: application/json
+            authentication:
+              type: bearer
+              disabled: false
+              token: "{{access_token}}"
+              prefix: ""
+            settings:
+              renderRequestBody: true
+              encodeUrl: true
+              followRedirects: global
+              cookies:
+                send: true
+                store: true
+              rebuildPath: true
+            pathParameters:
+              - name: id
+                value: "3264"
+          - url: "{{url}}/projects/:id/funnels"
+            name: Listar funis associados a um projeto
+            meta:
+              id: req_20e63b6bf0e14bdb8b9cbddace850fd4
+              created: 1773165774696
+              modified: 1773165774696
+              isPrivate: false
+              description: ""
+              sortKey: -1773165772906
+            method: GET
+            authentication:
+              type: bearer
+              disabled: false
+              token: "{{access_token}}"
+              prefix: ""
+            settings:
+              renderRequestBody: true
+              encodeUrl: true
+              followRedirects: global
+              cookies:
+                send: true
+                store: true
+              rebuildPath: true
+            pathParameters:
+              - name: id
+                value: "1500"
+      - name: Propostas
+        meta:
+          id: fld_ef2a2c4a2b0140ad88c43b3ba3de2af3
+          created: 1773165774696
+          modified: 1773165774696
+          sortKey: -1773165772905
+          description: ""
+        children:
+          - url: "{{url}}/projects/:id/proposals"
+            name: Listar proposta ativa
+            meta:
+              id: req_79421abc79444121a13318e53484f347
+              created: 1773165774697
+              modified: 1773165774697
+              isPrivate: false
+              description: ""
+              sortKey: -1773165772904
+            method: GET
+            authentication:
+              type: bearer
+              disabled: false
+              token: "{{access_token}}"
+              prefix: ""
+            settings:
+              renderRequestBody: true
+              encodeUrl: true
+              followRedirects: global
+              cookies:
+                send: true
+                store: true
+              rebuildPath: true
+            pathParameters:
+              - name: id
+                value: "14"
+      - name: Campos Customizados
+        meta:
+          id: fld_94c506bbf1114cefa9b278ae3c57b49c
+          created: 1773165774697
+          modified: 1773165774697
+          sortKey: -1773165772901
+          description: ""
+        children:
+          - url: "{{_['url']}}/custom-fields"
+            name: Listar campos customizados
+            meta:
+              id: req_41d615d7faf2429da9f658ebc79adb14
+              created: 1773165774697
+              modified: 1773165774697
+              isPrivate: false
+              description: ""
+              sortKey: -1773165772900
+            method: GET
+            parameters:
+              - name: limit
+                value: "10"
+                disabled: false
+              - name: page
+                value: "1"
+                disabled: false
+            authentication:
+              type: bearer
+              disabled: false
+              token: "{{access_token}}"
+              prefix: ""
+            settings:
+              renderRequestBody: true
+              encodeUrl: true
+              followRedirects: global
+              cookies:
+                send: true
+                store: true
+              rebuildPath: true
+      - name: Funis e Etapas
+        meta:
+          id: fld_b6e783a4a98642c787174ff425e60141
+          created: 1773165774697
+          modified: 1773165774697
+          sortKey: -1773165772903
+          description: ""
+        children:
+          - url: "{{url}}/funnels"
+            name: Listar funis e etapas
+            meta:
+              id: req_39cc965fcdc745ae8758d648f7c7ca2d
+              created: 1773165774697
+              modified: 1773165774697
+              isPrivate: false
+              description: ""
+              sortKey: -1773165772902
+            method: GET
+            parameters:
+              - name: limit
+                value: "100"
+                disabled: false
+              - name: page
+                value: "1"
+                disabled: false
+            authentication:
+              type: bearer
+              disabled: false
+              token: "{{access_token}}"
+              prefix: ""
+            settings:
+              renderRequestBody: true
+              encodeUrl: true
+              followRedirects: global
+              cookies:
+                send: true
+                store: true
+              rebuildPath: true
+    environment:
+      url: https://business.solarmarket.com.br/api/v2
+      token: token_na_plataforma
+      access_token: token_gerada_no_auth_signin
+cookieJar:
+  name: Default Jar
+  meta:
+    id: jar_c7304d45c6d74c3b1e0e1a5cf7a34087d6dc6bdb
+    created: 1773165774699
+    modified: 1773165774699
+environments:
+  name: Base Environment
+  meta:
+    id: env_c7304d45c6d74c3b1e0e1a5cf7a34087d6dc6bdb
+    created: 1773165774698
+    modified: 1773165774698
+    isPrivate: false
