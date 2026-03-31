@@ -6,7 +6,6 @@ import com.sippulse.soapadapter.dto.SubscriberMinDTO;
 import com.sippulse.soapadapter.mapper.SubscriberMapper;
 import com.sippulse.soapadapter.mapper.UpdateSubscriberMapper;
 import com.sippulse.soapadapter.utils.AccountCodeUtils;
-import org.springframework.beans.BeanUtils;
 import org.springframework.stereotype.Service;
 
 /**
