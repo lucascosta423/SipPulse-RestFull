@@ -6,7 +6,7 @@ on:
       - 'v*'
 
 env:
-  IMAGE_NAME: sippulse/soapadapter
+  IMAGE_NAME: sippulse/rest-api
 
 jobs:
   build:
@@ -46,17 +46,34 @@ jobs:
 
       - name: Extract version from tag
         id: version
-        run: echo "VERSION=${GITHUB_REF#refs/tags/v}" >> $GITHUB_OUTPUT
+        run: |
+          VERSION="${GITHUB_REF#refs/tags/v}"
+          echo "VERSION=${VERSION}" >> "$GITHUB_OUTPUT"
+
+          TAGS="${{ env.IMAGE_NAME }}:${VERSION}"
+
+          if [[ "${VERSION}" == *"-beta"* ]]; then
+            TAGS="${TAGS}"$'\n'"${{ env.IMAGE_NAME }}:beta"
+          elif [[ "${VERSION}" == *"-rc"* ]]; then
+            TAGS="${TAGS}"$'\n'"${{ env.IMAGE_NAME }}:rc"
+          else
+            TAGS="${TAGS}"$'\n'"${{ env.IMAGE_NAME }}:latest"
+          fi
+
+          {
+            echo "IMAGE_TAGS<<EOF"
+            echo "${TAGS}"
+            echo "EOF"
+          } >> "$GITHUB_OUTPUT"
 
       - name: Build and push Docker image
+        id: build
         uses: docker/build-push-action@v5
         with:
           context: .
           platforms: linux/amd64,linux/arm64
           push: true
-          tags: |
-            ${{ env.IMAGE_NAME }}:${{ steps.version.outputs.VERSION }}
-            ${{ env.IMAGE_NAME }}:latest
+          tags: ${{ steps.version.outputs.IMAGE_TAGS }}
           cache-from: type=gha
           cache-to: type=gha,mode=max
 
