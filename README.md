@@ -49,56 +49,13 @@ O **SipPulse-RestFull** é uma camada de integração que converte chamadas REST
 
 ### Variáveis de Ambiente
 
-| Variável | Descrição | Obrigatório |
-|----------|-----------|-------------|
-| `USER_ADMIN` | Usuário de autenticação do SipPulse | Sim |
-| `PASSWORD_ADMIN` | Senha de autenticação do SipPulse | Sim |
-| `URL` | URL base dos serviços SOAP (ex: `http://181.191.206.162:8080`) | Sim |
-
-### Arquivo `application.yaml`
-
-```yaml
-spring:
-  application:
-    name: soapadapter
-
-management:
-  endpoints:
-    web:
-      exposure:
-        include: health
-  endpoint:
-    health:
-      show-details: never
-
-sippulse:
-  auth:
-    login: ${USER_ADMIN}
-    password: ${PASSWORD_ADMIN}
-
-soap:
-  endpoints:
-    domain: ${URL}/SipPulse/DomainWS
-    profile: ${URL}/SipPulse/ProfileWS
-    subscriber: ${URL}/SipPulse/SubscriberWS
-    did: ${URL}/SipPulse/DidWS
-    whitelist: ${URL}/SipPulse/WhiteListWS
-    ratePlan: ${URL}/SipPulse/RatePlanWS
-    rate: ${URL}/SipPulse/RateWS
-    accountGroup: ${URL}/SipPulse/AccountGroupWS
-    customer: ${URL}/SipPulse/CustomerWS
-    userLocation: ${URL}/SipPulse/UserLocationWS
-    address: ${URL}/SipPulse/AddressWS
-    huntGroup: ${URL}/SipPulse/HuntGroupWS
-    reloadModule: ${URL}/SipPulse/ReloadModulesWS
-
-logging:
-  level:
-    com.sun.xml.ws: ERROR
-```
+| Variável | Descrição                                                      | Obrigatório |
+|----------|----------------------------------------------------------------|-------------|
+| `USER_ADMIN` | Usuário de autenticação do SipPulse                            | Sim |
+| `PASSWORD_ADMIN` | Senha de autenticação do SipPulse                              | Sim |
+| `URL` | URL base dos serviços SOAP (ex: `http://xxx.xxx.xxx.xxx:8080`) | Sim |
 
 ---
-
 ## Instalação
 
 ### Executando localmente
@@ -113,7 +70,7 @@ cd sippulse-restfull
 # Configure as variáveis de ambiente
 export USER_ADMIN=seu_usuario
 export PASSWORD_ADMIN=sua_senha
-export URL=http://181.191.206.162:8080
+export URL=http://xxx.xxx.xxx.xxx:8080
 
 # Compile e execute
 ./mvnw spring-boot:run
