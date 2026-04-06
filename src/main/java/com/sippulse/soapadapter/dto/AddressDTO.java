@@ -1,7 +1,4 @@
-package com.sippulse.soapadapter;
-
-import org.springframework.boot.SpringApplication;
-import org.springframework.boot.autoconfigure.SpringBootApplication;
+package com.sippulse.soapadapter.dto;
 
 /**
  * SipPulse-RestFull
@@ -22,10 +19,13 @@ import org.springframework.boot.autoconfigure.SpringBootApplication;
  */
 
 
-@SpringBootApplication
-public class SoapadapterApplication {
-
-	public static void main(String[] args) {
-		SpringApplication.run(SoapadapterApplication.class, args);
-	}
+public record AddressDTO (
+        String account,
+        @jakarta.validation.constraints.NotBlank String ipAddress,
+        Integer mask,
+        String method,
+        Integer port,
+        String protocol,
+        String techPrefix
+){
 }

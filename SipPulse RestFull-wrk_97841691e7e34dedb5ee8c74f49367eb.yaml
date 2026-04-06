@@ -1,0 +1,531 @@
+type: collection.insomnia.rest/5.0
+name: SipPulse RestFull
+meta:
+  id: wrk_97841691e7e34dedb5ee8c74f49367eb
+  created: 1774968701155
+  modified: 1774968701155
+  description: ""
+collection:
+  - name: DID
+    meta:
+      id: fld_f44dbe5897a34715929d1c18f7761d46
+      created: 1773086214198
+      modified: 1774526032835
+      sortKey: -1773086214398
+      description: ""
+    children:
+      - url: "{{url}}/available"
+        name: listAvailablesNumbers
+        meta:
+          id: req_e977179c28ef4417a26438e726256f41
+          created: 1772131291538
+          modified: 1774023807283
+          isPrivate: false
+          description: ""
+          sortKey: -1773086253213
+        method: GET
+        body:
+          mimeType: application/json
+          text: |-
+            {
+            	"domain":"181.191.207.100"
+            }
+        parameters:
+          - name: domain
+            value: 181.191.207.100
+            disabled: false
+            id: pair_90d080d65999491e9be3e0c69005d870
+        headers:
+          - name: Content-Type
+            value: application/json
+          - name: User-Agent
+            value: insomnia/12.0.0
+        settings:
+          renderRequestBody: true
+          encodeUrl: true
+          followRedirects: global
+          cookies:
+            send: true
+            store: true
+          rebuildPath: true
+      - url: "{{url}}"
+        name: listByAcc
+        meta:
+          id: req_7e065a29037b4dd887cd59b324739f7d
+          created: 1772734893243
+          modified: 1774526032835
+          isPrivate: false
+          description: ""
+          sortKey: -1773086253013
+        method: GET
+        parameters:
+          - name: accountcode
+            value: 2728880000@181.191.207.100
+            disabled: false
+            id: pair_55979a4fb3f24db4a4d915575c253a17
+        headers:
+          - name: User-Agent
+            value: insomnia/12.0.0
+        settings:
+          renderRequestBody: true
+          encodeUrl: true
+          followRedirects: global
+          cookies:
+            send: true
+            store: true
+          rebuildPath: true
+      - url: "{{url}}"
+        name: insertDid
+        meta:
+          id: req_4763b1fe3c6841b5bf1b9bfd5cdcf416
+          created: 1772743751871
+          modified: 1774892304705
+          isPrivate: false
+          description: ""
+          sortKey: -1773086253113
+        method: POST
+        body:
+          mimeType: application/json
+          text: |-
+            {
+              "accountCode": "2728880021@181.191.207.100",
+              "aliasUsername": "2728880021",
+              "didHeader": "",
+              "didToRuri": true,
+              "domain": "181.191.207.100",
+              "gwid": "",
+              "localArea": "",
+              "monthlySubscription": 0.0,
+              "reverseBilling": false,
+              "username": ""
+            }
+        headers:
+          - name: Content-Type
+            value: application/json
+          - name: User-Agent
+            value: insomnia/12.0.0
+        settings:
+          renderRequestBody: true
+          encodeUrl: true
+          followRedirects: global
+          cookies:
+            send: true
+            store: true
+          rebuildPath: true
+      - url: "{{url}}/3116"
+        name: deleteDid
+        meta:
+          id: req_b31f9e63aabf498caa8c53aaccf734c1
+          created: 1773083444673
+          modified: 1774893507260
+          isPrivate: false
+          description: ""
+          sortKey: -1773086252913
+        method: DELETE
+        headers:
+          - name: User-Agent
+            value: insomnia/12.0.0
+        settings:
+          renderRequestBody: true
+          encodeUrl: true
+          followRedirects: global
+          cookies:
+            send: true
+            store: true
+          rebuildPath: true
+    environment:
+      url: http://localhost:8080/dids
+  - name: SUBSCRIBER
+    meta:
+      id: fld_15d47522692a4d8991d397442e9c5475
+      created: 1773839407896
+      modified: 1774447650055
+      sortKey: -1773462811147
+      description: ""
+    children:
+      - url: "{{url}}/farneytestedid@181.191.207.100/block"
+        name: Block Subscriber
+        meta:
+          id: req_5d48c40c52eb43e38b91f74e5e91af24
+          created: 1773839414329
+          modified: 1774276395754
+          isPrivate: false
+          description: ""
+          sortKey: -1773839414329
+        method: PATCH
+        parameters:
+          - name: username
+            value: farneytestedid
+            disabled: true
+            id: pair_cc9a00f2ce3b4d29ab77e8b31579f2ae
+          - name: domain
+            value: 181.191.207.100
+            disabled: true
+            id: pair_77f87a09201e4cd3a74c5699f0f6e4b4
+        headers:
+          - name: User-Agent
+            value: insomnia/12.0.0
+        settings:
+          renderRequestBody: true
+          encodeUrl: true
+          followRedirects: global
+          cookies:
+            send: true
+            store: true
+          rebuildPath: true
+      - url: "{{url}}/farneytestedid@181.191.207.100/active"
+        name: Active Subscriber
+        meta:
+          id: req_647329d20b924919a4e6a5cc46403ebf
+          created: 1773839671464
+          modified: 1774276466632
+          isPrivate: false
+          description: ""
+          sortKey: -1773502593625.5
+        method: PATCH
+        parameters:
+          - name: username
+            value: farneytestedid
+            disabled: false
+            id: pair_cc9a00f2ce3b4d29ab77e8b31579f2ae
+          - name: domain
+            value: 181.191.207.101
+            disabled: false
+            id: pair_77f87a09201e4cd3a74c5699f0f6e4b4
+        headers:
+          - name: User-Agent
+            value: insomnia/12.0.0
+        settings:
+          renderRequestBody: true
+          encodeUrl: true
+          followRedirects: global
+          cookies:
+            send: true
+            store: true
+          rebuildPath: true
+      - url: "{{ _.url }}"
+        name: Insert Subscriber
+        meta:
+          id: req_229162ef001c42a89de865915f3135a9
+          created: 1774031748665
+          modified: 1774270919267
+          isPrivate: false
+          description: ""
+          sortKey: -1774031748665
+        method: POST
+        body:
+          mimeType: application/json
+          text: |-
+            {
+              "username": "2728880021",
+              "emailAddress": "lucassantos@email.com",
+              "password": "123456",
+              "passwordPortal": "123456",
+              "domain": "181.191.207.100",
+
+              "profile": "DEFAULT",
+              "ratePlanId": 2,
+              "countryCode": 55,
+              "rpid": "",
+              "areaCode": 27,
+              "callLimit": 10,
+            	"cps": 0,
+            	"keepAlive": 1,
+              "activeIncomingCalls": true,
+              "activeOutgoingCalls": true,
+              "callsOnlyByIp": false,
+              "voicemail": false,
+
+              "contractNumber": "CTR-2026-0002",
+              "document": "12345678901",
+              "firstName": "Lucas",
+              "lastName": "Santos",
+              "mobile": 27999999999,
+              "phone": 2733334444,
+              "address": "Rua Exemplo",
+              "city": "Vila Velha",
+              "complement": "Casa",
+              "number": "123",
+              "quarter": "Centro",
+              "state": "ES",
+              "zip": "29100000",
+              "resellerId": 0
+            }
+        headers:
+          - name: Content-Type
+            value: application/json
+          - name: User-Agent
+            value: insomnia/12.0.0
+        settings:
+          renderRequestBody: true
+          encodeUrl: true
+          followRedirects: global
+          cookies:
+            send: true
+            store: true
+          rebuildPath: true
+      - url: "{{ _.url }}/withdid"
+        name: Insert SubscriberWithDid
+        meta:
+          id: req_e458a8878b644d3bb95a7ebdc54c91e3
+          created: 1774283539370
+          modified: 1774283921587
+          isPrivate: false
+          description: ""
+          sortKey: -1773935581497
+        method: POST
+        body:
+          mimeType: application/json
+          text: |-
+            {
+              "username": "2728880021",
+              "emailAddress": "lucassantos@email.com",
+              "password": "123456",
+              "passwordPortal": "123456",
+              "domain": "181.191.207.100",
+
+              "profile": "DEFAULT",
+              "ratePlanId": 2,
+              "countryCode": 55,
+              "rpid": "2728880021",
+              "areaCode": 27,
+              "callLimit": 10,
+            	"cps": 0,
+            	"keepAlive": 1,
+              "activeIncomingCalls": true,
+              "activeOutgoingCalls": true,
+              "callsOnlyByIp": false,
+              "voicemail": false,
+
+              "contractNumber": "CTR-2026-0002",
+              "document": "12345678901",
+              "firstName": "Lucas",
+              "lastName": "Santos",
+              "mobile": 27999999999,
+              "phone": 2733334444,
+              "address": "Rua Exemplo",
+              "city": "Vila Velha",
+              "complement": "Casa",
+              "number": "123",
+              "quarter": "Centro",
+              "state": "ES",
+              "zip": "29100000",
+              "resellerId": 0
+            }
+        headers:
+          - name: Content-Type
+            value: application/json
+          - name: User-Agent
+            value: insomnia/12.0.0
+        settings:
+          renderRequestBody: true
+          encodeUrl: true
+          followRedirects: global
+          cookies:
+            send: true
+            store: true
+          rebuildPath: true
+    environment:
+      url: http://localhost:8080/subscriber
+    environmentPropertyOrder:
+      "&":
+        - url
+  - name: DOMAIN
+    meta:
+      id: fld_10297ab592de457cb0745b04cfd2bd7a
+      created: 1774359670948
+      modified: 1774531048485
+      sortKey: -1774359670948
+      description: ""
+    children:
+      - url: "{{url}}"
+        name: List Domain
+        meta:
+          id: req_6606d5b96e6d474298ae9962d05d0d6f
+          created: 1774359673862
+          modified: 1774359759158
+          isPrivate: false
+          description: ""
+          sortKey: -1774359673862
+        method: GET
+        headers:
+          - name: User-Agent
+            value: insomnia/12.0.0
+        settings:
+          renderRequestBody: true
+          encodeUrl: true
+          followRedirects: global
+          cookies:
+            send: true
+            store: true
+          rebuildPath: true
+    environment:
+      url: "{{ _.base_url }}/domain"
+  - name: ADRRESS
+    meta:
+      id: fld_d97791a64dbf41e392a49ac5bd994cbb
+      created: 1774448370778
+      modified: 1774531150180
+      sortKey: -1774448370778
+      description: ""
+    children:
+      - url: "{{url}}"
+        name: Insert Address
+        meta:
+          id: req_4103c237e7c34905bdf78436ba30c10a
+          created: 1774447640496
+          modified: 1774448470412
+          isPrivate: false
+          description: ""
+          sortKey: -1774448470368
+        method: POST
+        body:
+          mimeType: application/json
+          text: |-
+            {
+              "account": "farneytestedid@181.191.207.100",
+              "ipAddress": "181.191.207.76",
+              "mask": 32,
+              "method": "techprefix",
+              "port": 0,
+              "protocol": "any",
+              "techPrefix": "12346"
+            }
+        headers:
+          - name: Content-Type
+            value: application/json
+          - name: User-Agent
+            value: insomnia/12.0.0
+        settings:
+          renderRequestBody: true
+          encodeUrl: true
+          followRedirects: global
+          cookies:
+            send: true
+            store: true
+          rebuildPath: true
+      - url: "{{url}}/farneytestedid@181.191.207.100"
+        name: List Address
+        meta:
+          id: req_73804bd1e67a445f9e6bf92a76192da0
+          created: 1774448550648
+          modified: 1774448600199
+          isPrivate: false
+          description: ""
+          sortKey: -1774448550648
+        method: GET
+        headers:
+          - name: User-Agent
+            value: insomnia/12.0.0
+        settings:
+          renderRequestBody: true
+          encodeUrl: true
+          followRedirects: global
+          cookies:
+            send: true
+            store: true
+          rebuildPath: true
+      - url: "{{url}}"
+        name: Update Address
+        meta:
+          id: req_f519f3c65eab476d85fce909f992fa0b
+          created: 1774448666852
+          modified: 1774448878032
+          isPrivate: false
+          description: ""
+          sortKey: -1774404072115
+        method: PATCH
+        body:
+          mimeType: application/json
+          text: |-
+            {
+              "account": "farneytestedid@181.191.207.100",
+              "ipAddress": "181.191.207.77",
+              "mask": 32,
+              "method": "techprefix",
+              "port": 0,
+              "protocol": "any",
+              "techPrefix": "1234"
+            }
+        headers:
+          - name: Content-Type
+            value: application/json
+          - name: User-Agent
+            value: insomnia/12.0.0
+        settings:
+          renderRequestBody: true
+          encodeUrl: true
+          followRedirects: global
+          cookies:
+            send: true
+            store: true
+          rebuildPath: true
+      - url: "{{url}}/181.191.207.100/336"
+        name: New Request
+        meta:
+          id: req_34f1d4825b8f4f71b2722bc38587d220
+          created: 1774449013950
+          modified: 1774449450963
+          isPrivate: false
+          description: ""
+          sortKey: -1774449013950
+        method: DELETE
+        headers:
+          - name: User-Agent
+            value: insomnia/12.0.0
+        settings:
+          renderRequestBody: true
+          encodeUrl: true
+          followRedirects: global
+          cookies:
+            send: true
+            store: true
+          rebuildPath: true
+    environment:
+      url: "{{ _.base_url }}/address"
+  - name: PROFILE
+    meta:
+      id: fld_45c93973998f4984984473e6dd7a7af5
+      created: 1774530909976
+      modified: 1774531179877
+      sortKey: -1774530909976
+      description: ""
+    children:
+      - url: "{{ _.url }}/181.191.207.100"
+        name: List profile
+        meta:
+          id: req_f527d3dded7b4d7f89f0e61e17f77a76
+          created: 1774530913609
+          modified: 1774531219677
+          isPrivate: false
+          description: ""
+          sortKey: -1774530913609
+        method: GET
+        headers:
+          - name: User-Agent
+            value: insomnia/12.0.0
+        settings:
+          renderRequestBody: true
+          encodeUrl: true
+          followRedirects: global
+          cookies:
+            send: true
+            store: true
+          rebuildPath: true
+    environment:
+      url: "{{ _.base_url }}/profile"
+cookieJar:
+  name: Default Jar
+  meta:
+    id: jar_5db95fc1182b45c88f81c85f44aa94e3
+    created: 1772130852988
+    modified: 1772130852988
+environments:
+  name: Base Environment
+  meta:
+    id: env_e522ef0d130d4c05b3eb37d49f7862bf
+    created: 1772130852987
+    modified: 1774531029149
+    isPrivate: false
+  data:
+    base_url: http://localhost:8080

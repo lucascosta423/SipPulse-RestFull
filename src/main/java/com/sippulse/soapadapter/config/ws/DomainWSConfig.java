@@ -1,7 +1,11 @@
-package com.sippulse.soapadapter;
+package com.sippulse.soapadapter.config.ws;
 
-import org.springframework.boot.SpringApplication;
-import org.springframework.boot.autoconfigure.SpringBootApplication;
+import com.sippulse.soapadapter.client.domainWS.DomainWS;
+import com.sippulse.soapadapter.client.domainWS.SipPulse;
+import com.sippulse.soapadapter.config.soap.properties.SoapProperties;
+import com.sippulse.soapadapter.factory.SoapClientFactory;
+import org.springframework.context.annotation.Bean;
+import org.springframework.context.annotation.Configuration;
 
 /**
  * SipPulse-RestFull
@@ -22,10 +26,15 @@ import org.springframework.boot.autoconfigure.SpringBootApplication;
  */
 
 
-@SpringBootApplication
-public class SoapadapterApplication {
+@Configuration
+public class DomainWSConfig {
 
-	public static void main(String[] args) {
-		SpringApplication.run(SoapadapterApplication.class, args);
-	}
+    @Bean
+    public DomainWS domainWS(SoapProperties properties, SoapClientFactory factory){
+             return factory.createClient(
+                properties.getEndpoints().getDomain(),
+                SipPulse::new,
+                SipPulse::getDomainWSPort
+        );
+    }
 }

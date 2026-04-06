@@ -1,7 +1,7 @@
-package com.sippulse.soapadapter;
+package com.sippulse.soapadapter.dto;
 
-import org.springframework.boot.SpringApplication;
-import org.springframework.boot.autoconfigure.SpringBootApplication;
+import java.time.LocalDateTime;
+import java.util.List;
 
 /**
  * SipPulse-RestFull
@@ -22,10 +22,21 @@ import org.springframework.boot.autoconfigure.SpringBootApplication;
  */
 
 
-@SpringBootApplication
-public class SoapadapterApplication {
+public record ApiResponse<T>(
+        LocalDateTime timestamp,
+        int status,
+        boolean success,
+        String message,
+        T data,
+        List<String> errors,
+        String path
+) {
 
-	public static void main(String[] args) {
-		SpringApplication.run(SoapadapterApplication.class, args);
-	}
+    public static <T> ApiResponse<T> success(T data, String message, int status, String path) {
+        return new ApiResponse<>(LocalDateTime.now(), status, true, message, data, null, path);
+    }
+
+    public static <T> ApiResponse<T> error(String message, List<String> errors, int status, String path) {
+        return new ApiResponse<>(LocalDateTime.now(), status, false, message, null, errors, path);
+    }
 }

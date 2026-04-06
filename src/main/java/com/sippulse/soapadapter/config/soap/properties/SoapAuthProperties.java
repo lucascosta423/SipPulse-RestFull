@@ -1,7 +1,6 @@
-package com.sippulse.soapadapter;
+package com.sippulse.soapadapter.config.soap.properties;
 
-import org.springframework.boot.SpringApplication;
-import org.springframework.boot.autoconfigure.SpringBootApplication;
+import org.springframework.boot.context.properties.ConfigurationProperties;
 
 /**
  * SipPulse-RestFull
@@ -22,10 +21,25 @@ import org.springframework.boot.autoconfigure.SpringBootApplication;
  */
 
 
-@SpringBootApplication
-public class SoapadapterApplication {
+@ConfigurationProperties(prefix = "sippulse.auth")
+public class SoapAuthProperties {
 
-	public static void main(String[] args) {
-		SpringApplication.run(SoapadapterApplication.class, args);
-	}
+    private String login;
+    private String password;
+
+    public String getLogin() {
+        return login;
+    }
+
+    public void setLogin(String login) {
+        this.login = login;
+    }
+
+    public String getPassword() {
+        return password;
+    }
+
+    public void setPassword(String password) {
+        this.password = password;
+    }
 }

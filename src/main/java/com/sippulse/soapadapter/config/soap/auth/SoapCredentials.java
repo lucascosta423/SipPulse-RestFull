@@ -1,7 +1,4 @@
-package com.sippulse.soapadapter;
-
-import org.springframework.boot.SpringApplication;
-import org.springframework.boot.autoconfigure.SpringBootApplication;
+package com.sippulse.soapadapter.config.soap.auth;
 
 /**
  * SipPulse-RestFull
@@ -22,10 +19,8 @@ import org.springframework.boot.autoconfigure.SpringBootApplication;
  */
 
 
-@SpringBootApplication
-public class SoapadapterApplication {
-
-	public static void main(String[] args) {
-		SpringApplication.run(SoapadapterApplication.class, args);
-	}
+public record SoapCredentials(
+        String login,
+        String password
+) {
 }

@@ -1,7 +1,10 @@
-package com.sippulse.soapadapter;
+package com.sippulse.soapadapter.service;
 
-import org.springframework.boot.SpringApplication;
-import org.springframework.boot.autoconfigure.SpringBootApplication;
+import com.sippulse.soapadapter.adapter.DomainClientAdapter;
+import com.sippulse.soapadapter.client.domainWS.Domain;
+import org.springframework.stereotype.Service;
+
+import java.util.List;
 
 /**
  * SipPulse-RestFull
@@ -22,10 +25,16 @@ import org.springframework.boot.autoconfigure.SpringBootApplication;
  */
 
 
-@SpringBootApplication
-public class SoapadapterApplication {
+@Service
+public class DomainService {
 
-	public static void main(String[] args) {
-		SpringApplication.run(SoapadapterApplication.class, args);
-	}
+    private final DomainClientAdapter adapter;
+
+    public DomainService(DomainClientAdapter adapter) {
+        this.adapter = adapter;
+    }
+
+    public List<Domain> listDomains() {
+        return adapter.listDomains();
+    }
 }

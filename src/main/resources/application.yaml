@@ -2,6 +2,15 @@ spring:
   application:
     name: soapadapter
 
+management:
+  endpoints:
+    web:
+      exposure:
+        include: health
+  endpoint:
+    health:
+      show-details: never
+
 sippulse:
   auth:
     login: ${USER_ADMIN}
@@ -13,15 +22,15 @@ soap:
     profile: ${URL}/SipPulse/ProfileWS
     subscriber: ${URL}/SipPulse/SubscriberWS
     did: ${URL}/SipPulse/DidWS
-    whitelist: ${URL}/SipPulse/WhitelistWS
+    whitelist: ${URL}/SipPulse/WhiteListWS
     ratePlan: ${URL}/SipPulse/RatePlanWS
     rate: ${URL}/SipPulse/RateWS
-    account_group: ${URL}/SipPulse/AccountGroupWS
+    accountGroup: ${URL}/SipPulse/AccountGroupWS
     customer: ${URL}/SipPulse/CustomerWS
-    user_location: ${URL}/SipPulse/UserLocationWS
+    userLocation: ${URL}/SipPulse/UserLocationWS
     address: ${URL}/SipPulse/AddressWS
-    hunt_group: ${URL}/SipPulse/HuntGroupWS
-    reload: ${URL}/SipPulse/ReloadWS
+    huntGroup: ${URL}/SipPulse/HuntGroupWS
+    reloadModule: ${URL}/SipPulse/ReloadModulesWS
 
 logging:
   level:

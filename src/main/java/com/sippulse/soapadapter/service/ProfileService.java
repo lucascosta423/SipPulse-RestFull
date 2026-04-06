@@ -1,7 +1,10 @@
-package com.sippulse.soapadapter;
+package com.sippulse.soapadapter.service;
 
-import org.springframework.boot.SpringApplication;
-import org.springframework.boot.autoconfigure.SpringBootApplication;
+import com.sippulse.soapadapter.adapter.ProfileClientAdapter;
+import com.sippulse.soapadapter.client.profileWS.Profile;
+import org.springframework.stereotype.Service;
+
+import java.util.List;
 
 /**
  * SipPulse-RestFull
@@ -22,10 +25,16 @@ import org.springframework.boot.autoconfigure.SpringBootApplication;
  */
 
 
-@SpringBootApplication
-public class SoapadapterApplication {
+@Service
+public class ProfileService {
 
-	public static void main(String[] args) {
-		SpringApplication.run(SoapadapterApplication.class, args);
-	}
+    private final ProfileClientAdapter adapter;
+
+    public ProfileService(ProfileClientAdapter adapter) {
+        this.adapter = adapter;
+    }
+
+    public List<Profile> listProfilesByDomain(String domain) {
+        return adapter.listProfilesByDomain(domain);
+    }
 }

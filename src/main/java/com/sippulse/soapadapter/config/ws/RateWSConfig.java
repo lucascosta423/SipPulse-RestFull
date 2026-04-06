@@ -1,7 +1,11 @@
-package com.sippulse.soapadapter;
+package com.sippulse.soapadapter.config.ws;
 
-import org.springframework.boot.SpringApplication;
-import org.springframework.boot.autoconfigure.SpringBootApplication;
+import com.sippulse.soapadapter.client.rateWS.RateWS;
+import com.sippulse.soapadapter.client.rateWS.SipPulse;
+import com.sippulse.soapadapter.config.soap.properties.SoapProperties;
+import com.sippulse.soapadapter.factory.SoapClientFactory;
+import org.springframework.context.annotation.Bean;
+import org.springframework.context.annotation.Configuration;
 
 /**
  * SipPulse-RestFull
@@ -22,10 +26,16 @@ import org.springframework.boot.autoconfigure.SpringBootApplication;
  */
 
 
-@SpringBootApplication
-public class SoapadapterApplication {
+@Configuration
+public class RateWSConfig {
 
-	public static void main(String[] args) {
-		SpringApplication.run(SoapadapterApplication.class, args);
-	}
+    @Bean
+    public RateWS rateWS(SoapProperties properties, SoapClientFactory factory){
+        return factory.createClient(
+                properties.getEndpoints().getRate(),
+                SipPulse::new,
+                SipPulse::getRateWSPort
+        );
+    }
+
 }

@@ -1,7 +1,4 @@
-package com.sippulse.soapadapter;
-
-import org.springframework.boot.SpringApplication;
-import org.springframework.boot.autoconfigure.SpringBootApplication;
+package com.sippulse.soapadapter.utils;
 
 /**
  * SipPulse-RestFull
@@ -22,10 +19,13 @@ import org.springframework.boot.autoconfigure.SpringBootApplication;
  */
 
 
-@SpringBootApplication
-public class SoapadapterApplication {
+public record AccountCodeUtils(String username, String domain) {
+    public static AccountCodeUtils from(String accountcode) {
+        if (accountcode == null || !accountcode.contains("@")) {
+            throw new IllegalArgumentException("accountcode inválido: " + accountcode);
+        }
 
-	public static void main(String[] args) {
-		SpringApplication.run(SoapadapterApplication.class, args);
-	}
+        String[] parts = accountcode.split("@", 2);
+        return new AccountCodeUtils(parts[0], parts[1]);
+    }
 }
