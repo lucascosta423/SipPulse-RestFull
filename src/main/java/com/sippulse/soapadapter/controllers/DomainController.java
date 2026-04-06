@@ -46,7 +46,7 @@ public class DomainController {
         return ResponseEntity.ok(
                 ApiResponse.success(
                         domainService.listDomains(),
-                        "Finded Domains",
+                        "Found Domains",
                         HttpStatus.OK.value(),
                         request.getRequestURI()
                 )

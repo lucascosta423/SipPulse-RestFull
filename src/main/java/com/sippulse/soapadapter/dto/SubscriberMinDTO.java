@@ -20,11 +20,11 @@ package com.sippulse.soapadapter.dto;
 
 
 public record SubscriberMinDTO(
-        String username,
-        String emailAddress,
-        String password,
+        @jakarta.validation.constraints.NotBlank String username,
+        @jakarta.validation.constraints.Email @jakarta.validation.constraints.NotBlank String emailAddress,
+        @jakarta.validation.constraints.NotBlank String password,
         String passwordPortal,
-        String domain,
+        @jakarta.validation.constraints.NotBlank String domain,
 
 // +++++++++++++++++++++++++++++++++++++++ //
 

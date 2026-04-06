@@ -6,6 +6,7 @@ import jakarta.servlet.http.HttpServletRequest;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
@@ -37,7 +38,7 @@ public class ReloadModuleController {
         this.reloadModuleService = reloadModuleService;
     }
 
-    @RequestMapping("/profile")
+    @PostMapping("/profile")
     public ResponseEntity<ApiResponse<Void>> reloadProfile(String profile, String domain, HttpServletRequest request){
         reloadModuleService.reloadProfile(profile, domain);
         return ResponseEntity.ok(
@@ -50,7 +51,7 @@ public class ReloadModuleController {
         );
     }
 
-    @RequestMapping("/subscriber/{accountcode}")
+    @PostMapping("/subscriber/{accountcode}")
     public ResponseEntity<ApiResponse<Void>> reloadSubscriber(@PathVariable String accountcode, HttpServletRequest request){
         reloadModuleService.reloadSubscriber(accountcode);
         return ResponseEntity.ok(
@@ -63,7 +64,7 @@ public class ReloadModuleController {
         );
     }
 
-    @RequestMapping("/did/{didId}")
+    @PostMapping("/did/{didId}")
     public ResponseEntity<ApiResponse<Void>> reloadDid(@PathVariable Integer didId, HttpServletRequest request){
         reloadModuleService.reloadDid(didId);
         return ResponseEntity.ok(
@@ -76,7 +77,7 @@ public class ReloadModuleController {
         );
     }
 
-    @RequestMapping("/address")
+    @PostMapping("/address")
     public ResponseEntity<ApiResponse<Void>> reloadAddress(HttpServletRequest request){
         return ResponseEntity.ok(
                 ApiResponse.success(
@@ -88,7 +89,7 @@ public class ReloadModuleController {
         );
     }
 
-    @RequestMapping("/huntgroup/{huntGroupId}")
+    @PostMapping("/huntgroup/{huntGroupId}")
     public ResponseEntity<ApiResponse<Void>> reloadHuntGroup(@PathVariable Integer huntGroupId, HttpServletRequest request){
         reloadModuleService.reloadHuntGroup(huntGroupId);
         return ResponseEntity.ok(

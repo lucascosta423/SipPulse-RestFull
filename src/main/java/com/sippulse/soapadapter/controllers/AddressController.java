@@ -5,6 +5,7 @@ import com.sippulse.soapadapter.dto.AddressDTO;
 import com.sippulse.soapadapter.dto.ApiResponse;
 import com.sippulse.soapadapter.service.AddressService;
 import jakarta.servlet.http.HttpServletRequest;
+import jakarta.validation.Valid;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
@@ -40,10 +41,10 @@ public class AddressController {
     }
 
     @GetMapping("/{accountcode}")
-    public ResponseEntity<ApiResponse<List<Address>>> lisAddresses(@PathVariable String accountcode,HttpServletRequest request){
+    public ResponseEntity<ApiResponse<List<Address>>> listAddresses(@PathVariable String accountcode,HttpServletRequest request){
         return ResponseEntity.ok().body(
                 ApiResponse.success(
-                        addressService.lisAddresses(accountcode),
+                        addressService.listAddresses(accountcode),
                         "Addresses Found",
                         HttpStatus.OK.value(),
                         request.getRequestURI()
@@ -53,7 +54,7 @@ public class AddressController {
 
 
     @PostMapping
-    public ResponseEntity<ApiResponse<Address>> insertAddress(@RequestBody AddressDTO addressDTO, HttpServletRequest request){
+    public ResponseEntity<ApiResponse<Address>> insertAddress(@RequestBody @Valid AddressDTO addressDTO, HttpServletRequest request){
 
         return ResponseEntity.status(HttpStatus.CREATED).body(
                 ApiResponse.success(
@@ -66,7 +67,7 @@ public class AddressController {
     }
 
     @PatchMapping
-    public ResponseEntity<ApiResponse<Address>> updateAddress(@RequestBody AddressDTO addressDTO, HttpServletRequest request){
+    public ResponseEntity<ApiResponse<Address>> updateAddress(@RequestBody @Valid AddressDTO addressDTO, HttpServletRequest request){
 
         return ResponseEntity.ok().body(
                 ApiResponse.success(

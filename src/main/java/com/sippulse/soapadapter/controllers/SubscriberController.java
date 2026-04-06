@@ -4,6 +4,7 @@ import com.sippulse.soapadapter.dto.ApiResponse;
 import com.sippulse.soapadapter.dto.SubscriberMinDTO;
 import com.sippulse.soapadapter.service.SubscriberService;
 import jakarta.servlet.http.HttpServletRequest;
+import jakarta.validation.Valid;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
@@ -39,7 +40,7 @@ public class SubscriberController {
     }
 
     @PostMapping
-    public ResponseEntity<ApiResponse<Integer>> insertSubscriber(@RequestBody SubscriberMinDTO subscriberMinDTO, HttpServletRequest request) {
+    public ResponseEntity<ApiResponse<Integer>> insertSubscriber(@RequestBody @Valid SubscriberMinDTO subscriberMinDTO, HttpServletRequest request) {
           return ResponseEntity.status(HttpStatus.CREATED).body(
                 ApiResponse.success(
                         subscriberService.insertSubscriber(subscriberMinDTO),

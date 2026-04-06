@@ -21,7 +21,7 @@ package com.sippulse.soapadapter.dto;
 
 public record AddressDTO (
         String account,
-        String ipAddress,
+        @jakarta.validation.constraints.NotBlank String ipAddress,
         Integer mask,
         String method,
         Integer port,
