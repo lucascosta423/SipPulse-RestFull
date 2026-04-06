@@ -1,5 +1,6 @@
 package com.sippulse.soapadapter.adapter;
 
+import com.sippulse.soapadapter.exception.SoapServiceException;
 import com.sippulse.soapadapter.client.profileWS.*;
 import com.sippulse.soapadapter.mapper.SoapAuthMapper;
 import org.springframework.stereotype.Component;
@@ -43,7 +44,7 @@ public class ProfileClientAdapter {
                     authMapper.toSoapUser(UserPrincipalDTO::new)
             );
         } catch (WSException e) {
-            throw new RuntimeException("Erro ao listar profiles por domínio", e);
+            throw new SoapServiceException("Erro ao listar profiles por domínio", e);
         }
     }
 }

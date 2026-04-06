@@ -1,5 +1,6 @@
 package com.sippulse.soapadapter.adapter;
 
+import com.sippulse.soapadapter.exception.SoapServiceException;
 import com.sippulse.soapadapter.client.rateWS.Rate;
 import com.sippulse.soapadapter.client.rateWS.RateWS;
 import com.sippulse.soapadapter.client.rateWS.UserPrincipalDTO;
@@ -51,7 +52,7 @@ public class RateClientAdapter{
                     authMapper.toSoapUser(UserPrincipalDTO::new)
             );
         }catch (WSException e){
-            throw new RuntimeException("Error listing rates.",e);
+            throw new SoapServiceException("Error listing rates.",e);
         }
     }
 
@@ -63,7 +64,7 @@ public class RateClientAdapter{
                     authMapper.toSoapUser(UserPrincipalDTO::new)
             );
         }catch (WSException e){
-            throw new RuntimeException("Error removing all rates by rate id.",e);
+            throw new SoapServiceException("Error removing all rates by rate id.",e);
         }
     }
 
@@ -74,7 +75,7 @@ public class RateClientAdapter{
                     authMapper.toSoapUser(UserPrincipalDTO::new)
             );
         }catch (WSException e){
-            throw new RuntimeException("Error removing rate.",e);
+            throw new SoapServiceException("Error removing rate.",e);
         }
     }
 
@@ -85,7 +86,7 @@ public class RateClientAdapter{
                     authMapper.toSoapUser(UserPrincipalDTO::new)
             );
         }catch (WSException e){
-            throw new RuntimeException("Error updating rate.",e);
+            throw new SoapServiceException("Error updating rate.",e);
         }
     }
 
@@ -96,7 +97,7 @@ public class RateClientAdapter{
                     authMapper.toSoapUser(UserPrincipalDTO::new)
             );
         } catch (WSException e) {
-            throw new RuntimeException("Error inserting rates.",e);
+            throw new SoapServiceException("Error inserting rates.",e);
         }
     }
 }

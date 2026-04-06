@@ -1,5 +1,6 @@
 package com.sippulse.soapadapter.adapter;
 
+import com.sippulse.soapadapter.exception.SoapServiceException;
 import com.sippulse.soapadapter.client.userLocationWS.*;
 import com.sippulse.soapadapter.mapper.SoapAuthMapper;
 import org.springframework.stereotype.Component;
@@ -44,7 +45,7 @@ public class UserLocationClientAdapter {
                     authMapper.toSoapUser(UserPrincipalDTO::new)
             );
         } catch (WSException e) {
-            throw new RuntimeException("Erro ao listar localizações do usuário", e);
+            throw new SoapServiceException("Erro ao listar localizações do usuário", e);
         }
     }
 
@@ -57,7 +58,7 @@ public class UserLocationClientAdapter {
                     authMapper.toSoapUser(UserPrincipalDTO::new)
             );
         } catch (WSException e) {
-            throw new RuntimeException("Erro ao adicionar localização do usuário", e);
+            throw new SoapServiceException("Erro ao adicionar localização do usuário", e);
         }
     }
 
@@ -70,7 +71,7 @@ public class UserLocationClientAdapter {
                     authMapper.toSoapUser(UserPrincipalDTO::new)
             );
         } catch (WSException e) {
-            throw new RuntimeException("Erro ao remover localização do usuário", e);
+            throw new SoapServiceException("Erro ao remover localização do usuário", e);
         }
     }
 }

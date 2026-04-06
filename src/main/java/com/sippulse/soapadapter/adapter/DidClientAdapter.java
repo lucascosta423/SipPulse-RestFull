@@ -1,6 +1,7 @@
 package com.sippulse.soapadapter.adapter;
 
 
+import com.sippulse.soapadapter.exception.SoapServiceException;
 import com.sippulse.soapadapter.client.didWS.Did;
 import com.sippulse.soapadapter.client.didWS.DidWS;
 import com.sippulse.soapadapter.client.didWS.UserPrincipalDTO;
@@ -44,7 +45,7 @@ public class DidClientAdapter {
         try{
             return didWS.insertDid(did,authMapper.toSoapUser(UserPrincipalDTO::new));
         }catch (WSException e){
-            throw new RuntimeException("Erro ao inserir DID", e);
+            throw new SoapServiceException("Erro ao inserir DID", e);
         }
     }
 
@@ -55,7 +56,7 @@ public class DidClientAdapter {
                     authMapper.toSoapUser(UserPrincipalDTO::new)
             );
         } catch (WSException e) {
-            throw new RuntimeException("Erro ao buscar números disponíveis", e);
+            throw new SoapServiceException("Erro ao buscar números disponíveis", e);
         }
     }
 
@@ -69,7 +70,7 @@ public class DidClientAdapter {
             );
 
         }catch (WSException e){
-            throw new RuntimeException("Erro ao buscar DIDs", e);
+            throw new SoapServiceException("Erro ao buscar DIDs", e);
         }
     }
 
@@ -83,7 +84,7 @@ public class DidClientAdapter {
             );
 
         }catch (WSException e){
-            throw new RuntimeException("Erro ao deletar did", e);
+            throw new SoapServiceException("Erro ao deletar did", e);
         }
     }
 }

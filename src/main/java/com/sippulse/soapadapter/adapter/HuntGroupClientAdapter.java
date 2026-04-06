@@ -1,5 +1,6 @@
 package com.sippulse.soapadapter.adapter;
 
+import com.sippulse.soapadapter.exception.SoapServiceException;
 import com.sippulse.soapadapter.client.huntGroupWS.*;
 import com.sippulse.soapadapter.mapper.SoapAuthMapper;
 import jakarta.xml.ws.Holder;
@@ -44,7 +45,7 @@ public class HuntGroupClientAdapter {
                     authMapper.toSoapUser(UserPrincipalDTO::new)
             );
         } catch (WSException e) {
-            throw new RuntimeException("Erro ao listar hunt groups", e);
+            throw new SoapServiceException("Erro ao listar hunt groups", e);
         }
     }
 
@@ -56,7 +57,7 @@ public class HuntGroupClientAdapter {
                     authMapper.toSoapUser(UserPrincipalDTO::new)
             );
         } catch (WSException e) {
-            throw new RuntimeException("Erro ao inserir hunt group", e);
+            throw new SoapServiceException("Erro ao inserir hunt group", e);
         }
     }
 
@@ -68,7 +69,7 @@ public class HuntGroupClientAdapter {
                     authMapper.toSoapUser(UserPrincipalDTO::new)
             );
         } catch (WSException e) {
-            throw new RuntimeException("Erro ao atualizar hunt group", e);
+            throw new SoapServiceException("Erro ao atualizar hunt group", e);
         }
     }
 
@@ -80,7 +81,7 @@ public class HuntGroupClientAdapter {
                     authMapper.toSoapUser(UserPrincipalDTO::new)
             );
         } catch (WSException e) {
-            throw new RuntimeException("Erro ao remover hunt group", e);
+            throw new SoapServiceException("Erro ao remover hunt group", e);
         }
     }
 }

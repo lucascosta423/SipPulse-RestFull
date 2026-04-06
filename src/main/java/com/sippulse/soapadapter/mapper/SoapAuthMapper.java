@@ -2,6 +2,7 @@ package com.sippulse.soapadapter.mapper;
 
 
 import com.sippulse.soapadapter.config.soap.auth.SoapCredentials;
+import com.sippulse.soapadapter.exception.SoapServiceException;
 import org.springframework.stereotype.Component;
 
 import java.util.function.Supplier;
@@ -46,7 +47,7 @@ public class SoapAuthMapper {
                     .invoke(dto, credentials.password());
 
         } catch (Exception e) {
-            throw new RuntimeException("Erro ao mapear UserPrincipalDTO", e);
+            throw new SoapServiceException("Erro ao mapear UserPrincipalDTO", e);
         }
 
         return dto;

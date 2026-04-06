@@ -1,5 +1,6 @@
 package com.sippulse.soapadapter.adapter;
 
+import com.sippulse.soapadapter.exception.SoapServiceException;
 import com.sippulse.soapadapter.client.addressWS.Address;
 import com.sippulse.soapadapter.client.addressWS.AddressWS;
 import com.sippulse.soapadapter.client.addressWS.UserPrincipalDTO;
@@ -45,7 +46,7 @@ public class AddressClientAdpter{
                    authMapper.toSoapUser(UserPrincipalDTO::new)
            );
         }catch (WSException e){
-            throw new RuntimeException("Error entering address.",e);
+            throw new SoapServiceException("Error entering address.",e);
         }
     }
 
@@ -56,7 +57,7 @@ public class AddressClientAdpter{
                     authMapper.toSoapUser(UserPrincipalDTO::new)
             );
         }catch (WSException e){
-            throw new RuntimeException("Error updating address",e);
+            throw new SoapServiceException("Error updating address",e);
         }
     }
 
@@ -68,7 +69,7 @@ public class AddressClientAdpter{
                     authMapper.toSoapUser(UserPrincipalDTO::new)
             );
         }catch (WSException e){
-            throw new RuntimeException("Error removing address",e);
+            throw new SoapServiceException("Error removing address",e);
         }
     }
 
@@ -80,7 +81,7 @@ public class AddressClientAdpter{
                     authMapper.toSoapUser(UserPrincipalDTO::new)
             );
         }catch (WSException e){
-            throw new RuntimeException("Error listing addresses.",e);
+            throw new SoapServiceException("Error listing addresses.",e);
         }
     }
 }

@@ -1,5 +1,6 @@
 package com.sippulse.soapadapter.adapter;
 
+import com.sippulse.soapadapter.exception.SoapServiceException;
 import com.sippulse.soapadapter.client.whitelistWS.*;
 import com.sippulse.soapadapter.mapper.SoapAuthMapper;
 import org.springframework.stereotype.Component;
@@ -44,7 +45,7 @@ public class WhitelistClientAdapter {
                     authMapper.toSoapUser(UserPrincipalDTO::new)
             );
         } catch (WSException e) {
-            throw new RuntimeException("Erro ao listar whitelist", e);
+            throw new SoapServiceException("Erro ao listar whitelist", e);
         }
     }
 
@@ -55,7 +56,7 @@ public class WhitelistClientAdapter {
                     authMapper.toSoapUser(UserPrincipalDTO::new)
             );
         } catch (WSException e) {
-            throw new RuntimeException("Erro ao inserir whitelist", e);
+            throw new SoapServiceException("Erro ao inserir whitelist", e);
         }
     }
 
@@ -66,7 +67,7 @@ public class WhitelistClientAdapter {
                     authMapper.toSoapUser(UserPrincipalDTO::new)
             );
         } catch (WSException e) {
-            throw new RuntimeException("Erro ao deletar whitelist", e);
+            throw new SoapServiceException("Erro ao deletar whitelist", e);
         }
     }
 }

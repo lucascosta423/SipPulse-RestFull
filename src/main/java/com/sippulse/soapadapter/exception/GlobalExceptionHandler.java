@@ -2,6 +2,7 @@ package com.sippulse.soapadapter.exception;
 
 import com.sippulse.soapadapter.dto.ApiResponse;
 import org.slf4j.Logger;
+import com.sippulse.soapadapter.exception.SoapServiceException;
 import org.slf4j.LoggerFactory;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -18,6 +19,17 @@ import java.util.List;
 public class GlobalExceptionHandler {
 
     private static final Logger log = LoggerFactory.getLogger(GlobalExceptionHandler.class);
+
+    @ExceptionHandler(SoapServiceException.class)
+    public ResponseEntity<ApiResponse<Void>> handleSoapServiceException(SoapServiceException ex, HttpServletRequest request) {
+        Throwable root = getRootCause(ex);
+        String message = root.getMessage() != null ? root.getMessage() : ex.getMessage();
+        log.error("SOAP service error at {}: {}", request.getRequestURI(), message, ex);
+        return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).body(
+                ApiResponse.error("SOAP service error", List.of(message),
+                        HttpStatus.INTERNAL_SERVER_ERROR.value(), request.getRequestURI())
+        );
+    }
 
     @ExceptionHandler(RuntimeException.class)
     public ResponseEntity<ApiResponse<Void>> handleRuntimeException(RuntimeException ex, HttpServletRequest request) {

@@ -1,5 +1,6 @@
 package com.sippulse.soapadapter.adapter;
 
+import com.sippulse.soapadapter.exception.SoapServiceException;
 import com.sippulse.soapadapter.client.subscriberWS.*;
 import com.sippulse.soapadapter.mapper.SoapAuthMapper;
 import org.springframework.stereotype.Component;
@@ -39,7 +40,7 @@ public class SubscriberClientAdapter{
         try{
             subscriberWS.blockEntry0303(username, domain, authMapper.toSoapUser(UserPrincipalDTO::new));
         }catch (WSException e){
-            throw new RuntimeException("Failed to block 0303 entry", e);
+            throw new SoapServiceException("Failed to block 0303 entry", e);
         }
     }
 
@@ -52,7 +53,7 @@ public class SubscriberClientAdapter{
                     authMapper.toSoapUser(UserPrincipalDTO::new)
             );
         } catch (WSException e) {
-            throw new RuntimeException("Failed to retrieve password",e);
+            throw new SoapServiceException("Failed to retrieve password",e);
         }
     }
 
@@ -65,7 +66,7 @@ public class SubscriberClientAdapter{
                     authMapper.toSoapUser(UserPrincipalDTO::new)
             );
         }catch (WSException e){
-            throw new RuntimeException("Failed to retrieve web password", e);
+            throw new SoapServiceException("Failed to retrieve web password", e);
         }
     }
 
@@ -77,7 +78,7 @@ public class SubscriberClientAdapter{
                     authMapper.toSoapUser(UserPrincipalDTO::new)
             );
         }catch (WSException e){
-            throw new RuntimeException("Failed to update subscriber Class V", e);
+            throw new SoapServiceException("Failed to update subscriber Class V", e);
         }
     }
 
@@ -89,7 +90,7 @@ public class SubscriberClientAdapter{
                     authMapper.toSoapUser(UserPrincipalDTO::new)
             );
         }catch (WSException e){
-            throw new RuntimeException("Failed to update subscriber billing info", e);
+            throw new SoapServiceException("Failed to update subscriber billing info", e);
         }
     }
 
@@ -101,7 +102,7 @@ public class SubscriberClientAdapter{
                     authMapper.toSoapUser(UserPrincipalDTO::new)
             );
         }catch (WSException e){
-            throw new RuntimeException("Failed to update subscriber services", e);
+            throw new SoapServiceException("Failed to update subscriber services", e);
         }
     }
 
@@ -114,7 +115,7 @@ public class SubscriberClientAdapter{
                     authMapper.toSoapUser(UserPrincipalDTO::new)
             );
         }catch (WSException e){
-            throw new RuntimeException("Failed to retrieve subscriber", e);
+            throw new SoapServiceException("Failed to retrieve subscriber", e);
         }
     }
 
@@ -127,7 +128,7 @@ public class SubscriberClientAdapter{
                     authMapper.toSoapUser(UserPrincipalDTO::new)
             );
         }catch (WSException e){
-            throw new RuntimeException("Failed to retrieve subscriber Class V", e);
+            throw new SoapServiceException("Failed to retrieve subscriber Class V", e);
         }
     }
 
@@ -140,7 +141,7 @@ public class SubscriberClientAdapter{
                     authMapper.toSoapUser(UserPrincipalDTO::new)
             );
         }catch (WSException e){
-            throw new RuntimeException("Failed to activate incoming calls", e);
+            throw new SoapServiceException("Failed to activate incoming calls", e);
         }
     }
 
@@ -153,7 +154,7 @@ public class SubscriberClientAdapter{
                     authMapper.toSoapUser(UserPrincipalDTO::new)
             );
         }catch (WSException e){
-            throw new RuntimeException("Failed to block incoming calls", e);
+            throw new SoapServiceException("Failed to block incoming calls", e);
         }
     }
 
@@ -166,7 +167,7 @@ public class SubscriberClientAdapter{
                     authMapper.toSoapUser(UserPrincipalDTO::new)
             );
         }catch (WSException e){
-            throw new RuntimeException("Failed to activate outgoing calls", e);
+            throw new SoapServiceException("Failed to activate outgoing calls", e);
         }
     }
 
@@ -179,7 +180,7 @@ public class SubscriberClientAdapter{
                     authMapper.toSoapUser(UserPrincipalDTO::new)
             );
         }catch (WSException e){
-            throw new RuntimeException("Failed to block outgoing calls", e);
+            throw new SoapServiceException("Failed to block outgoing calls", e);
         }
     }
 
@@ -192,7 +193,7 @@ public class SubscriberClientAdapter{
                     authMapper.toSoapUser(UserPrincipalDTO::new)
             );
         }catch (WSException e){
-            throw new RuntimeException("Failed to activate calls only by IP", e);
+            throw new SoapServiceException("Failed to activate calls only by IP", e);
         }
     }
 
@@ -205,7 +206,7 @@ public class SubscriberClientAdapter{
                     authMapper.toSoapUser(UserPrincipalDTO::new)
             );
         }catch (WSException e){
-            throw new RuntimeException("Failed to block calls only by IP", e);
+            throw new SoapServiceException("Failed to block calls only by IP", e);
         }
     }
 
@@ -218,7 +219,7 @@ public class SubscriberClientAdapter{
                     authMapper.toSoapUser(UserPrincipalDTO::new)
             );
         }catch (WSException e){
-            throw new RuntimeException("Failed to activate collect calls", e);
+            throw new SoapServiceException("Failed to activate collect calls", e);
         }
     }
 
@@ -231,7 +232,7 @@ public class SubscriberClientAdapter{
                     authMapper.toSoapUser(UserPrincipalDTO::new)
             );
         }catch (WSException e){
-            throw new RuntimeException("Failed to activate anonymous calls", e);
+            throw new SoapServiceException("Failed to activate anonymous calls", e);
         }
     }
 
@@ -244,7 +245,7 @@ public class SubscriberClientAdapter{
                     authMapper.toSoapUser(UserPrincipalDTO::new)
             );
         }catch (WSException e){
-            throw new RuntimeException("Failed to activate call privacy", e);
+            throw new SoapServiceException("Failed to activate call privacy", e);
         }
     }
 
@@ -257,7 +258,7 @@ public class SubscriberClientAdapter{
                     authMapper.toSoapUser(UserPrincipalDTO::new)
             );
         }catch (WSException e){
-            throw new RuntimeException("Failed to block call privacy", e);
+            throw new SoapServiceException("Failed to block call privacy", e);
         }
     }
 
@@ -271,7 +272,7 @@ public class SubscriberClientAdapter{
                     authMapper.toSoapUser(UserPrincipalDTO::new)
             );
         }catch (WSException e){
-            throw new RuntimeException("Failed to activate low credit notification", e);
+            throw new SoapServiceException("Failed to activate low credit notification", e);
         }
     }
 
@@ -284,7 +285,7 @@ public class SubscriberClientAdapter{
                     authMapper.toSoapUser(UserPrincipalDTO::new)
             );
         }catch (WSException e){
-            throw new RuntimeException("Failed to block low credit notification", e);
+            throw new SoapServiceException("Failed to block low credit notification", e);
         }
     }
 
@@ -297,7 +298,7 @@ public class SubscriberClientAdapter{
                     authMapper.toSoapUser(UserPrincipalDTO::new)
             );
         }catch (WSException e){
-            throw new RuntimeException("Failed to activate daily statistics", e);
+            throw new SoapServiceException("Failed to activate daily statistics", e);
         }
     }
 
@@ -310,7 +311,7 @@ public class SubscriberClientAdapter{
                     authMapper.toSoapUser(UserPrincipalDTO::new)
             );
         }catch (WSException e){
-            throw new RuntimeException("Failed to block daily statistics", e);
+            throw new SoapServiceException("Failed to block daily statistics", e);
         }
     }
 
@@ -322,7 +323,7 @@ public class SubscriberClientAdapter{
                     authMapper.toSoapUser(UserPrincipalDTO::new)
             );
         }catch (WSException e){
-            throw new RuntimeException("Failed to update daily quota", e);
+            throw new SoapServiceException("Failed to update daily quota", e);
         }
     }
 
@@ -335,7 +336,7 @@ public class SubscriberClientAdapter{
                     authMapper.toSoapUser(UserPrincipalDTO::new)
             );
         }catch (WSException e){
-            throw new RuntimeException("Failed to block collect calls", e);
+            throw new SoapServiceException("Failed to block collect calls", e);
         }
     }
 
@@ -348,7 +349,7 @@ public class SubscriberClientAdapter{
                     authMapper.toSoapUser(UserPrincipalDTO::new)
             );
         }catch (WSException e){
-            throw new RuntimeException("Failed to block anonymous calls", e);
+            throw new SoapServiceException("Failed to block anonymous calls", e);
         }
     }
 
@@ -360,7 +361,7 @@ public class SubscriberClientAdapter{
                     authMapper.toSoapUser(UserPrincipalDTO::new)
             );
         }catch (WSException e){
-            throw new RuntimeException("Failed to update monthly quota", e);
+            throw new SoapServiceException("Failed to update monthly quota", e);
         }
     }
 
@@ -373,7 +374,7 @@ public class SubscriberClientAdapter{
                     authMapper.toSoapUser(UserPrincipalDTO::new)
             );
         }catch (WSException e){
-            throw new RuntimeException("Failed to block subscriber", e);
+            throw new SoapServiceException("Failed to block subscriber", e);
         }
     }
 
@@ -386,7 +387,7 @@ public class SubscriberClientAdapter{
                     authMapper.toSoapUser(UserPrincipalDTO::new)
             );
         }catch (WSException e){
-            throw new RuntimeException("Failed to activate subscriber", e);
+            throw new SoapServiceException("Failed to activate subscriber", e);
         }
     }
 
@@ -400,7 +401,7 @@ public class SubscriberClientAdapter{
                     authMapper.toSoapUser(UserPrincipalDTO::new)
             );
         }catch (WSException e){
-            throw new RuntimeException("Failed to activate voicemail", e);
+            throw new SoapServiceException("Failed to activate voicemail", e);
         }
     }
 
@@ -413,7 +414,7 @@ public class SubscriberClientAdapter{
                     authMapper.toSoapUser(UserPrincipalDTO::new)
             );
         }catch (WSException e){
-            throw new RuntimeException("Failed to block voicemail", e);
+            throw new SoapServiceException("Failed to block voicemail", e);
         }
     }
 
@@ -426,7 +427,7 @@ public class SubscriberClientAdapter{
                     authMapper.toSoapUser(UserPrincipalDTO::new)
             );
         }catch (WSException e){
-            throw new RuntimeException("Failed to remove subscriber", e);
+            throw new SoapServiceException("Failed to remove subscriber", e);
         }
     }
 
@@ -439,7 +440,7 @@ public class SubscriberClientAdapter{
                     authMapper.toSoapUser(UserPrincipalDTO::new)
             );
         }catch (WSException e){
-            throw new RuntimeException("Failed to retrieve credit", e);
+            throw new SoapServiceException("Failed to retrieve credit", e);
         }
     }
 
@@ -454,7 +455,7 @@ public class SubscriberClientAdapter{
                     authMapper.toSoapUser(UserPrincipalDTO::new)
             );
         }catch (WSException e){
-            throw new RuntimeException("Failed to add credit", e);
+            throw new SoapServiceException("Failed to add credit", e);
         }
     }
 
@@ -466,7 +467,7 @@ public class SubscriberClientAdapter{
                     authMapper.toSoapUser(UserPrincipalDTO::new)
             );
         }catch (WSException e){
-            throw new RuntimeException("Failed to insert subscriber", e);
+            throw new SoapServiceException("Failed to insert subscriber", e);
         }
     }
 
@@ -478,7 +479,7 @@ public class SubscriberClientAdapter{
                     authMapper.toSoapUser(UserPrincipalDTO::new)
             );
         }catch (WSException e){
-            throw new RuntimeException("Failed to update subscriber", e);
+            throw new SoapServiceException("Failed to update subscriber", e);
         }
     }
 
@@ -494,7 +495,7 @@ public class SubscriberClientAdapter{
                     authMapper.toSoapUser(UserPrincipalDTO::new)
             );
         }catch (WSException e){
-            throw new RuntimeException("Failed to change web password", e);
+            throw new SoapServiceException("Failed to change web password", e);
         }
     }
 
@@ -508,7 +509,7 @@ public class SubscriberClientAdapter{
                     authMapper.toSoapUser(UserPrincipalDTO::new)
             );
         }catch (WSException e){
-            throw new RuntimeException("Failed to change profile", e);
+            throw new SoapServiceException("Failed to change profile", e);
         }
     }
 
@@ -521,7 +522,7 @@ public class SubscriberClientAdapter{
                     authMapper.toSoapUser(UserPrincipalDTO::new)
             );
         }catch (WSException e){
-            throw new RuntimeException("Failed to retrieve daily quota", e);
+            throw new SoapServiceException("Failed to retrieve daily quota", e);
         }
     }
 
@@ -534,7 +535,7 @@ public class SubscriberClientAdapter{
                     authMapper.toSoapUser(UserPrincipalDTO::new)
             );
         }catch (WSException e){
-            throw new RuntimeException("Failed to retrieve monthly quota", e);
+            throw new SoapServiceException("Failed to retrieve monthly quota", e);
         }
     }
 
@@ -547,7 +548,7 @@ public class SubscriberClientAdapter{
                     authMapper.toSoapUser(UserPrincipalDTO::new)
             );
         }catch (WSException e){
-            throw new RuntimeException("Failed to activate softphone", e);
+            throw new SoapServiceException("Failed to activate softphone", e);
         }
     }
 
@@ -560,7 +561,7 @@ public class SubscriberClientAdapter{
                     authMapper.toSoapUser(UserPrincipalDTO::new)
             );
         }catch (WSException e){
-            throw new RuntimeException("Failed to block softphone", e);
+            throw new SoapServiceException("Failed to block softphone", e);
         }
     }
 
@@ -573,7 +574,7 @@ public class SubscriberClientAdapter{
                     authMapper.toSoapUser(UserPrincipalDTO::new)
             );
         }catch (WSException e){
-            throw new RuntimeException("Failed to activate 0303 entry", e);
+            throw new SoapServiceException("Failed to activate 0303 entry", e);
         }
     }
 
@@ -586,7 +587,7 @@ public class SubscriberClientAdapter{
                     authMapper.toSoapUser(UserPrincipalDTO::new)
             );
         }catch (WSException e){
-            throw new RuntimeException("Failed to disable source validation 0303", e);
+            throw new SoapServiceException("Failed to disable source validation 0303", e);
         }
     }
 
@@ -599,7 +600,7 @@ public class SubscriberClientAdapter{
                     authMapper.toSoapUser(UserPrincipalDTO::new)
             );
         }catch (WSException e){
-            throw new RuntimeException("Failed to activate source validation 0303", e);
+            throw new SoapServiceException("Failed to activate source validation 0303", e);
         }
     }
 
@@ -615,7 +616,7 @@ public class SubscriberClientAdapter{
                     authMapper.toSoapUser(UserPrincipalDTO::new)
             );
         }catch (WSException e){
-            throw new RuntimeException("Failed to change password", e);
+            throw new SoapServiceException("Failed to change password", e);
         }
     }
 }
