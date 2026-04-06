@@ -1,8 +1,8 @@
 package com.sippulse.soapadapter.exception;
 
 import com.sippulse.soapadapter.dto.ApiResponse;
+import jakarta.servlet.http.HttpServletRequest;
 import org.slf4j.Logger;
-import com.sippulse.soapadapter.exception.SoapServiceException;
 import org.slf4j.LoggerFactory;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -12,7 +12,6 @@ import org.springframework.web.bind.annotation.RestControllerAdvice;
 import org.springframework.web.method.annotation.MethodArgumentTypeMismatchException;
 import org.springframework.web.servlet.resource.NoResourceFoundException;
 
-import jakarta.servlet.http.HttpServletRequest;
 import java.util.List;
 
 @RestControllerAdvice
