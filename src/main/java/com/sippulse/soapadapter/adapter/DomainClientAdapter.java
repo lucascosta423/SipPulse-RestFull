@@ -40,7 +40,7 @@ public class DomainClientAdapter {
     public List<Domain> listDomains() {
         try {
             return domainWS.listDomains(
-                    authMapper.toSoapUser(UserPrincipalDTO::new)
+                    authMapper.toSoapUser(new UserPrincipalDTO())
             );
         } catch (WSException e) {
             throw new SoapServiceException("Erro ao listar domínios", e);

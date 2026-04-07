@@ -42,7 +42,7 @@ public class UserLocationClientAdapter {
             return userLocationWS.listUserLocations(
                     username,
                     domain,
-                    authMapper.toSoapUser(UserPrincipalDTO::new)
+                    authMapper.toSoapUser(new UserPrincipalDTO())
             );
         } catch (WSException e) {
             throw new SoapServiceException("Erro ao listar localizações do usuário", e);
@@ -55,7 +55,7 @@ public class UserLocationClientAdapter {
                     username,
                     domain,
                     contact,
-                    authMapper.toSoapUser(UserPrincipalDTO::new)
+                    authMapper.toSoapUser(new UserPrincipalDTO())
             );
         } catch (WSException e) {
             throw new SoapServiceException("Erro ao adicionar localização do usuário", e);
@@ -68,7 +68,7 @@ public class UserLocationClientAdapter {
                     username,
                     domain,
                     contact,
-                    authMapper.toSoapUser(UserPrincipalDTO::new)
+                    authMapper.toSoapUser(new UserPrincipalDTO())
             );
         } catch (WSException e) {
             throw new SoapServiceException("Erro ao remover localização do usuário", e);

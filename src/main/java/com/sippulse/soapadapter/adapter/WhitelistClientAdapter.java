@@ -42,7 +42,7 @@ public class WhitelistClientAdapter {
             return whiteListWS.listWhiteList(
                     username,
                     domain,
-                    authMapper.toSoapUser(UserPrincipalDTO::new)
+                    authMapper.toSoapUser(new UserPrincipalDTO())
             );
         } catch (WSException e) {
             throw new SoapServiceException("Erro ao listar whitelist", e);
@@ -53,7 +53,7 @@ public class WhitelistClientAdapter {
         try {
             return whiteListWS.insertWhiteList(
                     whiteList,
-                    authMapper.toSoapUser(UserPrincipalDTO::new)
+                    authMapper.toSoapUser(new UserPrincipalDTO())
             );
         } catch (WSException e) {
             throw new SoapServiceException("Erro ao inserir whitelist", e);
@@ -64,7 +64,7 @@ public class WhitelistClientAdapter {
         try {
             whiteListWS.deletetWhiteList(
                     whiteListId,
-                    authMapper.toSoapUser(UserPrincipalDTO::new)
+                    authMapper.toSoapUser(new UserPrincipalDTO())
             );
         } catch (WSException e) {
             throw new SoapServiceException("Erro ao deletar whitelist", e);
