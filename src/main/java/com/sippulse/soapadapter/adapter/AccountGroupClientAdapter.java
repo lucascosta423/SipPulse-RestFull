@@ -41,7 +41,7 @@ public class AccountGroupClientAdapter {
         try {
             return accountGroupWS.retrieveAccountGroup(
                     accountManager,
-                    authMapper.toSoapUser(UserPrincipalDTO::new)
+                    authMapper.toSoapUser(new UserPrincipalDTO())
             );
         } catch (WSException e) {
             throw new SoapServiceException("Erro ao recuperar account group", e);
@@ -54,7 +54,7 @@ public class AccountGroupClientAdapter {
                     accountManager,
                     managerProfile,
                     account,
-                    authMapper.toSoapUser(UserPrincipalDTO::new)
+                    authMapper.toSoapUser(new UserPrincipalDTO())
             );
         } catch (WSException e) {
             throw new SoapServiceException("Erro ao adicionar account group", e);
@@ -67,7 +67,7 @@ public class AccountGroupClientAdapter {
                     accountManager,
                     managerProfile,
                     account,
-                    authMapper.toSoapUser(UserPrincipalDTO::new)
+                    authMapper.toSoapUser(new UserPrincipalDTO())
             );
         } catch (WSException e) {
             throw new SoapServiceException("Erro ao remover account group", e);

@@ -42,7 +42,7 @@ public class HuntGroupClientAdapter {
         try {
             return huntGroupWS.listHuntGroups(
                     domain,
-                    authMapper.toSoapUser(UserPrincipalDTO::new)
+                    authMapper.toSoapUser(new UserPrincipalDTO())
             );
         } catch (WSException e) {
             throw new SoapServiceException("Erro ao listar hunt groups", e);
@@ -54,7 +54,7 @@ public class HuntGroupClientAdapter {
             Holder<HuntGroup> holder = new Holder<>(huntGroup);
             huntGroupWS.insertHuntGroup(
                     holder,
-                    authMapper.toSoapUser(UserPrincipalDTO::new)
+                    authMapper.toSoapUser(new UserPrincipalDTO())
             );
         } catch (WSException e) {
             throw new SoapServiceException("Erro ao inserir hunt group", e);
@@ -66,7 +66,7 @@ public class HuntGroupClientAdapter {
             Holder<HuntGroup> holder = new Holder<>(huntGroup);
             huntGroupWS.updateHuntGroup(
                     holder,
-                    authMapper.toSoapUser(UserPrincipalDTO::new)
+                    authMapper.toSoapUser(new UserPrincipalDTO())
             );
         } catch (WSException e) {
             throw new SoapServiceException("Erro ao atualizar hunt group", e);
@@ -78,7 +78,7 @@ public class HuntGroupClientAdapter {
             huntGroupWS.removeHuntGroup(
                     domain,
                     huntGroupId,
-                    authMapper.toSoapUser(UserPrincipalDTO::new)
+                    authMapper.toSoapUser(new UserPrincipalDTO())
             );
         } catch (WSException e) {
             throw new SoapServiceException("Erro ao remover hunt group", e);

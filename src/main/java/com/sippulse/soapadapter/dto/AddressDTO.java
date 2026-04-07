@@ -1,5 +1,7 @@
 package com.sippulse.soapadapter.dto;
 
+import jakarta.validation.constraints.NotBlank;
+
 /**
  * SipPulse-RestFull
  * Copyright (C) 2026
@@ -21,7 +23,8 @@ package com.sippulse.soapadapter.dto;
 
 public record AddressDTO (
         String account,
-        @jakarta.validation.constraints.NotBlank String ipAddress,
+        @NotBlank
+        String ipAddress,
         Integer mask,
         String method,
         Integer port,

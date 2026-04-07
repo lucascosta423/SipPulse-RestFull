@@ -49,7 +49,7 @@ public class RateClientAdapter{
                     descripion,
                     rateId,
                     prefix,
-                    authMapper.toSoapUser(UserPrincipalDTO::new)
+                    authMapper.toSoapUser(new UserPrincipalDTO())
             );
         }catch (WSException e){
             throw new SoapServiceException("Error listing rates.",e);
@@ -61,7 +61,7 @@ public class RateClientAdapter{
             return rateWS.removeAllRatesByRateId(
                     domain,
                     rateId,
-                    authMapper.toSoapUser(UserPrincipalDTO::new)
+                    authMapper.toSoapUser(new UserPrincipalDTO())
             );
         }catch (WSException e){
             throw new SoapServiceException("Error removing all rates by rate id.",e);
@@ -72,7 +72,7 @@ public class RateClientAdapter{
         try{
             rateWS.removeRate(
                     id,
-                    authMapper.toSoapUser(UserPrincipalDTO::new)
+                    authMapper.toSoapUser(new UserPrincipalDTO())
             );
         }catch (WSException e){
             throw new SoapServiceException("Error removing rate.",e);
@@ -83,7 +83,7 @@ public class RateClientAdapter{
         try{
             rateWS.updateRate(
                     rate,
-                    authMapper.toSoapUser(UserPrincipalDTO::new)
+                    authMapper.toSoapUser(new UserPrincipalDTO())
             );
         }catch (WSException e){
             throw new SoapServiceException("Error updating rate.",e);
@@ -94,7 +94,7 @@ public class RateClientAdapter{
         try {
             rateWS.insertRates(
                     rate,
-                    authMapper.toSoapUser(UserPrincipalDTO::new)
+                    authMapper.toSoapUser(new UserPrincipalDTO())
             );
         } catch (WSException e) {
             throw new SoapServiceException("Error inserting rates.",e);
