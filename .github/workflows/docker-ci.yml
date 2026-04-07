@@ -47,14 +47,14 @@ jobs:
           VERSION="${GITHUB_REF#refs/tags/v}"
           echo "VERSION=${VERSION}" >> "$GITHUB_OUTPUT"
 
-          TAGS="${{ env.IMAGE_NAME }}:${VERSION}"
+          TAGS="${{ secrets.DOCKERHUB_USERNAME }}/${{ env.IMAGE_NAME }}:${VERSION}"
 
           if [[ "${VERSION}" == *"-beta"* ]]; then
-            TAGS="${TAGS}"$'\n'"${{ env.IMAGE_NAME }}:beta"
+            TAGS="${TAGS}"$'\n'"${{ secrets.DOCKERHUB_USERNAME }}/${{ env.IMAGE_NAME }}:beta"
           elif [[ "${VERSION}" == *"-rc"* ]]; then
-            TAGS="${TAGS}"$'\n'"${{ env.IMAGE_NAME }}:rc"
+            TAGS="${TAGS}"$'\n'"${{ secrets.DOCKERHUB_USERNAME }}/${{ env.IMAGE_NAME }}:rc"
           else
-            TAGS="${TAGS}"$'\n'"${{ env.IMAGE_NAME }}:latest"
+            TAGS="${TAGS}"$'\n'"${{ secrets.DOCKERHUB_USERNAME }}/${{ env.IMAGE_NAME }}:latest"
           fi
 
           {
