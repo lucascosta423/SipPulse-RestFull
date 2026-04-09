@@ -1,5 +1,6 @@
 package com.sippulse.soapadapter.controllers;
 
+import com.sippulse.soapadapter.dto.AddCreditDTO;
 import com.sippulse.soapadapter.dto.ApiResponse;
 import com.sippulse.soapadapter.dto.SubscriberMinDTO;
 import com.sippulse.soapadapter.service.SubscriberService;
@@ -46,6 +47,24 @@ public class SubscriberController {
                         subscriberService.insertSubscriber(subscriberMinDTO),
                         "Registered Subscriber",
                         HttpStatus.CREATED.value(),
+                        request.getRequestURI()
+                )
+        );
+    }
+
+    @PostMapping("/credit")
+    public ResponseEntity<ApiResponse<Void>> creditSubscriber(@RequestBody @Valid AddCreditDTO addCreditDTO, HttpServletRequest request) {
+
+        if (addCreditDTO.value() == null || addCreditDTO.value() <= 0) {
+            throw new IllegalArgumentException("The value must be greater than zero");
+        }
+
+        subscriberService.addCredit(addCreditDTO);
+        return ResponseEntity.status(HttpStatus.OK).body(
+                ApiResponse.success(
+                        null,
+                        "Credit Added",
+                        HttpStatus.OK.value(),
                         request.getRequestURI()
                 )
         );

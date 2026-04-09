@@ -2,14 +2,15 @@ package com.sippulse.soapadapter.service;
 
 import com.sippulse.soapadapter.adapter.SubscriberClientAdapter;
 import com.sippulse.soapadapter.client.subscriberWS.SubscriberDTO;
-import com.sippulse.soapadapter.exception.SoapServiceException;
+import com.sippulse.soapadapter.dto.AddCreditDTO;
+import com.sippulse.soapadapter.utils.AccountCodeUtils;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;
 import org.mockito.InjectMocks;
 import org.mockito.Mock;
 import org.mockito.junit.jupiter.MockitoExtension;
 
-import static org.assertj.core.api.Assertions.*;
+import static org.assertj.core.api.Assertions.assertThat;
 import static org.mockito.Mockito.*;
 
 @ExtendWith(MockitoExtension.class)
@@ -49,8 +50,21 @@ class SubscriberServiceTest {
 
     @Test
     void addCredit_shouldCallAdapter() {
-        subscriberService.addCredit("user@domain.com", 10.0, "credit");
+        var addCredit = new AddCreditDTO(
+                "user@domain.com",
+                10.0,
+                "credit"
+        );
 
-        verify(adapter).addCredit("user", "domain.com", 10.0, "credit");
+        subscriberService.addCredit(addCredit);
+
+        var ac = AccountCodeUtils.from(addCredit.accountcode());
+
+        verify(adapter).addCredit(
+                ac.username(),
+                ac.domain(),
+                addCredit.value(),
+                addCredit.obs()
+        );
     }
 }

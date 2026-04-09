@@ -2,7 +2,9 @@ package com.sippulse.soapadapter.service;
 
 import com.sippulse.soapadapter.adapter.SubscriberClientAdapter;
 import com.sippulse.soapadapter.client.subscriberWS.*;
+import com.sippulse.soapadapter.dto.AddCreditDTO;
 import com.sippulse.soapadapter.dto.SubscriberMinDTO;
+import com.sippulse.soapadapter.exception.SoapServiceException;
 import com.sippulse.soapadapter.mapper.SubscriberMapper;
 import com.sippulse.soapadapter.mapper.UpdateSubscriberMapper;
 import com.sippulse.soapadapter.utils.AccountCodeUtils;
@@ -110,9 +112,14 @@ public class SubscriberService {
         adapter.activateOutgoingCalls(ac.username(), ac.domain());
     }
 
-    public void addCredit(String accountcode, Double value, String obs) {
-        AccountCodeUtils ac = AccountCodeUtils.from(accountcode);
-        adapter.addCredit(ac.username(), ac.domain(), value, obs);
+    public void addCredit(AddCreditDTO addCreditDTO) {
+        AccountCodeUtils ac = AccountCodeUtils.from(addCreditDTO.accountcode());
+        adapter.addCredit(
+                ac.username(),
+                ac.domain(),
+                addCreditDTO.value(),
+                addCreditDTO.obs()
+        );
     }
 
     public void blockEntry0303(String accountcode) {
