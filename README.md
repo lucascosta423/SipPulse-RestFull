@@ -170,19 +170,19 @@ http://localhost:8080/v3/api-docs
 ### Build image
 
 ```bash
-docker build -t sippulse/soapadapter:latest .
+docker build -t sippulse-rest-api:latest .
 ```
 
 ### Run container
 
 ```bash
 docker run -d \
-  --name soapadapter \
+  --name sippulse-rest-api \
   -p 8080:8080 \
   -e USER_ADMIN=your_user \
   -e PASSWORD_ADMIN=your_password \
   -e URL=http://xxx.xxx.xxx.xxx:8080 \
-  sippulse/soapadapter:latest
+  sippulse-rest-api:latest
 ```
 
 ### Docker Compose
@@ -191,8 +191,8 @@ docker run -d \
 version: '3.8'
 
 services:
-  soapadapter:
-    image: sippulse/soapadapter:latest
+  sippulse-rest-api:
+    image: sippulse-rest-api:latest
     ports:
       - "8080:8080"
     environment:
@@ -205,8 +205,10 @@ services:
 ### Pull from Docker Hub
 
 ```bash
-docker pull sippulse/soapadapter:latest
+docker pull <seu-usuario>/sippulse-rest-api:latest
 ```
+
+> Substitua `<seu-usuario>` pelo seu username do Docker Hub (definido em `DOCKERHUB_USERNAME` no CI/CD).
 
 ---
 
@@ -218,7 +220,14 @@ The project has automated pipelines that:
 - Build with Maven
 - Run tests
 - Generate multi-arch Docker image (amd64/arm64)
-- Publish to Docker Hub
+- Publish to Docker Hub as `<seu-usuario>/sippulse-rest-api`
+
+**Tags pushed:**
+| Git Tag | Docker Tags |
+|---------|-------------|
+| `v1.0.0` | `1.0.0`, `latest` |
+| `v1.0.0-beta` | `1.0.0-beta`, `beta` |
+| `v1.0.0-rc` | `1.0.0-rc`, `rc` |
 
 ```bash
 git tag v1.0.0
