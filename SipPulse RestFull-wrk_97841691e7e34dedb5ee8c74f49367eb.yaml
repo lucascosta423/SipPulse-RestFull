@@ -10,7 +10,7 @@ collection:
     meta:
       id: fld_f44dbe5897a34715929d1c18f7761d46
       created: 1773086214198
-      modified: 1774526032835
+      modified: 1775572171253
       sortKey: -1773086214398
       description: ""
     children:
@@ -19,7 +19,7 @@ collection:
         meta:
           id: req_e977179c28ef4417a26438e726256f41
           created: 1772131291538
-          modified: 1774023807283
+          modified: 1775572224226
           isPrivate: false
           description: ""
           sortKey: -1773086253213
@@ -53,7 +53,7 @@ collection:
         meta:
           id: req_7e065a29037b4dd887cd59b324739f7d
           created: 1772734893243
-          modified: 1774526032835
+          modified: 1775583826981
           isPrivate: false
           description: ""
           sortKey: -1773086253013
@@ -134,12 +134,15 @@ collection:
             store: true
           rebuildPath: true
     environment:
-      url: http://localhost:8080/dids
+      url: "{{ _.base_url }}/dids"
+    environmentPropertyOrder:
+      "&":
+        - url
   - name: SUBSCRIBER
     meta:
       id: fld_15d47522692a4d8991d397442e9c5475
       created: 1773839407896
-      modified: 1774447650055
+      modified: 1775759690971
       sortKey: -1773462811147
       description: ""
     children:
@@ -325,8 +328,39 @@ collection:
             send: true
             store: true
           rebuildPath: true
+      - url: "{{ _.url }}/credit"
+        name: Insert Credit
+        meta:
+          id: req_3e104d6a2c0543d6abfd6d7ca28b8f27
+          created: 1775759468694
+          modified: 1775761273080
+          isPrivate: false
+          description: ""
+          sortKey: -1775759468694
+        method: POST
+        body:
+          mimeType: application/json
+          text: |-
+            {
+            	"accountcode":"farneytestedid@181.191.207.100",
+            	"value":0.1,
+            	"obs":"teste"
+            }
+        headers:
+          - name: Content-Type
+            value: application/json
+          - name: User-Agent
+            value: insomnia/12.0.0
+        settings:
+          renderRequestBody: true
+          encodeUrl: true
+          followRedirects: global
+          cookies:
+            send: true
+            store: true
+          rebuildPath: true
     environment:
-      url: http://localhost:8080/subscriber
+      url: "{{ _.base_url_dev }}/subscriber"
     environmentPropertyOrder:
       "&":
         - url
@@ -496,7 +530,7 @@ collection:
         meta:
           id: req_f527d3dded7b4d7f89f0e61e17f77a76
           created: 1774530913609
-          modified: 1774531219677
+          modified: 1775484762398
           isPrivate: false
           description: ""
           sortKey: -1774530913609
@@ -525,7 +559,8 @@ environments:
   meta:
     id: env_e522ef0d130d4c05b3eb37d49f7862bf
     created: 1772130852987
-    modified: 1774531029149
+    modified: 1775759671902
     isPrivate: false
   data:
-    base_url: http://localhost:8080
+    base_url_prod: http://181.191.206.183:8080
+    base_url_dev: http://localhost:8080
