@@ -21,6 +21,8 @@
 
 	<properties>
 		<java.version>21</java.version>
+		<soap.wsdl.url>http://181.191.206.162:8080</soap.wsdl.url>
+		<mapstruct.version>1.6.3</mapstruct.version>
 	</properties>
 
 	<dependencies>
@@ -29,6 +31,19 @@
 		<dependency>
 			<groupId>org.springframework.boot</groupId>
 			<artifactId>spring-boot-starter-web</artifactId>
+		</dependency>
+
+		<!-- Validation -->
+		<dependency>
+			<groupId>org.springframework.boot</groupId>
+			<artifactId>spring-boot-starter-validation</artifactId>
+		</dependency>
+
+		<!-- OpenAPI / Swagger UI -->
+		<dependency>
+			<groupId>org.springdoc</groupId>
+			<artifactId>springdoc-openapi-starter-webmvc-ui</artifactId>
+			<version>2.6.0</version>
 		</dependency>
 
 		<!-- Actuator (Health Check) -->
@@ -81,10 +96,32 @@
 			<version>4.0.2</version>
 		</dependency>
 
+		<!-- MapStruct -->
+		<dependency>
+			<groupId>org.mapstruct</groupId>
+			<artifactId>mapstruct</artifactId>
+			<version>${mapstruct.version}</version>
+		</dependency>
+
 	</dependencies>
 
 	<build>
 		<plugins>
+
+			<!-- Compiler with MapStruct annotation processor -->
+			<plugin>
+				<groupId>org.apache.maven.plugins</groupId>
+				<artifactId>maven-compiler-plugin</artifactId>
+				<configuration>
+					<annotationProcessorPaths>
+						<path>
+							<groupId>org.mapstruct</groupId>
+							<artifactId>mapstruct-processor</artifactId>
+							<version>${mapstruct.version}</version>
+						</path>
+					</annotationProcessorPaths>
+				</configuration>
+			</plugin>
 
 			<!-- Spring Boot -->
 			<plugin>
@@ -107,7 +144,7 @@
 						</goals>
 						<configuration>
 							<wsdlUrls>
-								<wsdlUrl>http://181.191.206.162:8080/SipPulse/DomainWS?wsdl</wsdlUrl>
+								<wsdlUrl>${soap.wsdl.url}/SipPulse/DomainWS?wsdl</wsdlUrl>
 							</wsdlUrls>
 							<packageName>com.sippulse.soapadapter.client.domainWS</packageName>
 							<sourceDestDir>${project.build.directory}/generated-sources/wsimport</sourceDestDir>
@@ -122,7 +159,7 @@
 						<goals><goal>wsimport</goal></goals>
 						<configuration>
 							<wsdlUrls>
-								<wsdlUrl>http://181.191.206.162:8080/SipPulse/ProfileWS?wsdl</wsdlUrl>
+								<wsdlUrl>${soap.wsdl.url}/SipPulse/ProfileWS?wsdl</wsdlUrl>
 							</wsdlUrls>
 							<packageName>com.sippulse.soapadapter.client.profileWS</packageName>
 							<sourceDestDir>${project.build.directory}/generated-sources/wsimport</sourceDestDir>
@@ -137,7 +174,7 @@
 						<goals><goal>wsimport</goal></goals>
 						<configuration>
 							<wsdlUrls>
-								<wsdlUrl>http://181.191.206.162:8080/SipPulse/SubscriberWS?wsdl</wsdlUrl>
+								<wsdlUrl>${soap.wsdl.url}/SipPulse/SubscriberWS?wsdl</wsdlUrl>
 							</wsdlUrls>
 							<packageName>com.sippulse.soapadapter.client.subscriberWS</packageName>
 							<sourceDestDir>${project.build.directory}/generated-sources/wsimport</sourceDestDir>
@@ -152,7 +189,7 @@
 						<goals><goal>wsimport</goal></goals>
 						<configuration>
 							<wsdlUrls>
-								<wsdlUrl>http://181.191.206.162:8080/SipPulse/DidWS?wsdl</wsdlUrl>
+								<wsdlUrl>${soap.wsdl.url}/SipPulse/DidWS?wsdl</wsdlUrl>
 							</wsdlUrls>
 							<packageName>com.sippulse.soapadapter.client.didWS</packageName>
 							<sourceDestDir>${project.build.directory}/generated-sources/wsimport</sourceDestDir>
@@ -167,7 +204,7 @@
 						<goals><goal>wsimport</goal></goals>
 						<configuration>
 							<wsdlUrls>
-								<wsdlUrl>http://181.191.206.162:8080/SipPulse/WhiteListWS?wsdl</wsdlUrl>
+								<wsdlUrl>${soap.wsdl.url}/SipPulse/WhiteListWS?wsdl</wsdlUrl>
 							</wsdlUrls>
 							<packageName>com.sippulse.soapadapter.client.whitelistWS</packageName>
 							<sourceDestDir>${project.build.directory}/generated-sources/wsimport</sourceDestDir>
@@ -182,7 +219,7 @@
 						<goals><goal>wsimport</goal></goals>
 						<configuration>
 							<wsdlUrls>
-								<wsdlUrl>http://181.191.206.162:8080/SipPulse/RatePlanWS?wsdl</wsdlUrl>
+								<wsdlUrl>${soap.wsdl.url}/SipPulse/RatePlanWS?wsdl</wsdlUrl>
 							</wsdlUrls>
 							<packageName>com.sippulse.soapadapter.client.ratePlanWS</packageName>
 							<sourceDestDir>${project.build.directory}/generated-sources/wsimport</sourceDestDir>
@@ -197,7 +234,7 @@
 						<goals><goal>wsimport</goal></goals>
 						<configuration>
 							<wsdlUrls>
-								<wsdlUrl>http://181.191.206.162:8080/SipPulse/RateWS?wsdl</wsdlUrl>
+								<wsdlUrl>${soap.wsdl.url}/SipPulse/RateWS?wsdl</wsdlUrl>
 							</wsdlUrls>
 							<packageName>com.sippulse.soapadapter.client.rateWS</packageName>
 							<sourceDestDir>${project.build.directory}/generated-sources/wsimport</sourceDestDir>
@@ -212,7 +249,7 @@
 						<goals><goal>wsimport</goal></goals>
 						<configuration>
 							<wsdlUrls>
-								<wsdlUrl>http://181.191.206.162:8080/SipPulse/AccountGroupWS?wsdl</wsdlUrl>
+								<wsdlUrl>${soap.wsdl.url}/SipPulse/AccountGroupWS?wsdl</wsdlUrl>
 							</wsdlUrls>
 							<packageName>com.sippulse.soapadapter.client.accountGroupWS</packageName>
 							<sourceDestDir>${project.build.directory}/generated-sources/wsimport</sourceDestDir>
@@ -227,7 +264,7 @@
 						<goals><goal>wsimport</goal></goals>
 						<configuration>
 							<wsdlUrls>
-								<wsdlUrl>http://181.191.206.162:8080/SipPulse/CustomerWS?wsdl</wsdlUrl>
+								<wsdlUrl>${soap.wsdl.url}/SipPulse/CustomerWS?wsdl</wsdlUrl>
 							</wsdlUrls>
 							<packageName>com.sippulse.soapadapter.client.customerWS</packageName>
 							<sourceDestDir>${project.build.directory}/generated-sources/wsimport</sourceDestDir>
@@ -242,7 +279,7 @@
 						<goals><goal>wsimport</goal></goals>
 						<configuration>
 							<wsdlUrls>
-								<wsdlUrl>http://181.191.206.162:8080/SipPulse/UserLocationWS?wsdl</wsdlUrl>
+								<wsdlUrl>${soap.wsdl.url}/SipPulse/UserLocationWS?wsdl</wsdlUrl>
 							</wsdlUrls>
 							<packageName>com.sippulse.soapadapter.client.userLocationWS</packageName>
 							<sourceDestDir>${project.build.directory}/generated-sources/wsimport</sourceDestDir>
@@ -257,7 +294,7 @@
 						<goals><goal>wsimport</goal></goals>
 						<configuration>
 							<wsdlUrls>
-								<wsdlUrl>http://181.191.206.162:8080/SipPulse/AddressWS?wsdl</wsdlUrl>
+								<wsdlUrl>${soap.wsdl.url}/SipPulse/AddressWS?wsdl</wsdlUrl>
 							</wsdlUrls>
 							<packageName>com.sippulse.soapadapter.client.addressWS</packageName>
 							<sourceDestDir>${project.build.directory}/generated-sources/wsimport</sourceDestDir>
@@ -272,7 +309,7 @@
 						<goals><goal>wsimport</goal></goals>
 						<configuration>
 							<wsdlUrls>
-								<wsdlUrl>http://181.191.206.162:8080/SipPulse/HuntGroupWS?wsdl</wsdlUrl>
+								<wsdlUrl>${soap.wsdl.url}/SipPulse/HuntGroupWS?wsdl</wsdlUrl>
 							</wsdlUrls>
 							<packageName>com.sippulse.soapadapter.client.huntGroupWS</packageName>
 							<sourceDestDir>${project.build.directory}/generated-sources/wsimport</sourceDestDir>
@@ -290,7 +327,7 @@
 						<configuration>
 							<wsdlUrls>
 								<wsdlUrl>
-									http://181.191.206.162:8080/SipPulse/ReloadModulesWS?wsdl
+									${soap.wsdl.url}/SipPulse/ReloadModulesWS?wsdl
 								</wsdlUrl>
 							</wsdlUrls>
 

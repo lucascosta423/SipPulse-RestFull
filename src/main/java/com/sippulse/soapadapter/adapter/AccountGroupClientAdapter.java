@@ -1,5 +1,6 @@
 package com.sippulse.soapadapter.adapter;
 
+import com.sippulse.soapadapter.exception.SoapServiceException;
 import com.sippulse.soapadapter.client.accountGroupWS.*;
 import com.sippulse.soapadapter.mapper.SoapAuthMapper;
 import org.springframework.stereotype.Component;
@@ -40,10 +41,10 @@ public class AccountGroupClientAdapter {
         try {
             return accountGroupWS.retrieveAccountGroup(
                     accountManager,
-                    authMapper.toSoapUser(UserPrincipalDTO::new)
+                    authMapper.toSoapUser(new UserPrincipalDTO())
             );
         } catch (WSException e) {
-            throw new RuntimeException("Erro ao recuperar account group", e);
+            throw new SoapServiceException("Erro ao recuperar account group", e);
         }
     }
 
@@ -53,10 +54,10 @@ public class AccountGroupClientAdapter {
                     accountManager,
                     managerProfile,
                     account,
-                    authMapper.toSoapUser(UserPrincipalDTO::new)
+                    authMapper.toSoapUser(new UserPrincipalDTO())
             );
         } catch (WSException e) {
-            throw new RuntimeException("Erro ao adicionar account group", e);
+            throw new SoapServiceException("Erro ao adicionar account group", e);
         }
     }
 
@@ -66,10 +67,10 @@ public class AccountGroupClientAdapter {
                     accountManager,
                     managerProfile,
                     account,
-                    authMapper.toSoapUser(UserPrincipalDTO::new)
+                    authMapper.toSoapUser(new UserPrincipalDTO())
             );
         } catch (WSException e) {
-            throw new RuntimeException("Erro ao remover account group", e);
+            throw new SoapServiceException("Erro ao remover account group", e);
         }
     }
 }

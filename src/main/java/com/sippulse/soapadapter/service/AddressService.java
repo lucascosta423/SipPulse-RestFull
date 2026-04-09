@@ -64,7 +64,7 @@ public class AddressService {
         addressClientAdpter.removeAddress(domain, addressId);
     }
 
-    public List<Address> lisAddresses(String accountcode) {
+    public List<Address> listAddresses(String accountcode) {
         var ac = AccountCodeUtils.from(accountcode);
 
         return addressClientAdpter.lisAddresses(ac.username(), ac.domain());

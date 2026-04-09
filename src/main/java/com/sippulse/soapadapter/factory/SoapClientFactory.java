@@ -1,6 +1,7 @@
 package com.sippulse.soapadapter.factory;
 
 import jakarta.xml.ws.BindingProvider;
+import com.sippulse.soapadapter.exception.SoapServiceException;
 import org.springframework.stereotype.Component;
 
 import java.net.URI;
@@ -45,7 +46,7 @@ public class SoapClientFactory {
 
             return port;
         } catch (Exception e) {
-            throw new RuntimeException("Erro ao criar client SOAP", e);
+            throw new SoapServiceException("Erro ao criar client SOAP", e);
         }
     }
 

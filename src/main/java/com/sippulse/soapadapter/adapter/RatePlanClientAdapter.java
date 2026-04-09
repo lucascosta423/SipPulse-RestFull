@@ -1,6 +1,7 @@
 package com.sippulse.soapadapter.adapter;
 
 import com.sippulse.soapadapter.client.ratePlanWS.*;
+import com.sippulse.soapadapter.exception.SoapServiceException;
 import com.sippulse.soapadapter.mapper.SoapAuthMapper;
 import jakarta.xml.ws.Holder;
 import org.springframework.stereotype.Component;
@@ -41,10 +42,10 @@ public class RatePlanClientAdapter {
         try {
             return ratePlanWS.listRatePlansByDomain(
                     domain,
-                    authMapper.toSoapUser(UserPrincipalDTO::new)
+                    authMapper.toSoapUser(new UserPrincipalDTO())
             );
         } catch (WSException e) {
-            throw new RuntimeException("Erro ao listar rate plans", e);
+            throw new SoapServiceException("Erro ao listar rate plans", e);
         }
     }
 
@@ -53,10 +54,10 @@ public class RatePlanClientAdapter {
             Holder<RatePlan> holder = new Holder<>(ratePlan);
             ratePlanWS.insertRatePlan(
                     holder,
-                    authMapper.toSoapUser(UserPrincipalDTO::new)
+                    authMapper.toSoapUser(new UserPrincipalDTO())
             );
         } catch (WSException e) {
-            throw new RuntimeException("Erro ao inserir rate plan", e);
+            throw new SoapServiceException("Erro ao inserir rate plan", e);
         }
     }
 
@@ -65,10 +66,10 @@ public class RatePlanClientAdapter {
             Holder<RatePlan> holder = new Holder<>(ratePlan);
             ratePlanWS.updateRatePlan(
                     holder,
-                    authMapper.toSoapUser(UserPrincipalDTO::new)
+                    authMapper.toSoapUser(new UserPrincipalDTO())
             );
         } catch (WSException e) {
-            throw new RuntimeException("Erro ao atualizar rate plan", e);
+            throw new SoapServiceException("Erro ao atualizar rate plan", e);
         }
     }
 
@@ -76,10 +77,10 @@ public class RatePlanClientAdapter {
         try {
             ratePlanWS.removeRatePlan(
                     idRatePlan,
-                    authMapper.toSoapUser(UserPrincipalDTO::new)
+                    authMapper.toSoapUser(new UserPrincipalDTO())
             );
         } catch (WSException e) {
-            throw new RuntimeException("Erro ao remover rate plan", e);
+            throw new SoapServiceException("Erro ao remover rate plan", e);
         }
     }
 }

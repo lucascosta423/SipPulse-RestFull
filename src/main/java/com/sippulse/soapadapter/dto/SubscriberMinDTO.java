@@ -1,5 +1,8 @@
 package com.sippulse.soapadapter.dto;
 
+import jakarta.validation.constraints.Email;
+import jakarta.validation.constraints.NotBlank;
+
 /**
  * SipPulse-RestFull
  * Copyright (C) 2026
@@ -20,10 +23,15 @@ package com.sippulse.soapadapter.dto;
 
 
 public record SubscriberMinDTO(
+        @NotBlank
         String username,
+        @Email
+        @NotBlank
         String emailAddress,
+        @NotBlank
         String password,
         String passwordPortal,
+        @NotBlank
         String domain,
 
 // +++++++++++++++++++++++++++++++++++++++ //

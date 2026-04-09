@@ -5,84 +5,86 @@
 ![License: GPL v3](https://img.shields.io/badge/License-GPLv3-blue.svg?style=for-the-badge)
 ![Docker](https://img.shields.io/badge/Docker-Ready-2496ED?style=for-the-badge&logo=docker&logoColor=white)
 
-> API RESTful desenvolvida em Java/Spring Boot para consumo de serviços SOAP do SipPulse, abstraindo a complexidade do protocolo e expondo endpoints modernos e simples.
+> A RESTful API built with Java/Spring Boot to consume SipPulse SOAP services, abstracting protocol complexity and exposing modern and simple endpoints.
 
 ---
 
-## Índice
+## Table of Contents
 
-- [Sobre](#sobre)
-- [Pré-requisitos](#pré-requisitos)
-- [Configuração](#configuração)
-- [Instalação](#instalação)
+- [About](#about)
+- [Prerequisites](#prerequisites)
+- [Configuration](#configuration)
+- [Installation](#installation)
 - [Endpoints](#endpoints)
+- [API Documentation (Swagger)](#api-documentation-swagger)
 - [Docker](#docker)
-- [Contribuindo](#contribuindo)
-- [Licença](#licença)
+- [Contributing](#contributing)
+- [License](#license)
 
 ---
 
-## Sobre
+## About
 
-O **SipPulse-RestFull** é uma camada de integração que converte chamadas REST em requisições SOAP, permitindo que aplicações modernas consumam serviços legados do SipPulse de forma simples e padronizada.
+**SipPulse-RestFull** is an integration layer that converts REST calls into SOAP requests, allowing modern applications to consume SipPulse legacy services in a simple and standardized way.
 
-### Funcionalidades
+### Features
 
-- Gerenciamento de Domínios
-- Gerenciamento de Perfis
-- Gerenciamento de Assinantes
-- Gerenciamento de DIDs (Números)
-- Gerenciamento de Endereços
-- Recarga de Módulos
+- Domain Management
+- Profile Management
+- Subscriber Management
+- DID (Number) Management
+- Address Management
+- Module Reload
 
 ---
 
-## Pré-requisitos
+## Prerequisites
 
 - Java 21+
 - Maven 3.8+
-- Docker (opcional)
+- Docker (optional)
 
 ---
 
-## Configuração
+## Configuration
 
-### Variáveis de Ambiente
+### Environment Variables
 
-| Variável | Descrição                                                      | Obrigatório |
-|----------|----------------------------------------------------------------|-------------|
-| `USER_ADMIN` | Usuário de autenticação do SipPulse                            | Sim |
-| `PASSWORD_ADMIN` | Senha de autenticação do SipPulse                              | Sim |
-| `URL` | URL base dos serviços SOAP (ex: `http://xxx.xxx.xxx.xxx:8080`) | Sim |
+| Variable | Description | Required |
+|----------|-------------|----------|
+| `USER_ADMIN` | Auth user for SipPulse | Yes |
+| `PASSWORD_ADMIN` | Auth password for SipPulse | Yes |
+| `URL` | Base URL for SOAP services (e.g., `http://xxx.xxx.xxx.xxx:8080`) | Yes |
 
 ---
-## Instalação
 
-### Executando localmente
+## Installation
+
+### Running locally
 
 ```bash
-# Clone o repositório
+# Clone the repository
 git clone https://github.com/SipPulse-RestFull/sippulse-restfull.git
 
-# Entre na pasta
+# Enter the directory
 cd sippulse-restfull
 
-# Configure as variáveis de ambiente
-export USER_ADMIN=seu_usuario
-export PASSWORD_ADMIN=sua_senha
+# Set environment variables
+export USER_ADMIN=your_user
+export PASSWORD_ADMIN=your_password
 export URL=http://xxx.xxx.xxx.xxx:8080
 
-# Compile e execute
+# Build and run
 ./mvnw spring-boot:run
 ```
 
-### Executando com Maven
+### Building a JAR
 
 ```bash
-# Compilar
+# Build
 ./mvnw clean package -DskipTests
 
-# Executar o JAR
+# Run the JAR
 java -jar target/soapadapter-0.0.1-SNAPSHOT.jar
 ```
 
@@ -90,82 +92,97 @@ java -jar target/soapadapter-0.0.1-SNAPSHOT.jar
 
 ## Endpoints
 
-A API estará disponível em `http://localhost:8080`.
+The API is available at `http://localhost:8080`.
 
 ### Health Check
 
-| Método | Endpoint | Descrição |
-|--------|----------|-----------|
-| GET | `/actuator/health` | Verifica se a aplicação está saudável |
+| Method | Endpoint | Description |
+|--------|----------|-------------|
+| GET | `/actuator/health` | Check if the application is healthy |
 
-### Domínios
+### Domains
 
-| Método | Endpoint | Descrição |
-|--------|----------|-----------|
-| GET | `/domain` | Lista todos os domínios |
+| Method | Endpoint | Description |
+|--------|----------|-------------|
+| GET | `/domain` | List all domains |
 
-### Perfis
+### Profiles
 
-| Método | Endpoint | Descrição |
-|--------|----------|-----------|
-| GET | `/profile/{domain}` | Lista perfis por domínio |
+| Method | Endpoint | Description |
+|--------|----------|-------------|
+| GET | `/profile/{domain}` | List profiles by domain |
 
-### Assinantes
+### Subscribers
 
-| Método | Endpoint | Descrição |
-|--------|----------|-----------|
-| POST | `/subscriber` | Cria um novo assinante |
-| PATCH | `/subscriber/{accountcode}/active` | Ativa um assinante |
-| PATCH | `/subscriber/{accountcode}/block` | Bloqueia um assinante |
+| Method | Endpoint | Description |
+|--------|----------|-------------|
+| POST | `/subscriber` | Create a new subscriber |
+| PATCH | `/subscriber/{accountcode}/active` | Activate a subscriber |
+| PATCH | `/subscriber/{accountcode}/block` | Block a subscriber |
 
-### DIDs (Números)
+### DIDs (Numbers)
 
-| Método | Endpoint | Descrição |
-|--------|----------|-----------|
-| GET | `/dids/available?domain={domain}` | Lista números disponíveis |
-| GET | `/dids?accountcode={accountcode}` | Lista DIDs por conta |
-| POST | `/dids` | Registra um novo DID |
-| DELETE | `/dids/{id}` | Remove um DID |
+| Method | Endpoint | Description |
+|--------|----------|-------------|
+| GET | `/dids/available?domain={domain}` | List available numbers |
+| GET | `/dids?accountcode={accountcode}` | List DIDs by account |
+| POST | `/dids` | Register a new DID |
+| DELETE | `/dids/{id}` | Remove a DID |
 
-### Endereços
+### Addresses
 
-| Método | Endpoint | Descrição |
-|--------|----------|-----------|
-| GET | `/address/{accountcode}` | Lista endereços por conta |
-| POST | `/address` | Adiciona um endereço |
-| PATCH | `/address` | Atualiza um endereço |
-| DELETE | `/address/{domain}/{id}` | Remove um endereço |
+| Method | Endpoint | Description |
+|--------|----------|-------------|
+| GET | `/address/{accountcode}` | List addresses by account |
+| POST | `/address` | Add an address |
+| PATCH | `/address` | Update an address |
+| DELETE | `/address/{domain}/{id}` | Remove an address |
 
-### Recarga de Módulos
+### Module Reload
 
-| Método | Endpoint | Descrição |
-|--------|----------|-----------|
-| POST | `/reload/profile?profile={profile}&domain={domain}` | Recarrega perfil |
-| POST | `/reload/subscriber/{accountcode}` | Recarrega assinante |
-| POST | `/reload/did/{didId}` | Recarrega DID |
-| POST | `/reload/address` | Recarrega endereços |
-| POST | `/reload/huntgroup/{huntGroupId}` | Recarrega grupo de busca |
+| Method | Endpoint | Description |
+|--------|----------|-------------|
+| POST | `/reload/profile?profile={profile}&domain={domain}` | Reload profile |
+| POST | `/reload/subscriber/{accountcode}` | Reload subscriber |
+| POST | `/reload/did/{didId}` | Reload DID |
+| POST | `/reload/address` | Reload addresses |
+| POST | `/reload/huntgroup/{huntGroupId}` | Reload hunt group |
+
+---
+
+## API Documentation (Swagger)
+
+Interactive API documentation is available at:
+
+```
+http://localhost:8080/swagger-ui.html
+```
+
+OpenAPI specification is available at:
+```
+http://localhost:8080/v3/api-docs
+```
 
 ---
 
 ## Docker
 
-### Build da imagem
+### Build image
 
 ```bash
-docker build -t sippulse/soapadapter:latest .
+docker build -t sippulse-rest-api:latest .
 ```
 
-### Executar container
+### Run container
 
 ```bash
 docker run -d \
-  --name soapadapter \
+  --name sippulse-rest-api \
   -p 8080:8080 \
-  -e USER_ADMIN=seu_usuario \
-  -e PASSWORD_ADMIN=sua_senha \
-  -e URL=http://181.191.206.162:8080 \
-  sippulse/soapadapter:latest
+  -e USER_ADMIN=your_user \
+  -e PASSWORD_ADMIN=your_password \
+  -e URL=http://xxx.xxx.xxx.xxx:8080 \
+  sippulse-rest-api:latest
 ```
 
 ### Docker Compose
@@ -174,54 +191,66 @@ docker run -d \
 version: '3.8'
 
 services:
-  soapadapter:
-    image: sippulse/soapadapter:latest
+  sippulse-rest-api:
+    image: sippulse-rest-api:latest
     ports:
       - "8080:8080"
     environment:
-      - USER_ADMIN=seu_usuario
-      - PASSWORD_ADMIN=sua_senha
-      - URL=http://181.191.206.162:8080
+      - USER_ADMIN=your_user
+      - PASSWORD_ADMIN=your_password
+      - URL=http://xxx.xxx.xxx.xxx:8080
     restart: unless-stopped
 ```
 
-### Imagem no Docker Hub
+### Pull from Docker Hub
 
 ```bash
-docker pull sippulse/soapadapter:latest
+docker pull <seu-usuario>/sippulse-rest-api:latest
 ```
+
+> Substitua `<seu-usuario>` pelo seu username do Docker Hub (definido em `DOCKERHUB_USERNAME` no CI/CD).
 
 ---
 
 ## CI/CD
 
-O projeto possui pipeline automatizado que:
+The project has automated pipelines that:
 
-- Executa em tags `v*` (ex: `v1.0.0`)
-- Build com Maven
-- Executa testes
-- Gera imagem Docker multi-arquitetura (amd64/arm64)
-- Publica no Docker Hub
+**On tags (`v*`, e.g., `v1.0.0`):**
+- Build with Maven
+- Run tests
+- Generate multi-arch Docker image (amd64/arm64)
+- Publish to Docker Hub as `<seu-usuario>/sippulse-rest-api`
 
-### Como fazer deploy
+**Tags pushed:**
+| Git Tag | Docker Tags |
+|---------|-------------|
+| `v1.0.0` | `1.0.0`, `latest` |
+| `v1.0.0-beta` | `1.0.0-beta`, `beta` |
+| `v1.0.0-rc` | `1.0.0-rc`, `rc` |
 
 ```bash
 git tag v1.0.0
 git push origin v1.0.0
 ```
 
----
-
-## Contribuindo
-
-Contribuições são muito bem-vindas! Leia o [CONTRIBUTING.md](CONTRIBUTING.md) para saber como participar do projeto.
+**On push/pull request to `main` or `develop`:**
+- Build and run tests to ensure code quality
 
 ---
 
-## Licença
+## Contributing
 
-Este projeto está licenciado sob a **GNU General Public License v3.0**.
-Veja o arquivo [LICENSE](LICENSE) para mais detalhes.
+Contributions are very welcome! Read [CONTRIBUTING.md](CONTRIBUTING.md) to learn how to participate in the project.
+
+For issues and feature requests, check existing issues before opening a new one.
+
+---
+
+## License
+
+This project is licensed under the **GNU General Public License v3.0**.
+See the [LICENSE](LICENSE) file for more details.
 
 ```
 SipPulse-RestFull  Copyright (C) 2026

@@ -6,7 +6,7 @@ on:
       - 'v*'
 
 env:
-  IMAGE_NAME: sippulse/rest-api
+  IMAGE_NAME: sippulse-rest-api
 
 jobs:
   build:
@@ -26,11 +26,8 @@ jobs:
           distribution: 'temurin'
           cache: maven
 
-      - name: Build with Maven
-        run: ./mvnw clean package -DskipTests -B
-
-      - name: Run tests
-        run: ./mvnw test -B
+      - name: Build and test
+        run: ./mvnw clean verify -B
 
       - name: Set up QEMU
         uses: docker/setup-qemu-action@v3
@@ -50,14 +47,14 @@ jobs:
           VERSION="${GITHUB_REF#refs/tags/v}"
           echo "VERSION=${VERSION}" >> "$GITHUB_OUTPUT"
 
-          TAGS="${{ env.IMAGE_NAME }}:${VERSION}"
+          TAGS="${{ secrets.DOCKERHUB_USERNAME }}/${{ env.IMAGE_NAME }}:${VERSION}"
 
           if [[ "${VERSION}" == *"-beta"* ]]; then
-            TAGS="${TAGS}"$'\n'"${{ env.IMAGE_NAME }}:beta"
+            TAGS="${TAGS}"$'\n'"${{ secrets.DOCKERHUB_USERNAME }}/${{ env.IMAGE_NAME }}:beta"
           elif [[ "${VERSION}" == *"-rc"* ]]; then
-            TAGS="${TAGS}"$'\n'"${{ env.IMAGE_NAME }}:rc"
+            TAGS="${TAGS}"$'\n'"${{ secrets.DOCKERHUB_USERNAME }}/${{ env.IMAGE_NAME }}:rc"
           else
-            TAGS="${TAGS}"$'\n'"${{ env.IMAGE_NAME }}:latest"
+            TAGS="${TAGS}"$'\n'"${{ secrets.DOCKERHUB_USERNAME }}/${{ env.IMAGE_NAME }}:latest"
           fi
 
           {
@@ -76,10 +73,3 @@ jobs:
           tags: ${{ steps.version.outputs.IMAGE_TAGS }}
           cache-from: type=gha
           cache-to: type=gha,mode=max
-
-      - name: Generate artifact attestation
-        uses: actions/attest-build-provenance@v1
-        with:
-          subject-name: ${{ env.IMAGE_NAME }}
-          subject-digest: ${{ steps.build.outputs.digest }}
-          push-to-registry: true

@@ -1,5 +1,6 @@
 package com.sippulse.soapadapter.adapter;
 
+import com.sippulse.soapadapter.exception.SoapServiceException;
 import com.sippulse.soapadapter.client.domainWS.*;
 import com.sippulse.soapadapter.mapper.SoapAuthMapper;
 import org.springframework.stereotype.Component;
@@ -39,10 +40,10 @@ public class DomainClientAdapter {
     public List<Domain> listDomains() {
         try {
             return domainWS.listDomains(
-                    authMapper.toSoapUser(UserPrincipalDTO::new)
+                    authMapper.toSoapUser(new UserPrincipalDTO())
             );
         } catch (WSException e) {
-            throw new RuntimeException("Erro ao listar domínios", e);
+            throw new SoapServiceException("Erro ao listar domínios", e);
         }
     }
 }

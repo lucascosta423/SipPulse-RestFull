@@ -1,6 +1,7 @@
 package com.sippulse.soapadapter.adapter;
 
 
+import com.sippulse.soapadapter.exception.SoapServiceException;
 import com.sippulse.soapadapter.client.didWS.Did;
 import com.sippulse.soapadapter.client.didWS.DidWS;
 import com.sippulse.soapadapter.client.didWS.UserPrincipalDTO;
@@ -42,9 +43,9 @@ public class DidClientAdapter {
 
     public Integer insertDid(Did did){
         try{
-            return didWS.insertDid(did,authMapper.toSoapUser(UserPrincipalDTO::new));
+            return didWS.insertDid(did,authMapper.toSoapUser(new UserPrincipalDTO()));
         }catch (WSException e){
-            throw new RuntimeException("Erro ao inserir DID", e);
+            throw new SoapServiceException("Erro ao inserir DID", e);
         }
     }
 
@@ -52,10 +53,10 @@ public class DidClientAdapter {
         try {
             return didWS.listAvailablesNumbers(
                     domain,
-                    authMapper.toSoapUser(UserPrincipalDTO::new)
+                    authMapper.toSoapUser(new UserPrincipalDTO())
             );
         } catch (WSException e) {
-            throw new RuntimeException("Erro ao buscar números disponíveis", e);
+            throw new SoapServiceException("Erro ao buscar números disponíveis", e);
         }
     }
 
@@ -64,12 +65,12 @@ public class DidClientAdapter {
             return DidDTO.fromEntityList(
                     didWS.listByAcc(
                             accountCode,
-                            authMapper.toSoapUser(UserPrincipalDTO::new)
+                            authMapper.toSoapUser(new UserPrincipalDTO())
                     )
             );
 
         }catch (WSException e){
-            throw new RuntimeException("Erro ao buscar DIDs", e);
+            throw new SoapServiceException("Erro ao buscar DIDs", e);
         }
     }
 
@@ -79,11 +80,11 @@ public class DidClientAdapter {
 
             didWS.deleteDid(
                     didId,
-                    authMapper.toSoapUser(UserPrincipalDTO::new)
+                    authMapper.toSoapUser(new UserPrincipalDTO())
             );
 
         }catch (WSException e){
-            throw new RuntimeException("Erro ao deletar did", e);
+            throw new SoapServiceException("Erro ao deletar did", e);
         }
     }
 }

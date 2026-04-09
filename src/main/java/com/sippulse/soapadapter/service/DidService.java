@@ -46,7 +46,7 @@ public class DidService {
 
     }
 
-    public List<String> listAvailablesNumbers(String domain){
+    public List<String> listAvailableNumbers(String domain){
 
             return didClientAdapter.listAvailablesNumbers(domain);
 

@@ -1,5 +1,6 @@
 package com.sippulse.soapadapter.adapter;
 
+import com.sippulse.soapadapter.exception.SoapServiceException;
 import com.sippulse.soapadapter.client.customerWS.CustomerWS;
 import com.sippulse.soapadapter.client.customerWS.SubscriberDTO;
 import com.sippulse.soapadapter.client.customerWS.WSException;
@@ -44,7 +45,7 @@ public class CustomerClientAdapter{
                     confirmNewPassword
             );
         }catch (WSException e){
-            throw new RuntimeException("Erro ao alterar senha do cliente", e);
+            throw new SoapServiceException("Erro ao alterar senha do cliente", e);
         }
     }
 
@@ -57,7 +58,7 @@ public class CustomerClientAdapter{
                     domain
             );
         }catch (WSException e){
-            throw new RuntimeException("Erro ao recuperar saldo do cliente",e);
+            throw new SoapServiceException("Erro ao recuperar saldo do cliente",e);
         }
     }
 
@@ -70,7 +71,7 @@ public class CustomerClientAdapter{
                     domain
             );
         }catch (WSException e){
-            throw new RuntimeException("Erro ao autenticar cliente",e);
+            throw new SoapServiceException("Erro ao autenticar cliente",e);
         }
     }
 

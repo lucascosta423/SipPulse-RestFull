@@ -1,9 +1,11 @@
 package com.sippulse.soapadapter.controllers;
 
+import com.sippulse.soapadapter.dto.AddCreditDTO;
 import com.sippulse.soapadapter.dto.ApiResponse;
 import com.sippulse.soapadapter.dto.SubscriberMinDTO;
 import com.sippulse.soapadapter.service.SubscriberService;
 import jakarta.servlet.http.HttpServletRequest;
+import jakarta.validation.Valid;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
@@ -39,12 +41,30 @@ public class SubscriberController {
     }
 
     @PostMapping
-    public ResponseEntity<ApiResponse<Integer>> insertSubscriber(@RequestBody SubscriberMinDTO subscriberMinDTO, HttpServletRequest request) {
+    public ResponseEntity<ApiResponse<Integer>> insertSubscriber(@RequestBody @Valid SubscriberMinDTO subscriberMinDTO, HttpServletRequest request) {
           return ResponseEntity.status(HttpStatus.CREATED).body(
                 ApiResponse.success(
                         subscriberService.insertSubscriber(subscriberMinDTO),
                         "Registered Subscriber",
                         HttpStatus.CREATED.value(),
+                        request.getRequestURI()
+                )
+        );
+    }
+
+    @PostMapping("/credit")
+    public ResponseEntity<ApiResponse<Void>> creditSubscriber(@RequestBody @Valid AddCreditDTO addCreditDTO, HttpServletRequest request) {
+
+        if (addCreditDTO.value() == null || addCreditDTO.value() <= 0) {
+            throw new IllegalArgumentException("The value must be greater than zero");
+        }
+
+        subscriberService.addCredit(addCreditDTO);
+        return ResponseEntity.status(HttpStatus.OK).body(
+                ApiResponse.success(
+                        null,
+                        "Credit Added",
+                        HttpStatus.OK.value(),
                         request.getRequestURI()
                 )
         );

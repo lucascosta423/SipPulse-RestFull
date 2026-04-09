@@ -1,5 +1,6 @@
 package com.sippulse.soapadapter.adapter;
 
+import com.sippulse.soapadapter.exception.SoapServiceException;
 import com.sippulse.soapadapter.client.reloadWS.ReloadModulesWS;
 import com.sippulse.soapadapter.client.reloadWS.UserPrincipalDTO;
 import com.sippulse.soapadapter.client.reloadWS.WSException;
@@ -41,10 +42,10 @@ public class ReloadModuleClientAdpter{
             reloadModulesWS.reloadProfile(
                     profile,
                     domain,
-                    authMapper.toSoapUser(UserPrincipalDTO::new)
+                    authMapper.toSoapUser(new UserPrincipalDTO())
             );
         }catch (WSException e){
-            throw new RuntimeException("Error reloading profile", e);
+            throw new SoapServiceException("Error reloading profile", e);
         }
     }
 
@@ -54,10 +55,10 @@ public class ReloadModuleClientAdpter{
             reloadModulesWS.reloadSubscriber(
                     username,
                     domain,
-                    authMapper.toSoapUser(UserPrincipalDTO::new)
+                    authMapper.toSoapUser(new UserPrincipalDTO())
             );
         }catch (WSException e){
-            throw new RuntimeException("Error reloading subscriber", e);
+            throw new SoapServiceException("Error reloading subscriber", e);
         }
     }
 
@@ -66,10 +67,10 @@ public class ReloadModuleClientAdpter{
         try {
             reloadModulesWS.reloadDid(
                     didId,
-                    authMapper.toSoapUser(UserPrincipalDTO::new)
+                    authMapper.toSoapUser(new UserPrincipalDTO())
             );
         }catch (WSException e){
-            throw new RuntimeException("Error reloading did", e);
+            throw new SoapServiceException("Error reloading did", e);
         }
     }
 
@@ -77,10 +78,10 @@ public class ReloadModuleClientAdpter{
     public void reloadAddress() {
         try{
             reloadModulesWS.reloadAddress(
-                    authMapper.toSoapUser(UserPrincipalDTO::new)
+                    authMapper.toSoapUser(new UserPrincipalDTO())
             );
         }catch (WSException e){
-            throw new RuntimeException("Error reloading address", e);
+            throw new SoapServiceException("Error reloading address", e);
         }
     }
 
@@ -89,10 +90,10 @@ public class ReloadModuleClientAdpter{
         try {
             reloadModulesWS.reloadHuntGroup(
                     huntGroupId,
-                    authMapper.toSoapUser(UserPrincipalDTO::new)
+                    authMapper.toSoapUser(new UserPrincipalDTO())
             );
         }catch (WSException e){
-            throw new RuntimeException("Error reloading hunt group", e);
+            throw new SoapServiceException("Error reloading hunt group", e);
         }
     }
 }
