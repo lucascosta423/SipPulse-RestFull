@@ -110,7 +110,7 @@ class ControllerTest {
 
         assertThat(response.getStatusCode()).isEqualTo(HttpStatus.BAD_REQUEST);
         assertThat(response.getBody().message()).isEqualTo("Validation error");
-        assertThat(response.getBody().errors()).contains("must not be blank");
+        assertThat(response.getBody().errors()).contains("username: must not be blank");
     }
 
     @Test
