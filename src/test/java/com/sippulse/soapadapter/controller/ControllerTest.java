@@ -12,6 +12,7 @@ import org.junit.jupiter.api.extension.ExtendWith;
 import org.mockito.InjectMocks;
 import org.mockito.Mock;
 import org.mockito.junit.jupiter.MockitoExtension;
+import org.springframework.core.MethodParameter;
 import org.springframework.http.HttpInputMessage;
 import org.springframework.http.HttpMethod;
 import org.springframework.http.HttpStatus;
@@ -57,7 +58,10 @@ class ControllerTest {
         var response = domainController.listDomains(request);
 
         assertThat(response.getStatusCode()).isEqualTo(HttpStatus.OK);
-        assertThat(response.getBody().data()).hasSize(1);
+
+        var body = response.getBody();
+        assertThat(body).isNotNull();
+        assertThat(body.data()).hasSize(1);
     }
 
     // --- Did Controller ---
@@ -80,7 +84,9 @@ class ControllerTest {
         var response = handler.handleSoapServiceException(new SoapServiceException("SOAP error"), request);
 
         assertThat(response.getStatusCode()).isEqualTo(HttpStatus.INTERNAL_SERVER_ERROR);
-        assertThat(response.getBody().message()).isEqualTo("SOAP service error");
+       assertThat(response.getBody())
+                .isNotNull()
+                .satisfies(body -> assertThat(body.message()).isEqualTo("SOAP service error"));
     }
 
     @Test
@@ -89,7 +95,9 @@ class ControllerTest {
         var response = handler.handleRuntimeException(new RuntimeException("Generic"), request);
 
         assertThat(response.getStatusCode()).isEqualTo(HttpStatus.INTERNAL_SERVER_ERROR);
-        assertThat(response.getBody().message()).isEqualTo("Internal server error");
+       assertThat(response.getBody())
+                .isNotNull()
+                .satisfies(body -> assertThat(body.message()).isEqualTo("Internal server error"));
     }
 
     @Test
@@ -99,18 +107,23 @@ class ControllerTest {
         var response = handler.handleMalformedJson(ex, request);
 
         assertThat(response.getStatusCode()).isEqualTo(HttpStatus.BAD_REQUEST);
-        assertThat(response.getBody().message()).isEqualTo("Malformed request body");
+        assertThat(response.getBody())
+                .isNotNull()
+                .satisfies(body -> assertThat(body.message()).isEqualTo("Malformed request body"));
     }
 
     @Test
-    void handleValidation_shouldReturn400WithErrors() {
+    void handleValidation_shouldReturn400WithErrors() throws NoSuchMethodException {
         var request = new MockHttpServletRequest("GET", "/test");
         var bindingResult = new BeanPropertyBindingResult(new Object(), "object");
         bindingResult.addError(new FieldError("object", "username", "must not be blank"));
 
-        var response = handler.handleValidation(new MethodArgumentNotValidException(null, bindingResult), request);
+        var methodParameter = mock(MethodParameter.class);
+        var ex = new MethodArgumentNotValidException(methodParameter, bindingResult);
+        var response = handler.handleValidation(ex, request);
 
         assertThat(response.getStatusCode()).isEqualTo(HttpStatus.BAD_REQUEST);
+        assertThat(response.getBody()).isNotNull();
         assertThat(response.getBody().message()).isEqualTo("Validation error");
         assertThat(response.getBody().errors()).contains("username: must not be blank");
     }
