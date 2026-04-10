@@ -114,11 +114,12 @@ The API is available at `http://localhost:8080`.
 
 ### Subscribers
 
-| Method | Endpoint | Description |
-|--------|----------|-------------|
-| POST | `/subscriber` | Create a new subscriber |
-| PATCH | `/subscriber/{accountcode}/active` | Activate a subscriber |
-| PATCH | `/subscriber/{accountcode}/block` | Block a subscriber |
+| Method | Endpoint                           | Description              |
+|--------|------------------------------------|--------------------------|
+| POST | `/subscriber`                      | Create a new subscriber  |
+| POST | `/subscriber/credit`               | Add credit in subscriber |
+| PATCH | `/subscriber/{accountcode}/active` | Activate a subscriber    |
+| PATCH | `/subscriber/{accountcode}/block`  | Block a subscriber       |
 
 ### DIDs (Numbers)
 
