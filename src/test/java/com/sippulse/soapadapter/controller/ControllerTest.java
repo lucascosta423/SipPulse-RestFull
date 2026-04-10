@@ -12,6 +12,7 @@ import org.junit.jupiter.api.extension.ExtendWith;
 import org.mockito.InjectMocks;
 import org.mockito.Mock;
 import org.mockito.junit.jupiter.MockitoExtension;
+import org.springframework.http.HttpInputMessage;
 import org.springframework.http.HttpMethod;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.converter.HttpMessageNotReadableException;
@@ -94,7 +95,8 @@ class ControllerTest {
     @Test
     void handleMalformedJson_shouldReturn400() {
         var request = new MockHttpServletRequest("GET", "/test");
-        var response = handler.handleMalformedJson(new HttpMessageNotReadableException("Bad JSON"), request);
+        var ex = new HttpMessageNotReadableException("Bad JSON", mock(HttpInputMessage.class));
+        var response = handler.handleMalformedJson(ex, request);
 
         assertThat(response.getStatusCode()).isEqualTo(HttpStatus.BAD_REQUEST);
         assertThat(response.getBody().message()).isEqualTo("Malformed request body");
